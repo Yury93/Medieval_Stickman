@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Farthest
+    uniqueID: 1662399895
+    locked: 0
+  - name: Far
+    uniqueID: 2379085691
+    locked: 0
+  - name: Medium
+    uniqueID: 1189399807
+    locked: 0
+  - name: Close
+    uniqueID: 1782649945
+    locked: 0
+  - name: Persona
+    uniqueID: 306869031
+    locked: 0
+  - name: "On\u0421amera"
+    uniqueID: 2889231713
+    locked: 0
