@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4461054830587068082}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EffectorRightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628901253447569132}
-  m_LocalRotation: {x: -0, y: -0, z: 0.046877667, w: 0.99890065}
+  m_LocalRotation: {x: -0, y: -0, z: 0.045678012, w: 0.99895626}
   m_LocalPosition: {x: 0.374, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6313730419112435934}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 547445907603815680}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EffectorRightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961372767408020597}
-  m_LocalRotation: {x: -0, y: -0, z: 0.23752385, w: 0.97138166}
+  m_LocalRotation: {x: -0, y: -0, z: 0.23752567, w: 0.9713813}
   m_LocalPosition: {x: 0.366, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 2403366846997104375}
   - component: {fileID: 7395625202057443575}
   - component: {fileID: 2674982086553222947}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightArm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,8 +194,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3533965808572403852}
   m_Bounds:
-    m_Center: {x: -0.22384822, y: 0.0799706, z: 0}
-    m_Extent: {x: 0.26478285, y: 0.31623182, z: 0}
+    m_Center: {x: -0.22384816, y: 0.07997024, z: 0}
+    m_Extent: {x: 0.26478356, y: 0.3162316, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -208,7 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3533965808572403852}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bone_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662541977356703735}
-  m_LocalRotation: {x: 0, y: 0, z: -0.14250071, w: 0.98979473}
+  m_LocalRotation: {x: 0, y: 0, z: -0.14250396, w: 0.98979425}
   m_LocalPosition: {x: 0.3947244, y: -0.00000014799383, z: 0}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
   m_ConstrainProportionsScale: 0
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 8630403842918867713}
   - component: {fileID: 2698179119664540773}
   - component: {fileID: 7260108034782685844}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftArm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,8 +332,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1067929031322191349}
   m_Bounds:
-    m_Center: {x: -0.092264056, y: -0.054758787, z: 0}
-    m_Extent: {x: 0.19328162, y: 0.33224976, z: 0}
+    m_Center: {x: -0.09226255, y: -0.054759145, z: 0}
+    m_Extent: {x: 0.19328214, y: 0.3322494, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -346,7 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6591258164021241999}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788150271025603482}
   m_LocalRotation: {x: -0, y: -0, z: -0.993819, w: 0.111013055}
-  m_LocalPosition: {x: -0.16217487, y: -0.0012726635, z: 0}
+  m_LocalPosition: {x: -0.16217487, y: -0.001272663, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -378,7 +378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3364364420494517711}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightArm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138318178829053864}
-  m_LocalRotation: {x: 0, y: 0, z: -0.21426882, w: 0.97677475}
+  m_LocalRotation: {x: 0, y: 0, z: -0.21426742, w: 0.97677505}
   m_LocalPosition: {x: 0.1729089, y: -0.30127662, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -410,7 +410,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8063138563353872590}
-  m_Layer: 0
+  - component: {fileID: 908243572}
+  - component: {fileID: 908243573}
+  m_Layer: 3
   m_Name: StickMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,6 +435,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &908243572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2170624265195016362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d09e5657270472f44a96b8c5fad7bf22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 6667857665215653472}
+  Walk: Walk
+  StartJump: StartJump
+  Idle: Idle
+--- !u!114 &908243573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2170624265195016362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aad04a66cc3d5c4eaa4583efccbe32f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joystick: {fileID: 0}
+  animatorTransform: {fileID: 6577097297840893763}
+  speedWalk: 4
+  speedJump: 15.9
+  timeJump: 0.4
+  animatorMan: {fileID: 908243572}
 --- !u!1 &2252315702345959917
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8254627432192646278}
   - component: {fileID: 4102837330182586562}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftArmLimb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4089081346892569888}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightLegLimb_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +576,7 @@ GameObject:
   - component: {fileID: 8433465486857003603}
   - component: {fileID: 1030078349142987365}
   - component: {fileID: 5509924995965860490}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -602,7 +638,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_Sprite: {fileID: -5088554710135388191, guid: 28ca91cd30944c84ebabf45384173a00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -631,8 +667,8 @@ MonoBehaviour:
   - {fileID: 3086908164860430809}
   - {fileID: 6122790362482594740}
   m_Bounds:
-    m_Center: {x: -0.008325681, y: 0.004404843, z: 0.28}
-    m_Extent: {x: 0.19337139, y: 0.5174066, z: 0}
+    m_Center: {x: -0.0027351677, y: 0.080916464, z: 0.28}
+    m_Extent: {x: 0.1928415, y: 0.5172836, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -647,7 +683,7 @@ GameObject:
   - component: {fileID: 2738910913046331840}
   - component: {fileID: 6064337012797047685}
   - component: {fileID: 2226774502521198792}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftShoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -737,8 +773,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5204940522196366095}
   m_Bounds:
-    m_Center: {x: 0.12948997, y: 0.003957525, z: 0}
-    m_Extent: {x: 0.15876657, y: 0.11562273, z: 0}
+    m_Center: {x: 0.12216285, y: 0.06304999, z: 0}
+    m_Extent: {x: 0.15890971, y: 0.11460747, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -751,7 +787,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6122790362482594740}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -765,8 +801,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3423457755931774118}
-  m_LocalRotation: {x: 0, y: 0, z: -0.065635055, w: 0.9978437}
-  m_LocalPosition: {x: 1.047358, y: -0.17202368, z: 0.28}
+  m_LocalRotation: {x: 0, y: 0, z: -0.06443665, w: 0.9979218}
+  m_LocalPosition: {x: 0.971, y: -0.164, z: 0.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -784,7 +820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8545993180157556561}
   - component: {fileID: 8056569880310806368}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightArmLimb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -848,7 +884,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7642255040758306619}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EffectorLeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -862,7 +898,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3716627955343381419}
-  m_LocalRotation: {x: -0, y: -0, z: -0.100573346, w: 0.99492973}
+  m_LocalRotation: {x: -0, y: -0, z: -0.09624996, w: 0.9953572}
   m_LocalPosition: {x: 0.339, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -879,7 +915,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3086908164860430809}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bone_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,7 +929,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3948313705267668780}
-  m_LocalRotation: {x: 0, y: 0, z: 0.00000009744853, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.00000008906705, w: 1}
   m_LocalPosition: {x: 0.36828396, y: -0.000000051174972, z: 0}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
   m_ConstrainProportionsScale: 0
@@ -912,7 +948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8265664422666134996}
   - component: {fileID: 1684011190937085586}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftLegLimb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -978,7 +1014,7 @@ GameObject:
   - component: {fileID: 3231852984594272443}
   - component: {fileID: 2035235809580326837}
   - component: {fileID: 2963050840087949536}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightShoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1068,8 +1104,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3086908164860430809}
   m_Bounds:
-    m_Center: {x: -0.078554675, y: 0.0059090853, z: 0.28}
-    m_Extent: {x: 0.17173304, y: 0.08220209, z: 0}
+    m_Center: {x: -0.07157755, y: 0.08226786, z: 0.28}
+    m_Extent: {x: 0.17162281, y: 0.08210231, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1084,7 +1120,7 @@ GameObject:
   - component: {fileID: 499725005942731719}
   - component: {fileID: 8509935413625635627}
   - component: {fileID: 2428282929575870264}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftArm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1174,8 +1210,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1928061628270434717}
   m_Bounds:
-    m_Center: {x: 0.0024213344, y: -0.015791625, z: 0}
-    m_Extent: {x: 0.20731376, y: 0.36807752, z: 0}
+    m_Center: {x: 0.0024213046, y: -0.015791684, z: 0}
+    m_Extent: {x: 0.20731367, y: 0.3680774, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1188,7 +1224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8610011952250810504}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1203,7 +1239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5275814476226582523}
   m_LocalRotation: {x: 0, y: 0, z: -0.6936976, w: 0.7202664}
-  m_LocalPosition: {x: -0.07806039, y: 3.0861905, z: 0}
+  m_LocalPosition: {x: -0.07806039, y: 3.08619, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1226,7 +1262,7 @@ GameObject:
   - component: {fileID: 1531312280631456473}
   - component: {fileID: 5198729812390982704}
   - component: {fileID: 7658386739891815063}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1317,8 +1353,8 @@ MonoBehaviour:
   - {fileID: 5204940522196366095}
   - {fileID: 6314210565752370933}
   m_Bounds:
-    m_Center: {x: 0.033439696, y: 0.005320668, z: 0}
-    m_Extent: {x: 0.21693602, y: 0.50842476, z: 0}
+    m_Center: {x: 0.030897766, y: 0.064528346, z: 0}
+    m_Extent: {x: 0.21445766, y: 0.508199, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1332,7 +1368,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6577097297840893763}
   - component: {fileID: 8165417962552141151}
-  m_Layer: 0
+  - component: {fileID: 6667857665215653472}
+  m_Layer: 3
   m_Name: body_knight (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1346,7 +1383,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5444450567323105056}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1399,6 +1436,27 @@ MonoBehaviour:
     showGizmo: 1
   - color: {r: 0, g: 1, b: 0, a: 1}
     showGizmo: 1
+--- !u!95 &6667857665215653472
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5444450567323105056}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13abf4f17ce62d545beb9d338b2fcedc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5529247525686633291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,7 +1466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1928061628270434717}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftArm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1422,7 +1480,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5529247525686633291}
-  m_LocalRotation: {x: 0, y: 0, z: 0.089337945, w: 0.9960014}
+  m_LocalRotation: {x: 0, y: 0, z: 0.08933974, w: 0.99600124}
   m_LocalPosition: {x: 0.1765607, y: 0.3839408, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1440,7 +1498,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5003248031971501730}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EffectorLeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1454,7 +1512,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5637647921440700655}
-  m_LocalRotation: {x: -0, y: -0, z: 0.16770643, w: 0.985837}
+  m_LocalRotation: {x: -0, y: -0, z: 0.16770874, w: 0.9858366}
   m_LocalPosition: {x: 0.397, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1472,7 +1530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3150845319193736}
   - component: {fileID: 6232169609214447336}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightLegLimb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1538,7 +1596,7 @@ GameObject:
   - component: {fileID: 4755137229472108016}
   - component: {fileID: 4887789004948990835}
   - component: {fileID: 5956770955837435342}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1628,7 +1686,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6591258164021241999}
   m_Bounds:
-    m_Center: {x: -0.07869393, y: -0.0017173886, z: 0}
+    m_Center: {x: -0.07869393, y: -0.0017178655, z: 0}
     m_Extent: {x: 0.6829496, y: 0.7073554, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1644,7 +1702,7 @@ GameObject:
   - component: {fileID: 8138494968240919093}
   - component: {fileID: 1064355922354354518}
   - component: {fileID: 8685974490990750605}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1734,7 +1792,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8610011952250810504}
   m_Bounds:
-    m_Center: {x: 0, y: -0.0013949871, z: 0}
+    m_Center: {x: 0, y: -0.001395464, z: 0}
     m_Extent: {x: 0.435, y: 0.601035, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1748,7 +1806,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1648678269827452909}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightArmLimb_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1779,7 +1837,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3767944907333451523}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftLegLimb_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1810,7 +1868,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6314210565752370933}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1824,8 +1882,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7037941248629043130}
-  m_LocalRotation: {x: 0, y: 0, z: 0.042028412, w: 0.9991164}
-  m_LocalPosition: {x: 1.0538317, y: 0.19620335, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.0376874, w: 0.99928963}
+  m_LocalPosition: {x: 0.994, y: 0.198, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1842,7 +1900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4091644794762301000}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftArmEffector_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1875,7 +1933,7 @@ GameObject:
   - component: {fileID: 4920957239748143339}
   - component: {fileID: 7706020517322968431}
   - component: {fileID: 2399657303872579280}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightArm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1965,8 +2023,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3364364420494517711}
   m_Bounds:
-    m_Center: {x: -0.013797939, y: 0.0039208233, z: 0}
-    m_Extent: {x: 0.2546243, y: 0.34288624, z: 0}
+    m_Center: {x: -0.013797611, y: 0.0039202273, z: 0}
+    m_Extent: {x: 0.25462377, y: 0.34288645, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1981,7 +2039,7 @@ GameObject:
   - component: {fileID: 3171971780475032093}
   - component: {fileID: 4978040987054066597}
   - component: {fileID: 1321730479536259497}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Layer 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2071,7 +2129,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6313730419112435934}
   m_Bounds:
-    m_Center: {x: -0.051233232, y: -0.02939719, z: 0}
+    m_Center: {x: -0.051233232, y: -0.029397666, z: 0}
     m_Extent: {x: 0.5117411, y: 0.292231, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -2085,7 +2143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1067929031322191349}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bone_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2099,7 +2157,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8141467043607990868}
-  m_LocalRotation: {x: 0, y: 0, z: -0.20434956, w: 0.978898}
+  m_LocalRotation: {x: 0, y: 0, z: -0.20435362, w: 0.97889715}
   m_LocalPosition: {x: 0.4991392, y: -0.000000059514967, z: 0}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2117,7 +2175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5204940522196366095}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
