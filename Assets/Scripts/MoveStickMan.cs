@@ -6,78 +6,95 @@ using UnityEngine.EventSystems;
 
 public class MoveStickMan
 {
-    public Transform StickmanTransfrorm { get; private set; }
-    public Transform AnimatorTransform { get; private set; }
-    public float SpeedWalk { get; private set; }
-    public float SpeedJump { get; private set; }
-    public float TimeJump { get; private set; }
-    public bool IsGrounded { get; private set; }
     private AnimatorStickman animatorStickman;
-    private float startTimeJump, startPositionY;
-    private Joystick joystick;
-
-    public MoveStickMan(
-        Joystick joystick,AnimatorStickman animatorStickman
-        ,Transform me, Transform animatorTransform,
-        float speedWalk, float speedJump, float timeJump)
+    private Rigidbody2D rigidbody;
+    private LayerMask groundLayer;
+    public enum StateMoving { idle, walk, jump }
+    public StateMoving State { get; private set; }
+    public Animator AnimatorTransform { get; private set; }
+    public bool IsGrounded { get; private set; }
+    private float jumpSpeed;
+    public MoveStickMan(Animator animator, AnimatorStickman animatorStickman,Rigidbody2D rigidbody)
     {
-        this.TimeJump = timeJump;
-        startTimeJump = timeJump;
-        this.SpeedJump = speedJump;
-        this.SpeedWalk = speedWalk;
-        this.AnimatorTransform = animatorTransform;
-        StickmanTransfrorm = me;
-        this.joystick = joystick;
         this.animatorStickman = animatorStickman;
-        startPositionY = StickmanTransfrorm.position.y;
+        this.rigidbody = rigidbody;
+        AnimatorTransform = animator;
         IsGrounded = true;
+
     }
 
-
-    public void Move()
+    public void Move(float direction,float speedWalk)
     {
+        Vector2 movement = new Vector2(direction * speedWalk * Time.fixedDeltaTime, rigidbody.velocity.y);
+        rigidbody.MovePosition(rigidbody.position + movement);
+
         if (IsGrounded)
         {
-            if (joystick.Horizontal > 0.2 || joystick.Horizontal < -0.2)
+            if (direction > 0.2 || direction < -0.2)
+            {
+                State = StateMoving.walk;
                 animatorStickman.SetWalk(true);
-            else if (joystick.Horizontal == 0)
+            }
+            else if (direction == 0)
+            {
+                State = StateMoving.idle;
                 animatorStickman.SetWalk(false);
+            }
         }
 
-        StickmanTransfrorm.Translate(joystick.Horizontal * SpeedWalk * Time.deltaTime, 0, 0);
-        RotationStickMan();
+        RotationStickMan(direction);
     }
-   public IEnumerator CorJump()
+
+    public IEnumerator CorJump(float jumpSpeed, float timeJump, LayerMask groundLayer)
     {
+        if (IsGrounded == false)
+        {
+            yield break;
+        }
+
         IsGrounded = false;
-        animatorStickman.SetJump(true);
-        float clipLength = 0.3f;
-        yield return new WaitForSeconds(clipLength);
-        animatorStickman.SetJump(false);
+        float timeFalling = timeJump;
+        
+        Jump(jumpSpeed);
 
-        while (TimeJump > 0)
+        while (timeJump >= 0)
         {
-            StickmanTransfrorm.Translate(joystick.Horizontal * SpeedWalk * Time.deltaTime, SpeedJump * Time.deltaTime, 0);
-            TimeJump -= Time.deltaTime;
-
-            yield return null;
+            timeJump -= Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
         }
-        yield return new WaitForSeconds(0.04f);
-        while (StickmanTransfrorm.position.y >= startPositionY)// если у меня будут платформы, то можно сделать фер оверлап или рейкаст вниз для проверки на земле ли я нахожусь
-        {
-            StickmanTransfrorm.Translate(joystick.Horizontal * SpeedWalk * Time.deltaTime, -9.8f * Time.deltaTime, 0);
-            yield return null;
-        }
-        animatorStickman.SetIdle(true);
-        yield return new WaitForSeconds(0.1f);
-        IsGrounded = true;
-        TimeJump = startTimeJump;
 
+        Jump(-jumpSpeed);
+        yield return new WaitForSeconds(timeFalling);
+
+        Transform transformPerson = rigidbody.GetComponent<Transform>();
+        IsGrounded = CheckIfGrounded( groundLayer);
     }
-
-    private void RotationStickMan()
+    private bool CheckIfGrounded(LayerMask groundLayer)
     {
-        if (joystick.Horizontal >= 0.2) AnimatorTransform.transform.rotation = Quaternion.Euler(0, 180, 0);
-        else if (joystick.Horizontal <= -0.2) AnimatorTransform.rotation = Quaternion.Euler(Vector3.zero);
+      var  collider = Physics2D.OverlapCircle(rigidbody. transform.position, 5,groundLayer);
+        if (collider != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
+    private void Jump(float jumpForce)
+    {
+        rigidbody.velocity = new Vector2(0, jumpForce);
+    }
+    private void RotationStickMan(float direction)
+    {
+        if (direction >= 0.2)
+        {
+            AnimatorTransform.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if (direction <= -0.2)
+        {
+            AnimatorTransform.transform.rotation = Quaternion.Euler(Vector3.zero);
+        }
+    }
+
 }

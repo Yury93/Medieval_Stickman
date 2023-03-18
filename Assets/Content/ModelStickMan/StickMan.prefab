@@ -410,7 +410,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8063138563353872590}
-  - component: {fileID: 908243572}
   - component: {fileID: 908243573}
   m_Layer: 3
   m_Name: StickMan
@@ -435,22 +434,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &908243572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2170624265195016362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d09e5657270472f44a96b8c5fad7bf22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 6667857665215653472}
-  Walk: Walk
-  StartJump: StartJump
-  Idle: Idle
 --- !u!114 &908243573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,10 +448,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
   animatorTransform: {fileID: 6577097297840893763}
+  animator: {fileID: 0}
   speedWalk: 4
   speedJump: 15.9
   timeJump: 0.4
-  animatorMan: {fileID: 908243572}
 --- !u!1 &2252315702345959917
 GameObject:
   m_ObjectHideFlags: 0

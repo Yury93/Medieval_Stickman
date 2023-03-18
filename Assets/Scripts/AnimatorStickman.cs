@@ -2,27 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatorStickman : MonoBehaviour
+public class AnimatorStickman
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] private string Walk;
-    [SerializeField] private string StartJump;
-    [SerializeField] private string Idle;
-
+    public Animator Animator { get; private set; }
+    private const string Walk = "Walk";
+    private const string StartJump = "StartJump";
+    private const string Idle = "Idle";
+    private const string Kick = "Kick";
+    public AnimatorStickman(Animator animator)
+    {
+        Animator = animator;
+    } 
     public void SetWalk(bool walk)
     {
-        animator.SetBool(Walk, walk);
+        Animator.SetBool(Walk, walk);
     }
     public void SetJump(bool jump)
     {
-        animator.SetBool(StartJump, jump);
+        Animator.SetBool(StartJump, jump);
     }
     public void SetIdle(bool idle)
     {
-        animator.SetBool(Idle, idle);
+        Animator.SetBool(Idle, idle);
     }
-    public AnimatorStateInfo GetCurrentAnimatorStateLength(int layerIndex)
+    public void SetKick(bool kick)
     {
-        return animator.GetCurrentAnimatorStateInfo(layerIndex);
+        Animator.SetBool(Kick,kick);
+    }
+    public void GetCurrentAnimatorStateLength(int layerIndex)
+    {
+        
     }
 }
