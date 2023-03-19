@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -43,19 +44,25 @@ public class AnimationController
 
 
     float lastClickTime;
-    public IEnumerator CorDoubleCallAnimation(Stickman stickman,PersonState personState)
+    public IEnumerator CorDoubleCallAnimation(Stickman stickman,Action method,PersonState personState)
     {
-        //delayBeetwenAnimations = GetCurrentAnimatorStateLength();
-     
-        //if (Time.time - lastClickTime <=  delayBeetwenAnimations)
-        //{
-        //    GetAnimationClip(personState).wrapMode = WrapMode.Loop;
-        //    Debug.Log("много кликать");
-        //}
-        //else
-        //{
-        //    lastClickTime = Time.time;
-        //}
+        delayBeetwenAnimations = GetCurrentAnimatorStateLength();
+
+        if (Time.time - lastClickTime <= delayBeetwenAnimations)
+        {
+           var clip = GetAnimationClip(personState);
+            clip.wrapMode = WrapMode.Loop;
+            Debug.Log("много кликать " + clip.name);
+        }
+        else
+        {
+            Debug.Log("перестал много кликать?");
+            
+            lastClickTime = Time.time;
+            var clip = GetAnimationClip(personState);
+            clip.wrapMode = WrapMode.Once;
+            method?.Invoke();
+        }
         yield return null;
     }
 
@@ -81,7 +88,7 @@ public class AnimationController
         RuntimeAnimatorController controller = Animator.runtimeAnimatorController;
 
         AnimationClip[] clips = controller.animationClips;
-
+        Debug.Log("имя анимационнного клипа:" + GetCurrentAnimationName());
         foreach (AnimationClip clip in clips)
         {
             if (clip.name == state.ToString())

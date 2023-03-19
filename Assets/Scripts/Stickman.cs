@@ -36,10 +36,10 @@ public class Stickman : MonoBehaviour
             AnimatorController.ChangeAnimationState(PersonState.Kick);
             StartCoroutine(AnimatorController.CorExitState(this));
         }
-        //else if(State == PersonState.Kick)
-        //{
-        //    StartCoroutine(AnimatorController.CorDoubleCallAnimation(this, PersonState.Kick));
-        //}
+        else if (State == PersonState.Kick)
+        {
+            StartCoroutine(AnimatorController.CorDoubleCallAnimation(this,KickEnemy, PersonState.Kick));
+        }
     }
 
     private void FixedUpdate()
