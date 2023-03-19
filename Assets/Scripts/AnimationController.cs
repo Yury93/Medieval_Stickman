@@ -6,9 +6,13 @@ using UnityEngine;
 public enum PersonState
 {
     Walk,
-    Fly,
+    Jump,
     Idle,
-    Kick
+    Kick_Idle,
+    Magic_Idle,
+    Kick_Walk,
+    Magic_Walk,
+    ReceiveDamage
 }
 public class AnimationController
 {
@@ -32,39 +36,20 @@ public class AnimationController
     /// </summary>
     /// <param name="stickman"></param>
     /// <returns></returns>
-    public IEnumerator CorExitState(Stickman stickman)
+    public IEnumerator CorExitToState(Stickman stickman, PersonState endState)
     {
         yield return new WaitForFixedUpdate();
         float lenght =  GetCurrentAnimatorStateLength();
-        Debug.Log("single animations");
+
+        //GetCurrentAnimationName();
+        //Debug.Log(lenght + "длина анимации");
         yield return new WaitForSeconds(lenght);
-        if(lastClickTime == 0)
-        stickman.SetState(PersonState.Idle);
+        
+        stickman.SetState(endState);
     }
+  
 
 
-    float lastClickTime;
-    public IEnumerator CorDoubleCallAnimation(Stickman stickman,Action method,PersonState personState)
-    {
-        delayBeetwenAnimations = GetCurrentAnimatorStateLength();
-
-        if (Time.time - lastClickTime <= delayBeetwenAnimations)
-        {
-           var clip = GetAnimationClip(personState);
-            clip.wrapMode = WrapMode.Loop;
-            Debug.Log("много кликать " + clip.name);
-        }
-        else
-        {
-            Debug.Log("перестал много кликать?");
-            
-            lastClickTime = Time.time;
-            var clip = GetAnimationClip(personState);
-            clip.wrapMode = WrapMode.Once;
-            method?.Invoke();
-        }
-        yield return null;
-    }
 
     public float GetCurrentAnimatorStateLength()
     {
@@ -79,7 +64,7 @@ public class AnimationController
         var currentAnimatorStateInfo = Animator.GetCurrentAnimatorStateInfo(0);
         var currentAnimatorClipInfo = Animator.GetCurrentAnimatorClipInfo(0)[0];
         var currentClip = currentAnimatorClipInfo.clip;
-        //Debug.Log("имя анимационнного клипа:" + currentClip.name);
+        Debug.Log("имя анимационнного клипа:" + currentClip.name);
         return currentClip.name;
     }
     public AnimationClip GetAnimationClip(PersonState state)

@@ -11,6 +11,7 @@ public class MoveController
     public PersonState State { get; private set ;  }
     public Animator animator { get; private set; }//child объект, берем для поворота персонажа
     public bool IsGrounded { get; private set; }
+    
    
     public MoveController(Animator animator,Rigidbody2D rigidbody)
     {
@@ -18,7 +19,32 @@ public class MoveController
         this.animator = animator;
         IsGrounded = true;
     }
-
+    public void SetState(PersonState personState)
+    {
+        State = personState;
+    }
+   
+    public IEnumerator CorAutoWalk(float direction, float speedWalk, float duration)
+    {
+        var timeDuration = duration;
+        while (timeDuration >= 0)
+        {
+            Vector2 movement = new Vector2(1 * speedWalk * Time.fixedDeltaTime, rigidbody.velocity.y); 
+            if (direction > 0)
+            {
+               movement = new Vector2(1 * speedWalk * Time.fixedDeltaTime, rigidbody.velocity.y);
+                
+            }
+            else if (direction < 0)
+            {
+                movement = new Vector2(-1 * speedWalk * Time.fixedDeltaTime, rigidbody.velocity.y);
+            }
+            rigidbody.MovePosition(rigidbody.position + movement);
+            timeDuration -= Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+            
+        }
+    }
     public void Move(float direction,float speedWalk)
     {
         Vector2 movement = new Vector2(direction * speedWalk * Time.fixedDeltaTime, rigidbody.velocity.y);
@@ -29,6 +55,7 @@ public class MoveController
             if (direction > 0.2 || direction < -0.2)
             {
                 State = PersonState.Walk;
+               
           
             }
             else if (direction == 0)
@@ -47,7 +74,7 @@ public class MoveController
         {
             yield break;
         }
-        State = PersonState.Fly;
+        State = PersonState.Jump;
 
         IsGrounded = false;
         float timeFalling = timeJump;

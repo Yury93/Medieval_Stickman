@@ -35,14 +35,6 @@ public class AttackController
         return null;
     }
 
-    public void ApplyDamage()
-    {
-        var collider = GetCollider2D();
-        if (collider != null)
-        {
-
-            Debug.Log("Нанёс урон: " + collider.gameObject.name);
-        }
-    }
+   
 
 }
