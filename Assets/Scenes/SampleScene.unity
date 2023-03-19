@@ -464,7 +464,7 @@ PrefabInstance:
       objectReference: {fileID: 44910895}
     - target: {fileID: 908243573, guid: a22867ce55112354a8678b11adae4e23, type: 3}
       propertyPath: speedWalk
-      value: 44.87
+      value: 5.43
       objectReference: {fileID: 0}
     - target: {fileID: 908243573, guid: a22867ce55112354a8678b11adae4e23, type: 3}
       propertyPath: heightJump
@@ -1318,7 +1318,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1405735583
   m_SortingLayer: 6
-  m_SortingOrder: 113
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

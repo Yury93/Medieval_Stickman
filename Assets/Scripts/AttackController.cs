@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FighterAttack 
+public class AttackController 
 {
     private GameObject gameObject;
     private Transform transform;
     private float radius;
     private float offsetPositionY;
 
-    public FighterAttack(GameObject me,float offsetPosition,float radiusAttack)
+    public AttackController(GameObject me,float offsetPosition,float radiusAttack)
     {
         gameObject = me;
         transform = gameObject.transform;
@@ -34,9 +34,15 @@ public class FighterAttack
 
         return null;
     }
-    public void Attack()
-    {
 
+    public void ApplyDamage()
+    {
+        var collider = GetCollider2D();
+        if (collider != null)
+        {
+
+            Debug.Log("Нанёс урон: " + collider.gameObject.name);
+        }
     }
 
 }

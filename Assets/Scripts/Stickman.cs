@@ -6,59 +6,61 @@ using UnityEngine.UI;
 
 public class Stickman : MonoBehaviour
 {
+    public PersonState State { get; private set; }
     [SerializeField] public Joystick joystick;
     [SerializeField] private Button buttonAttack;
-    [SerializeField] public Transform animatorTransform;
     [SerializeField] private Animator animator;
-    [SerializeField] public float speedWalk, jumpSpeed, timeJump,heightJump;
+    [SerializeField] public float speedWalk, jumpSpeed, timeJump;
     [SerializeField] private float radiusAttack, offsetRadiusAttackY;
     [SerializeField] private Rigidbody2D rigidbody;
     [SerializeField] private LayerMask groundLayer;
-    public FighterAttack fighterAttack { get; private set; }
-    public AnimatorStickman AnimatorMan { get; private set; }
-    public MoveStickMan MoveMan { get; private set; }
+    public AttackController AttackController { get; private set; }
+    public AnimationController AnimatorController { get; private set; }
+    public MoveController MoveController { get; private set; }
+
+
     private void Awake()
     {
-        AnimatorMan = new AnimatorStickman(animator);
-        MoveMan = new MoveStickMan(animator,AnimatorMan, rigidbody);
-        fighterAttack = new FighterAttack(gameObject,offsetRadiusAttackY,radiusAttack);
+        AnimatorController = new AnimationController(animator);
+        MoveController = new MoveController(animator, rigidbody);
+        AttackController = new AttackController(gameObject,offsetRadiusAttackY,radiusAttack);
         buttonAttack.onClick.AddListener(KickEnemy);
     }
 
-    private void KickEnemy()
+    public void KickEnemy()
     {
-      var collider =  fighterAttack.GetCollider2D();
-        if(collider != null && MoveMan.IsGrounded )
+        if (State == PersonState.Idle )
         {
-            if (MoveMan.State == MoveStickMan.StateMoving.idle)
-            {
-                AnimatorMan.SetKick(true);
-                StartCoroutine(CorKickFinish());
-                IEnumerator CorKickFinish()
-                {
-                    yield return new WaitForSeconds(1.3f);
-                    AnimatorMan.SetKick(false);
-                }
-            }
-            else
-            {
-                AnimatorMan.SetKick(false);
-            }
+            
+            State = PersonState.Kick;
+            AnimatorController.ChangeAnimationState(PersonState.Kick);
+            StartCoroutine(AnimatorController.CorExitState(this));
         }
-        else
-        {
-            AnimatorMan.SetKick(false);
-        }
+        //else if(State == PersonState.Kick)
+        //{
+        //    StartCoroutine(AnimatorController.CorDoubleCallAnimation(this, PersonState.Kick));
+        //}
     }
 
     private void FixedUpdate()
     {
-        MoveMan.Move(joystick.Horizontal,speedWalk);
-        if (joystick.Vertical > 0.5f && MoveMan.IsGrounded)
+        if (State != PersonState.Kick)
         {
-            StartCoroutine(MoveMan.CorJump(jumpSpeed, timeJump, groundLayer));
-        
+            MoveController.Move(joystick.Horizontal, speedWalk);
+
+            if (joystick.Vertical > 0.5f && MoveController.IsGrounded)
+            {
+                StartCoroutine(MoveController.CorJump(jumpSpeed, timeJump, groundLayer));
+
+            }
+            State = MoveController.State;
+            AnimatorController.ChangeAnimationState(MoveController.State);
+            
         }
+    }
+    public void SetState(PersonState state)
+    {
+        State = state;
     }
 
 

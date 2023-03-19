@@ -4,44 +4,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MoveStickMan
+public class MoveController
 {
-    private AnimatorStickman animatorStickman;
     private Rigidbody2D rigidbody;
-    private LayerMask groundLayer;
-    public enum StateMoving { idle, walk, jump }
-    public StateMoving State { get; private set; }
-    public Animator AnimatorTransform { get; private set; }
+    
+    public PersonState State { get; private set ;  }
+    public Animator animator { get; private set; }//child объект, берем для поворота персонажа
     public bool IsGrounded { get; private set; }
-    private float jumpSpeed;
-    public MoveStickMan(Animator animator, AnimatorStickman animatorStickman,Rigidbody2D rigidbody)
+   
+    public MoveController(Animator animator,Rigidbody2D rigidbody)
     {
-        this.animatorStickman = animatorStickman;
         this.rigidbody = rigidbody;
-        AnimatorTransform = animator;
+        this.animator = animator;
         IsGrounded = true;
-
     }
 
     public void Move(float direction,float speedWalk)
     {
         Vector2 movement = new Vector2(direction * speedWalk * Time.fixedDeltaTime, rigidbody.velocity.y);
         rigidbody.MovePosition(rigidbody.position + movement);
-
+       
         if (IsGrounded)
         {
             if (direction > 0.2 || direction < -0.2)
             {
-                State = StateMoving.walk;
-                animatorStickman.SetWalk(true);
+                State = PersonState.Walk;
+          
             }
             else if (direction == 0)
             {
-                State = StateMoving.idle;
-                animatorStickman.SetWalk(false);
+                State = PersonState.Idle;
+              
             }
         }
-
+   
         RotationStickMan(direction);
     }
 
@@ -51,6 +47,7 @@ public class MoveStickMan
         {
             yield break;
         }
+        State = PersonState.Fly;
 
         IsGrounded = false;
         float timeFalling = timeJump;
@@ -68,6 +65,8 @@ public class MoveStickMan
 
         Transform transformPerson = rigidbody.GetComponent<Transform>();
         IsGrounded = CheckIfGrounded( groundLayer);
+        State = PersonState.Idle;
+        rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
     }
     private bool CheckIfGrounded(LayerMask groundLayer)
     {
@@ -89,11 +88,11 @@ public class MoveStickMan
     {
         if (direction >= 0.2)
         {
-            AnimatorTransform.transform.rotation = Quaternion.Euler(0, 180, 0);
+            animator.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else if (direction <= -0.2)
         {
-            AnimatorTransform.transform.rotation = Quaternion.Euler(Vector3.zero);
+            animator.transform.rotation = Quaternion.Euler(Vector3.zero);
         }
     }
 
