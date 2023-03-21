@@ -12,7 +12,8 @@ public enum PersonState
     Magic_Idle,
     Kick_Walk,
     Magic_Walk,
-    ReceiveDamage
+    ReceiveDamage,
+    Jerk
 }
 public class AnimationController
 {
@@ -20,6 +21,10 @@ public class AnimationController
     public string currentAnimaton;
     private float lastCallAnimation;
     private float delayBeetwenAnimations;
+
+    private AnimatorClipInfo[] lastClipInfo;
+    private AnimationClip lastClip;
+
     public AnimationController(Animator animator)
     {
         Animator = animator;
@@ -36,29 +41,46 @@ public class AnimationController
     /// </summary>
     /// <param name="stickman"></param>
     /// <returns></returns>
-    public IEnumerator CorExitToState(Stickman stickman, PersonState endState)
+    public IEnumerator CorExitToState(FighterEntity fighterEntity, PersonState endState)
     {
         yield return new WaitForFixedUpdate();
         float lenght =  GetCurrentAnimatorStateLength();
-
+        //Debug.LogError(lenght + " длина удара");
         //GetCurrentAnimationName();
         //Debug.Log(lenght + "длина анимации");
         yield return new WaitForSeconds(lenght);
         
-        stickman.SetState(endState);
+        fighterEntity.SetState(endState);
     }
-  
 
 
 
+
+    float lastCallTime;
     public float GetCurrentAnimatorStateLength()
     {
         AnimatorClipInfo[] clipInfo = Animator.GetCurrentAnimatorClipInfo(0);
-  
-        AnimationClip clip = clipInfo[0].clip;
-        //Debug.Log("анимационный клип длинной:" + clip.length);
-        return clip.length;
+        if (clipInfo.Length == 0)
+        {
+            //Debug.LogError("Длина клипа почему-то равна нулю");
+            return lastClip.length;
+        }
+        AnimationClip currentClip = clipInfo[0].clip;
+
+        float currentTime = Time.realtimeSinceStartup;
+        float timeSinceLastCall = currentTime - lastCallTime;
+        if (timeSinceLastCall < 0.1f)
+        {
+            // Если метод вызывается слишком часто, вернуть значение из предыдущего вызова
+            return lastClip.length;
+        }
+
+        lastCallTime = currentTime;
+        lastClip = currentClip;
+        return currentClip.length;
     }
+
+
     public string GetCurrentAnimationName()
     {
         var currentAnimatorStateInfo = Animator.GetCurrentAnimatorStateInfo(0);

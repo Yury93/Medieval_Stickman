@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Stickman : MonoBehaviour
+public class Stickman : FighterEntity
 {
-    public PersonState State { get; private set; }
     public enum PlatformType { PC,MOBILE }
     [SerializeField] private PlatformType platformType = PlatformType.PC;
     [SerializeField] public Joystick joystick;
-    [SerializeField] private Button buttonIdleAttack, buttonIdleMagic, buttonWalkAttack, buttonWalkMagic;
+    [SerializeField] private Button buttonIdleAttack, buttonIdleMagic, buttonWalkAttack, buttonWalkMagic,buttonJerk;
     [SerializeField] private Animator animator;
     [SerializeField] public float speedWalk, jumpSpeed, timeJump;
     [SerializeField] private float radiusAttack, offsetRadiusAttackY;
@@ -26,10 +25,11 @@ public class Stickman : MonoBehaviour
         AnimatorController = new AnimationController(animator);
         MoveController = new MoveController(animator, rigidbody);
         AttackController = new AttackController(gameObject,offsetRadiusAttackY,radiusAttack);
-        buttonIdleAttack.onClick.AddListener(KickIfPersonIdle);
-        buttonIdleMagic.onClick.AddListener(MagicAttackIfPersonIdle);
-        buttonWalkAttack.onClick.AddListener(KickIfPersonWalk);
-        buttonWalkMagic.onClick.AddListener(MagicAttackIfPersonWalk);
+        buttonIdleAttack.onClick.AddListener(OnKickIfPersonIdle);
+        buttonIdleMagic.onClick.AddListener(OnMagicAttackIfPersonIdle);
+        buttonWalkAttack.onClick.AddListener(OnKickIfPersonWalk);
+        buttonWalkMagic.onClick.AddListener(OnMagicAttackIfPersonWalk);
+        buttonJerk.onClick.AddListener(OnJerk);
         if (Application.isMobilePlatform)
         {
             Debug.Log("Игрок играет на мобильном устройстве");
@@ -42,7 +42,7 @@ public class Stickman : MonoBehaviour
         }
     }
 
-    public void KickIfPersonIdle()
+    public void OnKickIfPersonIdle()
     {
         if (State == PersonState.Idle )
         {
@@ -52,7 +52,7 @@ public class Stickman : MonoBehaviour
             StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
         }
     }
-    public void MagicAttackIfPersonIdle()
+    public void OnMagicAttackIfPersonIdle()
     {
         if (State == PersonState.Idle)
         {
@@ -62,7 +62,7 @@ public class Stickman : MonoBehaviour
             StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
         }
     }
-    public void KickIfPersonWalk()
+    public void OnKickIfPersonWalk()
     {
         if (State == PersonState.Walk)
         {
@@ -70,21 +70,63 @@ public class Stickman : MonoBehaviour
             AnimatorController.ChangeAnimationState(PersonState.Kick_Walk);
             var length = AnimatorController.GetCurrentAnimatorStateLength();
             StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Walk));
+            AutoWalk(length);
 
-            StartCoroutine(MoveController.CorAutoWalk(joystick.Horizontal, speedWalk, length));
         }
     }
-    public void MagicAttackIfPersonWalk()
+    public void OnMagicAttackIfPersonWalk()
     {
         if (State == PersonState.Walk)
         {
             State = PersonState.Magic_Walk;
             AnimatorController.ChangeAnimationState(PersonState.Magic_Walk);
             var length = AnimatorController.GetCurrentAnimatorStateLength();
-            StartCoroutine(AnimatorController.CorExitToState(this,PersonState.Walk));
-            StartCoroutine(MoveController.CorAutoWalk(joystick.Horizontal,speedWalk,length));
+            StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Walk));
+            AutoWalk(length);
+
         }
     }
+    public void OnJerk()
+    {
+        if (State == PersonState.Walk )
+        {
+            var state = State;
+            State = PersonState.Jerk;
+
+            if (platformType == PlatformType.MOBILE)
+            {
+                StartCoroutine(MoveController.CorJerk(joystick.Horizontal, 4f, 0.5f));
+            }
+            else
+            {
+                bool isRight = animator.transform.rotation.y > 0 ? true : false;
+                float direction;
+                if (isRight) direction = 1;
+                else direction = -1;
+                StartCoroutine(MoveController.CorJerk(direction, 3f, 0.5f));
+
+            }
+            State = state;
+        }
+    }
+
+    private void AutoWalk(float length)
+    {
+        if (platformType == PlatformType.MOBILE)
+        {
+            StartCoroutine(MoveController.CorAutoWalk(joystick.Horizontal, speedWalk, length));
+        }
+        else
+        {
+            bool isRight = animator.transform.rotation.y > 0 ? true : false;
+            float direction = 1;
+            if (isRight) direction = 1;
+            else direction = -1;
+            StartCoroutine(MoveController.CorAutoWalk(direction, speedWalk, length));
+        }
+    }
+
+  
     public void ApplyDamage()
     {
         var collider = AttackController.GetCollider2D();
@@ -92,6 +134,14 @@ public class Stickman : MonoBehaviour
         {
 
             Debug.Log("Нанёс урон: " + collider.gameObject.name);
+        }
+        if(State == PersonState.Kick_Walk)
+        {
+            StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Walk));
+        }
+        else
+        {
+            StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
         }
     }
     public void ReceiveDamage()
@@ -102,60 +152,8 @@ public class Stickman : MonoBehaviour
         
         StartCoroutine(AnimatorController.CorExitToState(this,PersonState.Idle));
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            MagicAttackIfPersonWalk();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            KickIfPersonWalk();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            MagicAttackIfPersonIdle();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            KickIfPersonIdle();
-        }
-    }
+  
 
-    private void FixedUpdate()
-    {
-        if (State != PersonState.Kick_Idle && State != PersonState.Magic_Idle && State != PersonState.Kick_Walk && State != PersonState.Magic_Walk)
-        {
-            if (platformType == PlatformType.MOBILE)
-            {
-                MoveController.Move(joystick.Horizontal, speedWalk);
-                if (joystick.Vertical > 0.5f && MoveController.IsGrounded)
-                {
-                    StartCoroutine(MoveController.CorJump(jumpSpeed, timeJump, groundLayer));
-
-                }
-            }
-            else
-            {
-                var deltaHorizontal = Input.GetAxis("Horizontal");
-            
-                MoveController.Move(deltaHorizontal, speedWalk);
-
-                var deltaVerticale = Input.GetAxis("Vertical");
-                if (deltaVerticale > 0.5f && MoveController.IsGrounded)
-                {
-                    StartCoroutine(MoveController.CorJump(jumpSpeed, timeJump, groundLayer));
-
-                }
-            }
-
-           
-            State = MoveController.State;
-            AnimatorController.ChangeAnimationState(MoveController.State);
-        }
-       
-        RefreshStateButtons();
-    }
 
     private void RefreshStateButtons()
     {
@@ -182,12 +180,61 @@ public class Stickman : MonoBehaviour
         }
     }
 
-    public void SetState(PersonState state)
+   
+
+    private void Update()
     {
-        State = state;
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            OnMagicAttackIfPersonWalk();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            OnKickIfPersonWalk();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            OnMagicAttackIfPersonIdle();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            OnKickIfPersonIdle();
+        }
     }
+    private void FixedUpdate()
+    {
+        if (State != PersonState.Kick_Idle && State != PersonState.Magic_Idle && State != PersonState.Kick_Walk && State != PersonState.Magic_Walk && State != PersonState.Jerk)
+        {
+            if (platformType == PlatformType.MOBILE)
+            {
+                MoveController.Move(joystick.Horizontal, speedWalk);
+                if (joystick.Vertical > 0.5f && MoveController.IsGrounded)
+                {
+                    StartCoroutine(MoveController.CorJump(jumpSpeed, timeJump, groundLayer));
+
+                }
+            }
+            else
+            {
+                var deltaHorizontal = Input.GetAxis("Horizontal");
+
+                MoveController.Move(deltaHorizontal, speedWalk);
+
+                var deltaVerticale = Input.GetAxis("Vertical");
+                if (deltaVerticale > 0.5f && MoveController.IsGrounded)
+                {
+                    StartCoroutine(MoveController.CorJump(jumpSpeed, timeJump, groundLayer));
+
+                }
+            }
 
 
+            State = MoveController.State;
+            AnimatorController.ChangeAnimationState(MoveController.State);
+        }
+
+        RefreshStateButtons();
+    }
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()

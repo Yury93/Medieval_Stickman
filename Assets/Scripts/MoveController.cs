@@ -19,11 +19,30 @@ public class MoveController
         this.animator = animator;
         IsGrounded = true;
     }
-    public void SetState(PersonState personState)
+
+
+
+
+    public IEnumerator CorJerk(float direction, float distance, float delay)
     {
-        State = personState;
+        if (direction > 0)
+        {
+            rigidbody.transform.position = new Vector2(rigidbody.transform.position.x + distance, rigidbody.transform.position.y);
+        }
+        else
+        {
+            rigidbody.transform.position = new Vector2(rigidbody.transform.position.x - distance, rigidbody.transform.position.y);
+        }
+    
+        rigidbody.gameObject.SetActive(true);
+        
+        yield return null;
     }
-   
+
+
+
+
+
     public IEnumerator CorAutoWalk(float direction, float speedWalk, float duration)
     {
         var timeDuration = duration;
@@ -55,17 +74,14 @@ public class MoveController
             if (direction > 0.2 || direction < -0.2)
             {
                 State = PersonState.Walk;
-               
-          
             }
             else if (direction == 0)
             {
                 State = PersonState.Idle;
-              
             }
         }
    
-        RotationStickMan(direction);
+        RotateToDirectionPerson(direction);
     }
 
     public IEnumerator CorJump(float jumpSpeed, float timeJump, LayerMask groundLayer)
@@ -111,7 +127,7 @@ public class MoveController
     {
         rigidbody.velocity = new Vector2(0, jumpForce);
     }
-    private void RotationStickMan(float direction)
+    public void RotateToDirectionPerson(float direction)
     {
         if (direction >= 0.2)
         {
