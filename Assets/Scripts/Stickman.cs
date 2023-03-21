@@ -39,7 +39,9 @@ public class Stickman : FighterEntity
         {
             Debug.Log("Игрок играет на ПК");
             platformType = PlatformType.PC;
+            joystick.gameObject.SetActive(false);
         }
+        SetParametrs(100, 10, 10, false);
     }
 
     public void OnKickIfPersonIdle()
@@ -104,6 +106,7 @@ public class Stickman : FighterEntity
                 if (isRight) direction = 1;
                 else direction = -1;
                 StartCoroutine(MoveController.CorJerk(direction, 3f, 0.5f));
+                
 
             }
             State = state;
@@ -134,6 +137,11 @@ public class Stickman : FighterEntity
         {
 
             Debug.Log("Нанёс урон: " + collider.gameObject.name);
+           var enemy = collider.GetComponent<Enemy>();
+            if(enemy != null)
+            {
+                enemy.OnDamage(Power);
+            }
         }
         if(State == PersonState.Kick_Walk)
         {
@@ -152,7 +160,11 @@ public class Stickman : FighterEntity
         
         StartCoroutine(AnimatorController.CorExitToState(this,PersonState.Idle));
     }
-  
+    public override void OnDamage(int damage)
+    {
+        base.OnDamage(damage);
+        ReceiveDamage();
+    }
 
 
     private void RefreshStateButtons()

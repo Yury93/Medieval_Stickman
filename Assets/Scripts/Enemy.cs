@@ -23,6 +23,7 @@ public class Enemy : FighterEntity
         AnimationController = new AnimationController(animator);
         AttackController = new AttackController(this.gameObject, offsetRadiusAttackY, radiusAttack);
         State = PersonState.Idle;
+        SetParametrs(100, 10, 10, false);
     }
 
 
@@ -67,6 +68,11 @@ public class Enemy : FighterEntity
         if (collider != null)
         {
             Debug.Log("Нанёс урон: " + collider.gameObject.name);
+            var stickman = collider.GetComponent<Stickman>();
+            if(stickman != null)
+            {
+                stickman.OnDamage(Power);
+            }
         }
         else
         {
