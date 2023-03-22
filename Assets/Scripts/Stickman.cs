@@ -11,10 +11,9 @@ public class Stickman : FighterEntity
     [SerializeField] public Joystick joystick;
     [SerializeField] private Button buttonIdleAttack, buttonIdleMagic, buttonWalkAttack, buttonWalkMagic,buttonJerk;
     [SerializeField] private Animator animator;
-    [SerializeField] public float speedWalk, jumpSpeed, timeJump;
-    [SerializeField] private float radiusAttack, offsetRadiusAttackY;
+    [SerializeField] public float speedWalk,speedWalkIsGround,speedWalkIsAir, jumpSpeed, timeJump;
+    [SerializeField] private float radiusAttack, offsetRadiusAttackY, offsetRadiusAttackX;
     [SerializeField] private Rigidbody2D rigidbody;
-    [SerializeField] private LayerMask groundLayer;
     public AttackController AttackController { get; private set; }
     public AnimationController AnimatorController { get; private set; }
     public MoveController MoveController { get; private set; }
@@ -42,6 +41,7 @@ public class Stickman : FighterEntity
             joystick.gameObject.SetActive(false);
         }
         SetParametrs(100, 10, 10, false);
+        rigidbody.inertia = 1;
     }
 
     public void OnKickIfPersonIdle()
@@ -52,6 +52,7 @@ public class Stickman : FighterEntity
             //MoveController.SetState(State);
           AnimatorController.ChangeAnimationState(PersonState.Kick_Idle);
             StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
+            
         }
     }
     public void OnMagicAttackIfPersonIdle()
@@ -78,7 +79,7 @@ public class Stickman : FighterEntity
     }
     public void OnMagicAttackIfPersonWalk()
     {
-        if (State == PersonState.Walk)
+        if (State == PersonState.Walk )
         {
             State = PersonState.Magic_Walk;
             AnimatorController.ChangeAnimationState(PersonState.Magic_Walk);
@@ -94,14 +95,14 @@ public class Stickman : FighterEntity
         {
             var state = State;
             State = PersonState.Jerk;
-
+            bool isRight = animator.transform.rotation.y > 0 ? true : false;
             if (platformType == PlatformType.MOBILE)
             {
                 StartCoroutine(MoveController.CorJerk(joystick.Horizontal, 4f, 0.5f));
             }
             else
             {
-                bool isRight = animator.transform.rotation.y > 0 ? true : false;
+                
                 float direction;
                 if (isRight) direction = 1;
                 else direction = -1;
@@ -109,7 +110,11 @@ public class Stickman : FighterEntity
                 
 
             }
+            if (isRight) AttackController.SetOffsetAttackXAxis(-offsetRadiusAttackX);
+            else AttackController.SetOffsetAttackXAxis(offsetRadiusAttackX);
             State = state;
+
+            Debug.Log(offsetRadiusAttackX);
         }
     }
 
@@ -122,7 +127,7 @@ public class Stickman : FighterEntity
         else
         {
             bool isRight = animator.transform.rotation.y > 0 ? true : false;
-            float direction = 1;
+            float direction;
             if (isRight) direction = 1;
             else direction = -1;
             StartCoroutine(MoveController.CorAutoWalk(direction, speedWalk, length));
@@ -130,46 +135,57 @@ public class Stickman : FighterEntity
     }
 
   
-    public void ApplyDamage()
+    public void ApplyDamage(int power)
     {
+      
+
+
         var collider = AttackController.GetCollider2D();
         if (collider != null)
         {
 
-            Debug.Log("Нанёс урон: " + collider.gameObject.name);
+            //Debug.Log("Нанёс урон: " + collider.gameObject.namse);
            var enemy = collider.GetComponent<Enemy>();
             if(enemy != null)
             {
-                enemy.OnDamage(Power);
+                enemy.OnDamage(power);
             }
         }
-        if(State == PersonState.Kick_Walk)
-        {
-            StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Walk));
-        }
-        else
-        {
-            StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
-        }
+        //if(State == PersonState.Kick_Walk)
+        //{
+        //    StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Walk));
+        //}
+        //else
+        //{
+        //    StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
+        //}
     }
     public void ReceiveDamage()
     {
+        if (State == PersonState.Death) return;
+        if(CurrentHp > 0)
+        { 
         if (MoveController.IsGrounded == false) return;
         State = PersonState.ReceiveDamage;
         AnimatorController.ChangeAnimationState(PersonState.ReceiveDamage);
-        
-        StartCoroutine(AnimatorController.CorExitToState(this,PersonState.Idle));
+
+            StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
+        }
     }
     public override void OnDamage(int damage)
     {
         base.OnDamage(damage);
         ReceiveDamage();
     }
-
+    protected override void OnDeath(FighterEntity fighterEntity)
+    {
+        base.OnDeath(fighterEntity);
+        AnimatorController.ChangeAnimationState(PersonState.Death);
+    }
 
     private void RefreshStateButtons()
     {
-        if (State == PersonState.Idle)
+        if (State == PersonState.Idle )
         {
             if (buttonIdleAttack.gameObject.activeSelf == false)
             {
@@ -189,6 +205,18 @@ public class Stickman : FighterEntity
                 buttonWalkAttack.gameObject.SetActive(true);
                 buttonWalkMagic.gameObject.SetActive(true);
             }
+
+           
+        }
+
+
+        if (MoveController.IsGrounded)
+        {
+            buttonJerk.gameObject.SetActive(true);
+        }
+        else if (!MoveController.IsGrounded)
+        {
+            buttonJerk.gameObject.SetActive(false);
         }
     }
 
@@ -215,45 +243,77 @@ public class Stickman : FighterEntity
     }
     private void FixedUpdate()
     {
-        if (State != PersonState.Kick_Idle && State != PersonState.Magic_Idle && State != PersonState.Kick_Walk && State != PersonState.Magic_Walk && State != PersonState.Jerk)
+        if (State != PersonState.Kick_Idle 
+            && State != PersonState.Magic_Idle 
+            && State != PersonState.Kick_Walk 
+            && State != PersonState.Magic_Walk 
+            && State != PersonState.Jerk
+            && State != PersonState.ReceiveDamage
+            && State != PersonState.Death)
         {
+            RefreshSpeedWalk();
             if (platformType == PlatformType.MOBILE)
             {
                 MoveController.Move(joystick.Horizontal, speedWalk);
                 if (joystick.Vertical > 0.5f && MoveController.IsGrounded)
                 {
-                    StartCoroutine(MoveController.CorJump(jumpSpeed, timeJump, groundLayer));
+                    StartCoroutine(MoveController.CorJump(jumpSpeed, joystick.Horizontal));
 
                 }
             }
             else
             {
                 var deltaHorizontal = Input.GetAxis("Horizontal");
-
-                MoveController.Move(deltaHorizontal, speedWalk);
-
                 var deltaVerticale = Input.GetAxis("Vertical");
+                MoveController.Move(deltaHorizontal, speedWalk);
                 if (deltaVerticale > 0.5f && MoveController.IsGrounded)
                 {
-                    StartCoroutine(MoveController.CorJump(jumpSpeed, timeJump, groundLayer));
+                    StartCoroutine(MoveController.CorJump(jumpSpeed, deltaHorizontal));
 
                 }
             }
 
 
             State = MoveController.State;
+       
             AnimatorController.ChangeAnimationState(MoveController.State);
         }
 
         RefreshStateButtons();
     }
 
+    private void RefreshSpeedWalk()
+    {
+        if (MoveController.IsGrounded)
+        {
+            speedWalk = speedWalkIsGround;
+        }
+        else
+        {
+            speedWalk = speedWalkIsAir;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var ground = collision.gameObject.GetComponent<Ground>();
+       if(ground != null)
+        {
+            MoveController.SetGrounded(true);
+        }
+        else if(MoveController.IsGrounded == false)
+        {
+            rigidbody.drag = 0;
+        }
+    }
+
+
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         UnityEditor.Handles.color = Color.red;
         Vector2 myPosition;
-        myPosition = new Vector3(transform.position.x, transform.position.y + offsetRadiusAttackY, transform.position.z);
+        myPosition = new Vector3(transform.position.x + offsetRadiusAttackX, transform.position.y + offsetRadiusAttackY, transform.position.z);
         UnityEditor.Handles.DrawWireDisc(myPosition, transform.forward, radiusAttack);
     }
 

@@ -7,7 +7,7 @@ public class AttackController
     private GameObject gameObject;
     private Transform transform;
     private float radius;
-    private float offsetPositionY;
+    private float offsetPositionY, offsetPositionX ;
 
     public AttackController(GameObject me,float offsetPosition,float radiusAttack)
     {
@@ -16,10 +16,15 @@ public class AttackController
         this.radius = radiusAttack;
         offsetPositionY = offsetPosition;
     }
+    public void SetOffsetAttackXAxis(float offsetX)
+    {
+        offsetPositionX = offsetX;
+        Debug.Log(offsetPositionX);
+    }
 
     public Collider2D GetCollider2D()
     {
-        Vector2 myPosition = transform.position + Vector3.up * offsetPositionY;
+        Vector2 myPosition = transform.position  + Vector3.right * offsetPositionX+ Vector3.up * offsetPositionY;
         Collider2D[] colliders = new Collider2D[10];
         int count = Physics2D.OverlapCircleNonAlloc(myPosition, radius, colliders);
 
@@ -27,7 +32,7 @@ public class AttackController
         {
             if (colliders[i] != null && colliders[i].gameObject != gameObject)
             {
-                Debug.Log(colliders[i].gameObject.name);
+          
                 return colliders[i];
             }
         }

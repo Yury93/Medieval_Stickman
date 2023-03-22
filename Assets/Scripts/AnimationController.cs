@@ -13,6 +13,7 @@ public enum PersonState
     Kick_Walk,
     Magic_Walk,
     ReceiveDamage,
+    Death,
     Jerk
 }
 public class AnimationController
@@ -36,21 +37,16 @@ public class AnimationController
         Animator.Play(state.ToString());
         currentAnimaton = state.ToString();
     }
-    /// <summary>
-    /// нужно чтобы stickman наследовался от общего класса с подобными файтерами
-    /// </summary>
-    /// <param name="stickman"></param>
-    /// <returns></returns>
+
     public IEnumerator CorExitToState(FighterEntity fighterEntity, PersonState endState)
     {
-        yield return new WaitForFixedUpdate();
-        float lenght =  GetCurrentAnimatorStateLength();
-        //Debug.LogError(lenght + " длина удара");
-        //GetCurrentAnimationName();
-        //Debug.Log(lenght + "длина анимации");
-        yield return new WaitForSeconds(lenght);
-        
-        fighterEntity.SetState(endState);
+            yield return new WaitForFixedUpdate();
+            float lenght = GetCurrentAnimatorStateLength();
+            yield return new WaitForSeconds(lenght);
+           
+            fighterEntity.SetState(endState);
+
+     
     }
 
 
@@ -86,7 +82,7 @@ public class AnimationController
         var currentAnimatorStateInfo = Animator.GetCurrentAnimatorStateInfo(0);
         var currentAnimatorClipInfo = Animator.GetCurrentAnimatorClipInfo(0)[0];
         var currentClip = currentAnimatorClipInfo.clip;
-        Debug.Log("имя анимационнного клипа:" + currentClip.name);
+       
         return currentClip.name;
     }
     public AnimationClip GetAnimationClip(PersonState state)
@@ -95,7 +91,7 @@ public class AnimationController
         RuntimeAnimatorController controller = Animator.runtimeAnimatorController;
 
         AnimationClip[] clips = controller.animationClips;
-        Debug.Log("имя анимационнного клипа:" + GetCurrentAnimationName());
+
         foreach (AnimationClip clip in clips)
         {
             if (clip.name == state.ToString())

@@ -48,17 +48,7 @@ public class MoveController
         var timeDuration = duration;
         while (timeDuration >= 0)
         {
-            Vector2 movement = new Vector2(1 * speedWalk * Time.fixedDeltaTime, rigidbody.velocity.y); 
-            if (direction > 0)
-            {
-               movement = new Vector2(1 * speedWalk * Time.fixedDeltaTime, rigidbody.velocity.y);
-                
-            }
-            else if (direction < 0)
-            {
-                movement = new Vector2(-1 * speedWalk * Time.fixedDeltaTime, rigidbody.velocity.y);
-            }
-            rigidbody.MovePosition(rigidbody.position + movement);
+            rigidbody.AddForce(new Vector2(direction * speedWalk, 0), ForceMode2D.Impulse);
             timeDuration -= Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
             
@@ -66,9 +56,9 @@ public class MoveController
     }
     public void Move(float direction,float speedWalk)
     {
-        Vector2 movement = new Vector2(direction * speedWalk * Time.fixedDeltaTime, rigidbody.velocity.y);
-        rigidbody.MovePosition(rigidbody.position + movement);
-       
+
+        rigidbody.AddForce(new Vector2( direction * speedWalk,0), ForceMode2D.Impulse);
+
         if (IsGrounded)
         {
             if (direction > 0.2 || direction < -0.2)
@@ -80,53 +70,40 @@ public class MoveController
                 State = PersonState.Idle;
             }
         }
-   
+
         RotateToDirectionPerson(direction);
     }
 
-    public IEnumerator CorJump(float jumpSpeed, float timeJump, LayerMask groundLayer)
+    public IEnumerator CorJump(float jumpSpeed, float direction)
     {
         if (IsGrounded == false)
         {
             yield break;
         }
         State = PersonState.Jump;
-
         IsGrounded = false;
-        float timeFalling = timeJump;
-        
-        Jump(jumpSpeed);
 
-        while (timeJump >= 0)
+        rigidbody.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+
+        while (!IsGrounded && rigidbody.drag >= 0)
         {
-            timeJump -= Time.fixedDeltaTime;
+            rigidbody.drag -= 2;
             yield return new WaitForFixedUpdate();
         }
 
-        Jump(-jumpSpeed);
-        yield return new WaitForSeconds(timeFalling);
+    }
+  
+    public void SetGrounded(bool isGround)
+    {
+        this.IsGrounded = isGround;
+        if (isGround)
+        {
+            State = PersonState.Idle;
+            rigidbody.drag = 7;
+        }
 
-        Transform transformPerson = rigidbody.GetComponent<Transform>();
-        IsGrounded = CheckIfGrounded( groundLayer);
-        State = PersonState.Idle;
-        rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
     }
-    private bool CheckIfGrounded(LayerMask groundLayer)
-    {
-      var  collider = Physics2D.OverlapCircle(rigidbody. transform.position, 5,groundLayer);
-        if (collider != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    private void Jump(float jumpForce)
-    {
-        rigidbody.velocity = new Vector2(0, jumpForce);
-    }
+  
     public void RotateToDirectionPerson(float direction)
     {
         if (direction >= 0.2)

@@ -13,14 +13,14 @@ public class Enemy : FighterEntity
     public float clampDistanceToTarget, distanceStartPursuit;
     public MoveController MoveController { get; private set; }
     public AttackController AttackController { get; private set; }
-    public AnimationController AnimationController { get; private set; }
+    public AnimationController AnimatorController { get; private set; }
     private Stickman stickman;
 
     private void Start()
     {
         stickman = FindAnyObjectByType<Stickman>();
         MoveController = new MoveController(animator, rigidbody);
-        AnimationController = new AnimationController(animator);
+        AnimatorController = new AnimationController(animator);
         AttackController = new AttackController(this.gameObject, offsetRadiusAttackY, radiusAttack);
         State = PersonState.Idle;
         SetParametrs(100, 10, 10, false);
@@ -34,9 +34,10 @@ public class Enemy : FighterEntity
 
     private void MoveToTarget()
     {
+        if (stickman == null) return;
         var direction = stickman.transform.position - transform.position;
         var distanceToTarget = direction.magnitude;
-        if (State != PersonState.Kick_Idle  )
+        if ( State != PersonState.Death && State != PersonState.ReceiveDamage)
         {
             if (distanceToTarget < distanceStartPursuit)
             {
@@ -58,7 +59,7 @@ public class Enemy : FighterEntity
             }
 
 
-            AnimationController.ChangeAnimationState(State);
+            AnimatorController.ChangeAnimationState(State);
         }
     }
 
@@ -67,23 +68,42 @@ public class Enemy : FighterEntity
         var collider = AttackController.GetCollider2D();
         if (collider != null)
         {
-            Debug.Log("Нанёс урон: " + collider.gameObject.name);
+            
             var stickman = collider.GetComponent<Stickman>();
-            if(stickman != null)
+            if (stickman != null)
             {
                 stickman.OnDamage(Power);
             }
         }
         else
         {
-
-            State = PersonState.Idle;
+            AnimatorController.CorExitToState(this, PersonState.Idle);
         }
+
         //anima
-        Debug.Log("включать состоние idle чтобы обхект выходил из анимации");
-        AnimationController.CorExitToState(this, PersonState.Idle);
+        //Debug.Log("включать состоние idle чтобы обхект выходил из анимации");
+        //AnimatorController.CorExitToState(this, PersonState.Idle);
 
     }
+    public override void OnDamage(int damage)
+    {
+       base.OnDamage(damage);
+        if (CurrentHp > 0)
+        {
+            if (MoveController.IsGrounded == false) return;
+            State = PersonState.ReceiveDamage;
+            AnimatorController.ChangeAnimationState(PersonState.ReceiveDamage);
+
+            StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
+        }
+    }
+    protected override void OnDeath(FighterEntity fighterEntity)
+    {
+        base.OnDeath(fighterEntity);
+        AnimatorController.ChangeAnimationState(PersonState.Death);
+    }
+
+
 
 
 
@@ -92,7 +112,7 @@ public class Enemy : FighterEntity
     {
         UnityEditor.Handles.color = Color.red;
         Vector2 myPosition;
-        myPosition = new Vector3(transform.position.x, transform.position.y + offsetRadiusAttackY, transform.position.z);
+        myPosition = new Vector3(transform.position.x , transform.position.y + offsetRadiusAttackY, transform.position.z);
         UnityEditor.Handles.DrawWireDisc(myPosition, transform.forward, radiusAttack);
     }
 

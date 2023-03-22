@@ -38,13 +38,15 @@ public class FighterEntity : MonoBehaviour
         if(CurrentHp <= 0)
         {
             OnDeath(this);
-        }
 
+        }
     }
 
     protected virtual void OnDeath(FighterEntity fighterEntity)
     {
+        State = PersonState.Death;
         Debug.Log("Смерть " + gameObject.name);
+        Destroy(gameObject, 5f);
     }
 
    
