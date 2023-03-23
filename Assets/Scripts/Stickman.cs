@@ -106,7 +106,7 @@ public class Stickman : FighterEntity
                 float direction;
                 if (isRight) direction = 1;
                 else direction = -1;
-                StartCoroutine(MoveController.CorJerk(direction, 3f, 0.5f));
+                StartCoroutine(MoveController.CorJerk(direction, speedWalk * 3, 0.5f));
                 
 
             }

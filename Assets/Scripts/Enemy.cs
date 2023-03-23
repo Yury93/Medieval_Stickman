@@ -10,6 +10,7 @@ public class Enemy : FighterEntity
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rigidbody;
     [SerializeField] private float radiusAttack, offsetRadiusAttackY;
+    [SerializeField] private Collider2D collider2d;
     public float clampDistanceToTarget, distanceStartPursuit;
     public MoveController MoveController { get; private set; }
     public AttackController AttackController { get; private set; }
@@ -30,6 +31,16 @@ public class Enemy : FighterEntity
     public void FixedUpdate()
     {
         MoveToTarget();
+        if (stickman.MoveController.IsEnemyColliderIgnore == true && collider2d.enabled == true)
+        {
+            collider2d.enabled = false;
+            rigidbody.gravityScale = 0;
+        }
+        else if(stickman.MoveController.IsEnemyColliderIgnore == false && collider2d.enabled == false)
+        {
+            collider2d.enabled = true;
+            rigidbody.gravityScale = 1;
+        }
     }
 
     private void MoveToTarget()
@@ -65,14 +76,20 @@ public class Enemy : FighterEntity
 
     public void ApplyDamage()
     {
+        
         var collider = AttackController.GetCollider2D();
         if (collider != null)
         {
             
             var stickman = collider.GetComponent<Stickman>();
-            if (stickman != null)
+            if (stickman != null )
             {
-                stickman.OnDamage(Power);
+                if (stickman.MoveController.IsEnemyColliderIgnore == false)
+                {
+                    stickman.OnDamage(Power);
+                }
+              
+               
             }
         }
         else

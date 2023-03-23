@@ -11,7 +11,7 @@ public class MoveController
     public PersonState State { get; private set ;  }
     public Animator animator { get; private set; }//child объект, берем для поворота персонажа
     public bool IsGrounded { get; private set; }
-    
+    public bool IsEnemyColliderIgnore { get; private set; }
    
     public MoveController(Animator animator,Rigidbody2D rigidbody)
     {
@@ -25,17 +25,17 @@ public class MoveController
 
     public IEnumerator CorJerk(float direction, float distance, float delay)
     {
-        if (direction > 0)
+        IsEnemyColliderIgnore = true;
+        float startSpeed = rigidbody.velocity.magnitude;
+     
+         rigidbody.AddForce(new Vector2(direction * distance * distance * distance, 0), ForceMode2D.Impulse );
+
+        while (rigidbody.velocity.magnitude > startSpeed)
         {
-            rigidbody.transform.position = new Vector2(rigidbody.transform.position.x + distance, rigidbody.transform.position.y);
+            yield return null;
         }
-        else
-        {
-            rigidbody.transform.position = new Vector2(rigidbody.transform.position.x - distance, rigidbody.transform.position.y);
-        }
-    
-        rigidbody.gameObject.SetActive(true);
-        
+
+        IsEnemyColliderIgnore = false;
         yield return null;
     }
 
