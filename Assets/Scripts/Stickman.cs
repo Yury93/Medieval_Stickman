@@ -166,10 +166,10 @@ public class Stickman : FighterEntity
         if(CurrentHp > 0)
         { 
         if (MoveController.IsGrounded == false) return;
-        State = PersonState.ReceiveDamage;
-        AnimatorController.ChangeAnimationState(PersonState.ReceiveDamage);
+        //State = PersonState.ReceiveDamage;
+        //AnimatorController.ChangeAnimationState(PersonState.ReceiveDamage);
 
-            StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
+        //    StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
         }
     }
     public override void OnDamage(int damage)

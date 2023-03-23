@@ -91,16 +91,18 @@ public class Enemy : FighterEntity
         if (CurrentHp > 0)
         {
             if (MoveController.IsGrounded == false) return;
-            State = PersonState.ReceiveDamage;
-            AnimatorController.ChangeAnimationState(PersonState.ReceiveDamage);
+            //State = PersonState.ReceiveDamage;
+            //AnimatorController.ChangeAnimationState(PersonState.ReceiveDamage);
 
-            StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
+            //StartCoroutine(A nimatorController.CorExitToState(this, PersonState.Idle));
         }
     }
     protected override void OnDeath(FighterEntity fighterEntity)
     {
         base.OnDeath(fighterEntity);
         AnimatorController.ChangeAnimationState(PersonState.Death);
+        rigidbody.GetComponent<BoxCollider2D>().isTrigger = true;
+        rigidbody.isKinematic = true;
     }
 
 
