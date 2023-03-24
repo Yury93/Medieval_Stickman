@@ -7,16 +7,17 @@ using UnityEngine.EventSystems;
 public class MoveController
 {
     private Rigidbody2D rigidbody;
-    
-    public PersonState State { get; private set ;  }
+    private FighterEntity fighterEntity;
+
     public Animator animator { get; private set; }//child объект, берем для поворота персонажа
     public bool IsGrounded { get; private set; }
     public bool IsEnemyColliderIgnore { get; private set; }
    
-    public MoveController(Animator animator,Rigidbody2D rigidbody)
+    public MoveController(Animator animator,FighterEntity fighterEntity,Rigidbody2D rigidbody)
     {
         this.rigidbody = rigidbody;
         this.animator = animator;
+        this.fighterEntity = fighterEntity;
         IsGrounded = true;
     }
 
@@ -30,6 +31,7 @@ public class MoveController
      
          rigidbody.AddForce(new Vector2(direction * distance * distance * distance, 0), ForceMode2D.Impulse );
 
+      
         while (rigidbody.velocity.magnitude > startSpeed)
         {
             yield return null;
@@ -37,6 +39,7 @@ public class MoveController
 
         IsEnemyColliderIgnore = false;
         yield return null;
+       
     }
 
 
@@ -63,11 +66,11 @@ public class MoveController
         {
             if (direction > 0.2 || direction < -0.2)
             {
-                State = PersonState.Walk;
+               fighterEntity.SetState( PersonState.Walk);
             }
             else if (direction == 0)
             {
-                State = PersonState.Idle;
+                fighterEntity.SetState(PersonState.Idle);
             }
         }
 
@@ -80,7 +83,7 @@ public class MoveController
         {
             yield break;
         }
-        State = PersonState.Jump;
+        fighterEntity.SetState(PersonState.Jump);
         IsGrounded = false;
 
         rigidbody.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
@@ -98,7 +101,7 @@ public class MoveController
         this.IsGrounded = isGround;
         if (isGround)
         {
-            State = PersonState.Idle;
+            fighterEntity.SetState(PersonState.Idle);
             rigidbody.drag = 7;
         }
 

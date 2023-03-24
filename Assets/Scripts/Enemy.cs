@@ -16,20 +16,26 @@ public class Enemy : FighterEntity
     public AttackController AttackController { get; private set; }
     public AnimationController AnimatorController { get; private set; }
     private Stickman stickman;
+    private bool initialized;
 
-    private void Start()
+   public void Init()
     {
         stickman = FindAnyObjectByType<Stickman>();
-        MoveController = new MoveController(animator, rigidbody);
+        MoveController = new MoveController(animator,this, rigidbody);
         AnimatorController = new AnimationController(animator);
         AttackController = new AttackController(this.gameObject, offsetRadiusAttackY, radiusAttack);
         State = PersonState.Idle;
         SetParametrs(100, 10, 10, false);
+        initialized = true;
+        collider2d.enabled = true;
     }
 
 
     public void FixedUpdate()
     {
+        if (initialized == false) return;
+
+
         MoveToTarget();
         if (stickman.MoveController.IsEnemyColliderIgnore == true && collider2d.enabled == true)
         {

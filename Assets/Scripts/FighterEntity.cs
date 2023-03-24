@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FighterEntity : MonoBehaviour
 {
-    public PersonState State { get; protected set; }
+    public PersonState State; /*{ get; protected set; }*/
     public int CurrentHp { get; protected set; }
     public int Armor { get; protected set; }
     public bool Increadible { get; protected set; }

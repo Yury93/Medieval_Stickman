@@ -40,14 +40,17 @@ public class AnimationController
 
     public IEnumerator CorExitToState(FighterEntity fighterEntity, PersonState endState)
     {
-            yield return new WaitForFixedUpdate();
-            float lenght = GetCurrentAnimatorStateLength();
-            yield return new WaitForSeconds(lenght);
-           
-            fighterEntity.SetState(endState);
+        yield return new WaitForFixedUpdate();
 
-     
-    }
+        float lenght = GetCurrentAnimatorStateLength();
+        if (fighterEntity.State != endState)
+            yield return new WaitForSeconds(lenght);
+        yield return new WaitForSeconds(0.1f);
+
+        fighterEntity.SetState(endState);
+
+        yield return new WaitForFixedUpdate();
+    } 
 
 
 

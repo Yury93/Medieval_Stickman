@@ -828,6 +828,7 @@ MonoBehaviour:
   rigidbody: {fileID: 5938384335573347146}
   radiusAttack: 1.53
   offsetRadiusAttackY: -1.44
+  collider2d: {fileID: 5938384335573347147}
   clampDistanceToTarget: 2.33
   distanceStartPursuit: 8
 --- !u!50 &5938384335573347146
@@ -843,7 +844,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 7
+  m_LinearDrag: 8
   m_AngularDrag: 1
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -858,7 +859,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5938384335573347150}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

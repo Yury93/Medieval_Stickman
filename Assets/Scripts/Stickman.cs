@@ -17,12 +17,12 @@ public class Stickman : FighterEntity
     public AttackController AttackController { get; private set; }
     public AnimationController AnimatorController { get; private set; }
     public MoveController MoveController { get; private set; }
-
+    private Coroutine corStateExit;
 
     private void Awake()
     {
         AnimatorController = new AnimationController(animator);
-        MoveController = new MoveController(animator, rigidbody);
+        MoveController = new MoveController(animator,this, rigidbody);
         AttackController = new AttackController(gameObject,offsetRadiusAttackY,radiusAttack);
         buttonIdleAttack.onClick.AddListener(OnKickIfPersonIdle);
         buttonIdleMagic.onClick.AddListener(OnMagicAttackIfPersonIdle);
@@ -51,8 +51,9 @@ public class Stickman : FighterEntity
             State = PersonState.Kick_Idle;
             //MoveController.SetState(State);
           AnimatorController.ChangeAnimationState(PersonState.Kick_Idle);
-            StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
-            
+            if (corStateExit != null) { StopCoroutine(corStateExit); corStateExit = null; Debug.LogError("корутина была повторена"); }
+            corStateExit = StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
+
         }
     }
     public void OnMagicAttackIfPersonIdle()
@@ -272,13 +273,16 @@ public class Stickman : FighterEntity
 
                 }
             }
+            AnimatorController.ChangeAnimationState(State);
+
+            //State = MoveController.State;
 
 
-            State = MoveController.State;
-       
-            AnimatorController.ChangeAnimationState(MoveController.State);
         }
-
+        if(AnimatorController.GetCurrentAnimationName() == "Idle")
+        {
+            SetState(PersonState.Idle);
+        }
         RefreshStateButtons();
     }
 
