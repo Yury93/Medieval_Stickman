@@ -16,6 +16,7 @@ public class FighterEntity : MonoBehaviour
    
     public void SetState(PersonState state)
     {
+        if(State != PersonState.Death)
         State = state;
     }
 

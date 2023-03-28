@@ -14,6 +14,9 @@ public class Stickman : FighterEntity
     [SerializeField] public float speedWalk,speedWalkIsGround,speedWalkIsAir, jumpSpeed, timeJump;
     [SerializeField] private float radiusAttack, offsetRadiusAttackY, offsetRadiusAttackX;
     [SerializeField] private Rigidbody2D rigidbody;
+    [SerializeField] private List<StickmanSpellProperty> stickmanSpells;
+    public List<StickmanSpellProperty> SpellProperties => stickmanSpells;
+    public StickmanSpellProperty CurrentSpell { get; private set; }
     public AttackController AttackController { get; private set; }
     public AnimationController AnimatorController { get; private set; }
     public MoveController MoveController { get; private set; }
@@ -47,6 +50,7 @@ public class Stickman : FighterEntity
     private void Start()
     {
         GuiStickman.instance.Init(CurrentHp, Armor, Mana);
+        CurrentSpell = SpellProperties[0];
     }
 
     private void OnHelp()
@@ -195,6 +199,15 @@ public class Stickman : FighterEntity
         buttonHelp.gameObject.SetActive(false);
         buttonJerk.gameObject.SetActive(false);
         joystick.gameObject.SetActive(false);
+
+
+      //Destroy(  buttonIdleAttack.gameObject);
+      //  Destroy(buttonIdleMagic.gameObject);
+      //  Destroy(buttonWalkAttack.gameObject);
+      //  Destroy(buttonWalkMagic.gameObject);
+      //  Destroy(buttonHelp.gameObject);
+      //  Destroy(buttonJerk.gameObject);
+      //  Destroy(joystick.gameObject);
     }
 
     private void RefreshStateButtons()
@@ -220,8 +233,6 @@ public class Stickman : FighterEntity
                 buttonWalkAttack.gameObject.SetActive(true);
                 buttonWalkMagic.gameObject.SetActive(true);
             }
-
-           
         }
 
 
@@ -255,6 +266,7 @@ public class Stickman : FighterEntity
         {
             OnKickIfPersonIdle();
         }
+        RefreshStateButtons();
     }
     private void FixedUpdate()
     {
@@ -298,7 +310,7 @@ public class Stickman : FighterEntity
         {
             SetState(PersonState.Idle);
         }
-        RefreshStateButtons();
+       
     }
 
     private void RefreshSpeedWalk()
