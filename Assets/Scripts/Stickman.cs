@@ -9,7 +9,7 @@ public class Stickman : FighterEntity
     public enum PlatformType { PC,MOBILE }
     [SerializeField] private PlatformType platformType = PlatformType.PC;
     [SerializeField] public Joystick joystick;
-    [SerializeField] private Button buttonIdleAttack, buttonIdleMagic, buttonWalkAttack, buttonWalkMagic,buttonJerk;
+    [SerializeField] private Button buttonIdleAttack, buttonIdleMagic, buttonWalkAttack, buttonWalkMagic,buttonJerk,buttonHelp;
     [SerializeField] private Animator animator;
     [SerializeField] public float speedWalk,speedWalkIsGround,speedWalkIsAir, jumpSpeed, timeJump;
     [SerializeField] private float radiusAttack, offsetRadiusAttackY, offsetRadiusAttackX;
@@ -29,6 +29,7 @@ public class Stickman : FighterEntity
         buttonWalkAttack.onClick.AddListener(OnKickIfPersonWalk);
         buttonWalkMagic.onClick.AddListener(OnMagicAttackIfPersonWalk);
         buttonJerk.onClick.AddListener(OnJerk);
+        buttonHelp.onClick.AddListener(OnHelp);
         if (Application.isMobilePlatform)
         {
             Debug.Log("Игрок играет на мобильном устройстве");
@@ -40,35 +41,45 @@ public class Stickman : FighterEntity
             platformType = PlatformType.PC;
             joystick.gameObject.SetActive(false);
         }
-        SetParametrs(100, 10, 10, false);
         rigidbody.inertia = 1;
     }
 
+    private void Start()
+    {
+        GuiStickman.instance.Init(CurrentHp, Armor, Mana);
+    }
+
+    private void OnHelp()
+    {
+        if(Tower.instance.towerStickMan.IsEndHelp == true)
+        Tower.instance.towerStickMan.Attack();
+    }
+
+   
+
     public void OnKickIfPersonIdle()
     {
-        if (State == PersonState.Idle )
+        if (State == PersonState.Idle && State != PersonState.Death )
         {
             State = PersonState.Kick_Idle;
-            //MoveController.SetState(State);
           AnimatorController.ChangeAnimationState(PersonState.Kick_Idle);
-            if (corStateExit != null) { StopCoroutine(corStateExit); corStateExit = null; Debug.LogError("корутина была повторена"); }
+            if (corStateExit != null) { StopCoroutine(corStateExit); corStateExit = null;  }
             corStateExit = StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
 
         }
     }
     public void OnMagicAttackIfPersonIdle()
     {
-        if (State == PersonState.Idle)
+        if (State == PersonState.Idle && State != PersonState.Death)
         {
             State = PersonState.Magic_Idle;
-            //MoveController.SetState(State);
             AnimatorController.ChangeAnimationState(PersonState.Magic_Idle);
             StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
         }
     }
     public void OnKickIfPersonWalk()
     {
-        if (State == PersonState.Walk)
+        if (State == PersonState.Walk && State != PersonState.Death)
         {
             State = PersonState.Kick_Walk;
             AnimatorController.ChangeAnimationState(PersonState.Kick_Walk);
@@ -80,7 +91,7 @@ public class Stickman : FighterEntity
     }
     public void OnMagicAttackIfPersonWalk()
     {
-        if (State == PersonState.Walk )
+        if (State == PersonState.Walk && State != PersonState.Death)
         {
             State = PersonState.Magic_Walk;
             AnimatorController.ChangeAnimationState(PersonState.Magic_Walk);
@@ -92,7 +103,7 @@ public class Stickman : FighterEntity
     }
     public void OnJerk()
     {
-        if (State == PersonState.Walk )
+        if (State == PersonState.Walk && State != PersonState.Death)
         {
             var state = State;
             State = PersonState.Jerk;
@@ -115,7 +126,6 @@ public class Stickman : FighterEntity
             else AttackController.SetOffsetAttackXAxis(offsetRadiusAttackX);
             State = state;
 
-            Debug.Log(offsetRadiusAttackX);
         }
     }
 
@@ -138,28 +148,23 @@ public class Stickman : FighterEntity
   
     public void ApplyDamage(int power)
     {
-      
 
 
-        var collider = AttackController.GetCollider2D();
+        if (State == PersonState.Death) return;
+
+
+            var collider = AttackController.GetCollider2D(this);
         if (collider != null)
         {
 
-            //Debug.Log("Нанёс урон: " + collider.gameObject.namse);
            var enemy = collider.GetComponent<Enemy>();
             if(enemy != null)
             {
                 enemy.OnDamage(power);
             }
         }
-        //if(State == PersonState.Kick_Walk)
-        //{
-        //    StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Walk));
-        //}
-        //else
-        //{
-        //    StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
-        //}
+
+
     }
     public void ReceiveDamage()
     {
@@ -167,25 +172,27 @@ public class Stickman : FighterEntity
         if(CurrentHp > 0)
         { 
         if (MoveController.IsGrounded == false) return;
-        //State = PersonState.ReceiveDamage;
-        //AnimatorController.ChangeAnimationState(PersonState.ReceiveDamage);
-
-        //    StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
         }
     }
     public override void OnDamage(int damage)
     {
+        if (State == PersonState.Death) return;
         base.OnDamage(damage);
         ReceiveDamage();
+        GuiStickman.instance.RefreshParametrs(CurrentHp, Armor, Mana);
     }
     protected override void OnDeath(FighterEntity fighterEntity)
     {
+        if (State == PersonState.Death) return;
+        SetState(PersonState.Death);
         base.OnDeath(fighterEntity);
         AnimatorController.ChangeAnimationState(PersonState.Death);
+        GuiStickman.instance.RefreshParametrs(CurrentHp, Armor, Mana);
     }
 
     private void RefreshStateButtons()
     {
+        if (State == PersonState.Death) return;
         if (State == PersonState.Idle )
         {
             if (buttonIdleAttack.gameObject.activeSelf == false)
@@ -244,6 +251,9 @@ public class Stickman : FighterEntity
     }
     private void FixedUpdate()
     {
+        if (State == PersonState.Death) return;
+
+
         if (State != PersonState.Kick_Idle 
             && State != PersonState.Magic_Idle 
             && State != PersonState.Kick_Walk 
@@ -274,8 +284,6 @@ public class Stickman : FighterEntity
                 }
             }
             AnimatorController.ChangeAnimationState(State);
-
-            //State = MoveController.State;
 
 
         }

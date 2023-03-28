@@ -19,10 +19,9 @@ public class AttackController
     public void SetOffsetAttackXAxis(float offsetX)
     {
         offsetPositionX = offsetX;
-        Debug.Log(offsetPositionX);
     }
 
-    public Collider2D GetCollider2D()
+    public Collider2D GetCollider2D(FighterEntity thisFighter)
     {
         Vector2 myPosition = transform.position  + Vector3.right * offsetPositionX+ Vector3.up * offsetPositionY;
         Collider2D[] colliders = new Collider2D[10];
@@ -32,8 +31,22 @@ public class AttackController
         {
             if (colliders[i] != null && colliders[i].gameObject != gameObject)
             {
-          
-                return colliders[i];
+                if (thisFighter as Enemy)
+                {
+                    var target = colliders[i].GetComponent<Stickman>();
+                    var target2 = colliders[i].GetComponent<Tower>();
+
+                    if (target || target2)
+                        return colliders[i];
+                }
+                else if( thisFighter as Stickman)
+                {
+                    var target = colliders[i].GetComponent<Enemy>();
+                   
+
+                    if (target)
+                        return colliders[i];
+                }
             }
         }
 

@@ -8,6 +8,6 @@ public class AnimatorEnemyEvent : MonoBehaviour
 
     public void ApplyDamage()
     {
-        enemy.ApplyDamage();
+        enemy.ApplyAttack();
     }
 }

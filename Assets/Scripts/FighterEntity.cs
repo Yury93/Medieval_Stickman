@@ -5,20 +5,15 @@ using UnityEngine;
 
 public class FighterEntity : MonoBehaviour
 {
-    public PersonState State; /*{ get; protected set; }*/
-    public int CurrentHp { get; protected set; }
-    public int Armor { get; protected set; }
-    public bool Increadible { get; protected set; }
-    public int Power { get; private set; }
+    public PersonState State;
+    public int CurrentHp;
+    public int Armor;
+    public bool Increadible;
+    public int Power;
+    public int Mana;
     [SerializeField] private List<SpriteRenderer> PersonSpriteRenderes;
 
-    public void SetParametrs(int currentHp,int armor,int power,bool increadible)
-    {
-        CurrentHp = currentHp;
-        Armor = armor;
-        Increadible = increadible;
-        Power = power;
-    }
+   
     public void SetState(PersonState state)
     {
         State = state;
@@ -41,6 +36,7 @@ public class FighterEntity : MonoBehaviour
             OnDeath(this);
 
         }
+        
         StartCoroutine(CorStartDamageReaction());
     }
 

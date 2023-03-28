@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,54 +6,73 @@ using UnityEngine;
 public class Enemy : FighterEntity
 {
     [SerializeField] protected float speed;
-
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rigidbody;
     [SerializeField] private float radiusAttack, offsetRadiusAttackY;
     [SerializeField] private Collider2D collider2d;
     public float clampDistanceToTarget, distanceStartPursuit;
+    public Rigidbody2D Rigidbody => rigidbody;
     public MoveController MoveController { get; private set; }
     public AttackController AttackController { get; private set; }
     public AnimationController AnimatorController { get; private set; }
-    private Stickman stickman;
-    private bool initialized;
+    public Stickman stickman;
+    public  Tower tower;
+    public bool Initialized { get; private set; }
+    public Action<Enemy> OnEnemyDeath;
 
    public void Init()
     {
         stickman = FindAnyObjectByType<Stickman>();
+        tower = FindAnyObjectByType<Tower>();
         MoveController = new MoveController(animator,this, rigidbody);
         AnimatorController = new AnimationController(animator);
         AttackController = new AttackController(this.gameObject, offsetRadiusAttackY, radiusAttack);
         State = PersonState.Idle;
-        SetParametrs(100, 10, 10, false);
-        initialized = true;
+        Initialized = true;
         collider2d.enabled = true;
     }
-
-
+    public void SetTarget(Stickman stickman, Tower tower)
+    {
+        this.stickman = stickman;
+        this.tower = tower;
+    }
+   
     public void FixedUpdate()
     {
-        if (initialized == false) return;
+        if (State == PersonState.Death) return;
+        if (Initialized == false) return;
 
-
-        MoveToTarget();
-        if (stickman.MoveController.IsEnemyColliderIgnore == true && collider2d.enabled == true)
+        if (stickman)
+        {
+            MoveToTarget(stickman.transform);
+        }
+        else if( tower)
+        {
+            MoveToTarget(tower.transform);
+        }
+        if (stickman && stickman.MoveController.IsEnemyColliderIgnore == true && collider2d.enabled == true)
         {
             collider2d.enabled = false;
             rigidbody.gravityScale = 0;
         }
-        else if(stickman.MoveController.IsEnemyColliderIgnore == false && collider2d.enabled == false)
+        else if(stickman && stickman.MoveController.IsEnemyColliderIgnore == false && collider2d.enabled == false)
         {
             collider2d.enabled = true;
             rigidbody.gravityScale = 1;
         }
+        if (AnimatorController.GetCurrentAnimationName() == "Idle" || tower == null && stickman == null)
+        {
+            SetState(PersonState.Idle);
+            AnimatorController.ChangeAnimationState(PersonState.Idle);
+        }
+ 
     }
 
-    private void MoveToTarget()
+    private void MoveToTarget(Transform target)
     {
-        if (stickman == null) return;
-        var direction = stickman.transform.position - transform.position;
+        if (target == null) return;
+        var direction = target.position - transform.position;
         var distanceToTarget = direction.magnitude;
         if ( State != PersonState.Death && State != PersonState.ReceiveDamage)
         {
@@ -67,7 +87,6 @@ public class Enemy : FighterEntity
                 {
                     MoveController.RotateToDirectionPerson(direction.normalized.x);
                     State = PersonState.Kick_Idle;
-
                 }
             }
             else
@@ -75,57 +94,58 @@ public class Enemy : FighterEntity
                 State = PersonState.Idle;
             }
 
-
             AnimatorController.ChangeAnimationState(State);
         }
     }
 
-    public void ApplyDamage()
+    public void ApplyAttack()
     {
-        
-        var collider = AttackController.GetCollider2D();
-        if (collider != null)
+        if (State == PersonState.Death) return;
+
+        var collider = AttackController.GetCollider2D(this);
+        if (collider != null )
         {
             
             var stickman = collider.GetComponent<Stickman>();
+            var tower = collider.GetComponent<Tower>();
             if (stickman != null )
             {
                 if (stickman.MoveController.IsEnemyColliderIgnore == false)
                 {
                     stickman.OnDamage(Power);
                 }
-              
-               
+            }
+            if(tower!= null)
+            {
+                tower.OnDamage(Power);
             }
         }
-        else
+        else if(State != PersonState.Idle)
         {
             AnimatorController.CorExitToState(this, PersonState.Idle);
+            Debug.Log("Выход из анимации");
         }
-
-        //anima
-        //Debug.Log("включать состоние idle чтобы обхект выходил из анимации");
-        //AnimatorController.CorExitToState(this, PersonState.Idle);
-
     }
     public override void OnDamage(int damage)
     {
-       base.OnDamage(damage);
+        if (State == PersonState.Death) return;
+        base.OnDamage(damage);
         if (CurrentHp > 0)
         {
             if (MoveController.IsGrounded == false) return;
-            //State = PersonState.ReceiveDamage;
-            //AnimatorController.ChangeAnimationState(PersonState.ReceiveDamage);
-
-            //StartCoroutine(A nimatorController.CorExitToState(this, PersonState.Idle));
         }
     }
     protected override void OnDeath(FighterEntity fighterEntity)
     {
+        if (State == PersonState.Death) return;
         base.OnDeath(fighterEntity);
         AnimatorController.ChangeAnimationState(PersonState.Death);
-        rigidbody.GetComponent<BoxCollider2D>().isTrigger = true;
+        rigidbody.GetComponent<BoxCollider2D>().enabled = false;
         rigidbody.isKinematic = true;
+        OnEnemyDeath?.Invoke(this);
+        rigidbody.drag = 20;
+        rigidbody.mass = 1000;
+        rigidbody.velocity = new Vector2(0, 0);
     }
 
 

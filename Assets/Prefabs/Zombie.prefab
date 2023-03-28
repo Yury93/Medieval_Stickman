@@ -818,9 +818,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96065cd7a93522743b21cf09f2748055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  State: 0
+  CurrentHp: 4
+  Armor: 2
+  Increadible: 0
+  Power: 2
   PersonSpriteRenderes:
   - {fileID: 5494107818316526894}
-  speed: 0.54
+  speed: 0.04
   groundMask:
     serializedVersion: 2
     m_Bits: 128
@@ -830,7 +835,9 @@ MonoBehaviour:
   offsetRadiusAttackY: -1.44
   collider2d: {fileID: 5938384335573347147}
   clampDistanceToTarget: 2.33
-  distanceStartPursuit: 8
+  distanceStartPursuit: 59.6
+  stickman: {fileID: 0}
+  tower: {fileID: 0}
 --- !u!50 &5938384335573347146
 Rigidbody2D:
   serializedVersion: 4
@@ -843,10 +850,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.12
   m_LinearDrag: 8
   m_AngularDrag: 1
-  m_GravityScale: 1
+  m_GravityScale: 0.3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
