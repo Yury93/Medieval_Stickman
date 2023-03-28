@@ -188,6 +188,13 @@ public class Stickman : FighterEntity
         base.OnDeath(fighterEntity);
         AnimatorController.ChangeAnimationState(PersonState.Death);
         GuiStickman.instance.RefreshParametrs(CurrentHp, Armor, Mana);
+        buttonIdleAttack.gameObject.SetActive(false);
+        buttonIdleMagic.gameObject.SetActive(false);
+        buttonWalkAttack.gameObject.SetActive(false);
+        buttonWalkMagic.gameObject.SetActive(false);
+        buttonHelp.gameObject.SetActive(false);
+        buttonJerk.gameObject.SetActive(false);
+        joystick.gameObject.SetActive(false);
     }
 
     private void RefreshStateButtons()
