@@ -126,6 +126,7 @@
     <Compile Include="Assets\Scripts\StickmanSpellProperty.cs" />
     <Compile Include="Assets\Scripts\SpellLibrary.cs" />
     <Compile Include="Assets\Scripts\GameLibrary.cs" />
+    <Compile Include="Assets\Scripts\MagicPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

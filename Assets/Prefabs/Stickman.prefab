@@ -458,7 +458,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3402729014844950185}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 27.5, y: -1.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -480,11 +480,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  CurrentHp: 20
-  Armor: 10
+  CurrentHp: 5
+  Armor: 2
   Increadible: 0
-  Power: 2
-  Mana: 0
+  Power: 1
+  Mana: 3
   PersonSpriteRenderes:
   - {fileID: 6632380372319575082}
   - {fileID: 6542486832198434044}
@@ -504,6 +504,7 @@ MonoBehaviour:
   buttonWalkAttack: {fileID: 0}
   buttonWalkMagic: {fileID: 0}
   buttonJerk: {fileID: 0}
+  buttonHelp: {fileID: 0}
   animator: {fileID: 5949798102279348396}
   speedWalk: 1
   speedWalkIsGround: 1
@@ -514,6 +515,11 @@ MonoBehaviour:
   offsetRadiusAttackY: 0.31
   offsetRadiusAttackX: 0
   rigidbody: {fileID: 3402729014844950199}
+  stickmanSpells:
+  - {fileID: 11400000, guid: 315934d5dc77d6545afcbe56a71bcb0a, type: 2}
+  - {fileID: 11400000, guid: 780b034bdedb659479f2f0866dfb1a68, type: 2}
+  - {fileID: 11400000, guid: 4a3f41df6755e9c40a905670397259ee, type: 2}
+  - {fileID: 11400000, guid: 720a95cb15755364699ce8d5dc9481c9, type: 2}
 --- !u!50 &3402729014844950199
 Rigidbody2D:
   serializedVersion: 4
@@ -1692,6 +1698,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stickman: {fileID: 3402729014844950196}
+  cratedMagic: {fileID: 3402729015559376057}
+  spell:
+  - {fileID: 2196097713985608630, guid: 6b2586888f6467343ae2466b4c93dea9, type: 3}
+  currentSpell: {fileID: 2196097713985608630, guid: 6b2586888f6467343ae2466b4c93dea9, type: 3}
 --- !u!114 &5949798102279348394
 MonoBehaviour:
   m_ObjectHideFlags: 0

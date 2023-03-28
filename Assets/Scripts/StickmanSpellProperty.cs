@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="SpellProperty", menuName = "SpellStickmanProperty")]
 public class StickmanSpellProperty : ScriptableObject
 {
+    public string name;
     [SerializeField]public int ManaCost;
     [SerializeField] public float Speed;
     [SerializeField] public int Power;

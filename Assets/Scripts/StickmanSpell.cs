@@ -44,12 +44,11 @@ public class StickmanSpell : MonoBehaviour
         var enemy = collision.GetComponent<Enemy>();
         if (enemy)
         {
-            transform.SetParent(enemy.transform);
-            transform.localScale = new Vector3(transform.localScale.x * 1.5f, transform.localScale.y * 1.5f, transform.localScale.z * 1.5f);
             enemy.OnDamage(SpellProperty.Power);
           
             if (corMove != null) StopCoroutine(corMove);
-            Destroy(gameObject, 2f);
+
+            Destroy(gameObject);
         }
     }
 }

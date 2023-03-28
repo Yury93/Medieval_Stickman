@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca9899011430aa478e50cc9b26e4ada, type: 3}
   m_Name: ElectroSpell
   m_EditorClassIdentifier: 
-  ManaCost: 0
-  Speed: 0
-  Power: 0
+  name: Electro
+  ManaCost: 3
+  Speed: 5
+  Power: 1
   IsLearnIdSpell: 0

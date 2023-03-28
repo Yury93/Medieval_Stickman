@@ -14,8 +14,7 @@ public class Stickman : FighterEntity
     [SerializeField] public float speedWalk,speedWalkIsGround,speedWalkIsAir, jumpSpeed, timeJump;
     [SerializeField] private float radiusAttack, offsetRadiusAttackY, offsetRadiusAttackX;
     [SerializeField] private Rigidbody2D rigidbody;
-    [SerializeField] private List<StickmanSpellProperty> stickmanSpells;
-    public List<StickmanSpellProperty> SpellProperties => stickmanSpells;
+  
     public StickmanSpellProperty CurrentSpell { get; private set; }
     public AttackController AttackController { get; private set; }
     public AnimationController AnimatorController { get; private set; }
@@ -50,7 +49,10 @@ public class Stickman : FighterEntity
     private void Start()
     {
         GuiStickman.instance.Init(CurrentHp, Armor, Mana);
-        CurrentSpell = SpellProperties[0];
+    }
+    public void SetCurrentSpell(StickmanSpellProperty currentSpell)
+    {
+        CurrentSpell = currentSpell;
     }
 
     private void OnHelp()
