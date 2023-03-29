@@ -823,6 +823,7 @@ MonoBehaviour:
   Armor: 2
   Increadible: 0
   Power: 2
+  Mana: 0
   PersonSpriteRenderes:
   - {fileID: 5494107818316526894}
   speed: 0.04
@@ -834,6 +835,7 @@ MonoBehaviour:
   radiusAttack: 1.53
   offsetRadiusAttackY: -1.44
   collider2d: {fileID: 5938384335573347147}
+  exp: 1
   clampDistanceToTarget: 2.33
   distanceStartPursuit: 59.6
   stickman: {fileID: 0}

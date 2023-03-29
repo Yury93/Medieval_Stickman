@@ -484,7 +484,7 @@ MonoBehaviour:
   Armor: 2
   Increadible: 0
   Power: 1
-  Mana: 3
+  Mana: 78
   PersonSpriteRenderes:
   - {fileID: 6632380372319575082}
   - {fileID: 6542486832198434044}
@@ -515,11 +515,6 @@ MonoBehaviour:
   offsetRadiusAttackY: 0.31
   offsetRadiusAttackX: 0
   rigidbody: {fileID: 3402729014844950199}
-  stickmanSpells:
-  - {fileID: 11400000, guid: 315934d5dc77d6545afcbe56a71bcb0a, type: 2}
-  - {fileID: 11400000, guid: 780b034bdedb659479f2f0866dfb1a68, type: 2}
-  - {fileID: 11400000, guid: 4a3f41df6755e9c40a905670397259ee, type: 2}
-  - {fileID: 11400000, guid: 720a95cb15755364699ce8d5dc9481c9, type: 2}
 --- !u!50 &3402729014844950199
 Rigidbody2D:
   serializedVersion: 4

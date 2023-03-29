@@ -11,12 +11,9 @@ public class EnemiesService : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-
-    void Start()
-    {
         spawnSystem.Init();
     }
 
+   
  
 }

@@ -11,6 +11,8 @@ public class Enemy : FighterEntity
     [SerializeField] private Rigidbody2D rigidbody;
     [SerializeField] private float radiusAttack, offsetRadiusAttackY;
     [SerializeField] private Collider2D collider2d;
+    [SerializeField] private int exp;
+    public int Exp => exp;
     public float clampDistanceToTarget, distanceStartPursuit;
     public Rigidbody2D Rigidbody => rigidbody;
     public MoveController MoveController { get; private set; }
@@ -142,10 +144,12 @@ public class Enemy : FighterEntity
         AnimatorController.ChangeAnimationState(PersonState.Death);
         rigidbody.GetComponent<BoxCollider2D>().enabled = false;
         rigidbody.isKinematic = true;
+        StickmanUpgrader.SetExpStickman(exp);
         OnEnemyDeath?.Invoke(this);
         rigidbody.drag = 20;
         rigidbody.mass = 1000;
         rigidbody.velocity = new Vector2(0, 0);
+       
     }
 
 
