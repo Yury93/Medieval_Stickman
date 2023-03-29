@@ -15,7 +15,7 @@ public class ExpLevels : MonoBehaviour
         public int startExp;
     }
     public List<Levels> levels;
-    [SerializeField] private TextMeshProUGUI currentLevelText,futureLevelText;
+    [SerializeField] private TextMeshProUGUI currentLevelText,futureLevelText; 
     [SerializeField] private Image expFillAmount;
 
     private void Start()
