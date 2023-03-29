@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SpawnSystem : MonoBehaviour
 {
     [SerializeField] private List<EnemySpawner> enemySpawners;
     [SerializeField] private int currentWave;
+    [SerializeField] private TextMeshProUGUI numberWaveText;
     
     private List<Enemy> enemies;
     private int countKillEnemiesInCurrentWave;
@@ -17,9 +19,11 @@ public class SpawnSystem : MonoBehaviour
     public void Init()
     {
         enemies = new List<Enemy>();
+        numberWaveText.enabled = false;
         enemySpawners.ForEach(s => s.OnEnemySpawn += AddListAllEnemies);
         enemySpawners.ForEach(s => s.StartCoroutine(s.CorSpawn(enemyWaves[currentWave].EnemyCount,enemyWaves[currentWave].EnemyPrefabs)));
-       
+        StartCoroutine(CorShowNumberWave(enemyWaves[currentWave].NumberWave));
+
     }
   
 
@@ -34,18 +38,27 @@ public class SpawnSystem : MonoBehaviour
     {
         enemies.Remove(enemyDead);
         countKillEnemiesInCurrentWave += 1;
-        Debug.Log($"enemyWaves {currentWave} == countKillEnemiesInCurrentWave{countKillEnemiesInCurrentWave}");
+       
         if (enemyWaves[currentWave].EnemyCount == countKillEnemiesInCurrentWave)
         {
-           
-            if (enemyWaves.Count-1  > currentWave)
+            currentWave += 1;
+            if (enemyWaves.Count  > currentWave)
             {
-                Debug.Log($"current wave{currentWave} < countWave{enemyWaves.Count}");
+               
                 enemySpawners.ForEach(s => s.StartCoroutine(s.CorSpawn(enemyWaves[currentWave].EnemyCount, enemyWaves[currentWave].EnemyPrefabs)));
-                currentWave += 1;
+               StartCoroutine(CorShowNumberWave(  enemyWaves[currentWave].NumberWave));
+                //currentWave += 1;
+
             }
             countKillEnemiesInCurrentWave = 0;
         }
+    }
+    IEnumerator CorShowNumberWave(int number)
+    {
+        numberWaveText.enabled = true;
+        numberWaveText.text = "Волна " + number;
+        yield return new WaitForSeconds(2f);
+        numberWaveText.enabled = false;
     }
 
     public void RemoveEnemiesNull()

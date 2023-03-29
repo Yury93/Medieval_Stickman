@@ -7,11 +7,14 @@ public class TowerStickman : MonoBehaviour
     [SerializeField] private Transform transformPoint1, transformPoint2;
     [SerializeField] private Animator animator;
     [SerializeField] private float speed;
+    [SerializeField] private Stickman stickman;
     public bool IsEndHelp { get; private set; }
-    private void Awake()
+    public void Init(Stickman stickman)
     {
         IsEndHelp = true;
+        this.stickman = stickman;
     }
+
     public  void Attack()
     {
         IsEndHelp = false;
@@ -20,7 +23,18 @@ public class TowerStickman : MonoBehaviour
 
   private  IEnumerator CorAttack()
     {
-     
+        CameraMachine.instance.ShowTower();
+
+        foreach (var item in EnemiesService.instance.SpawnSystem.AllEnemies)
+        {
+            if(item != null)
+            {
+                item.SetTarget(null, null);
+            }
+        }
+        
+       
+        stickman.Increadible = true;
         while(transform.position.x > transformPoint1.position.x)
         {
             transform.Translate(-Vector2.right * speed * Time.deltaTime);
@@ -41,6 +55,16 @@ public class TowerStickman : MonoBehaviour
         }
         animator.transform.rotation = Quaternion.Euler(0, 0, 0);
         IsEndHelp = true;
+        stickman.Increadible = false;
+
+        foreach (var item in EnemiesService.instance.SpawnSystem.AllEnemies)
+        {
+            if (item != null)
+            {
+                item.SetTarget(stickman, Tower.instance);
+            }
+        }
+        CameraMachine.instance.ShowStickman();
     }
   
 }

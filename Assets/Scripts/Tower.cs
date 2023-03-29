@@ -9,10 +9,12 @@ public class Tower : MonoBehaviour
     public int CurrentHp;/* { get; private set; }*/
     public bool Increadible;/*{ get; private set; }*/
     public TowerStickman towerStickMan;
+    public Stickman stickman;
     public static Tower instance;
     private void Start()
     {
         instance = this;
+        towerStickMan.Init(stickman);
     }
 
     public void OnDamage(int damage)
