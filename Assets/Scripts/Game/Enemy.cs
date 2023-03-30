@@ -144,7 +144,7 @@ public class Enemy : FighterEntity
         AnimatorController.ChangeAnimationState(PersonState.Death);
         rigidbody.GetComponent<BoxCollider2D>().enabled = false;
         rigidbody.isKinematic = true;
-        StickmanUpgrader.SetExpStickman(exp);
+       
         OnEnemyDeath?.Invoke(this);
         rigidbody.drag = 20;
         rigidbody.mass = 1000;

@@ -17,33 +17,61 @@ public class ExpLevels : MonoBehaviour
     public List<Levels> levels;
     [SerializeField] private TextMeshProUGUI currentLevelText,futureLevelText; 
     [SerializeField] private Image expFillAmount;
+    public int currentExp;
 
     private void Start()
     {
         EnemiesService.instance.SpawnSystem.AllEnemies.ForEach(e => e.OnEnemyDeath += RefreshInfoLevel);
+        currentExp = StickmanUpgrader.GetExpStickman();
         RefreshInfoLevel(null);
+
+        EnemiesService.instance.SpawnSystem.EnemySpawners.ForEach(s => s.OnEnemySpawn += RefreshInfoLevel);
     }
 
     private void RefreshInfoLevel(Enemy enemy)
     {
-        var currentExp = StickmanUpgrader.GetExpStickman();
+        if (enemy)
+        currentExp += enemy.Exp;
 
         ExpLevels.Levels currentLevel = levels.LastOrDefault(l => l.startExp <= currentExp);
-        ExpLevels.Levels futureLevel = levels.LastOrDefault(l => l.startExp <= currentExp + 1);
+        ExpLevels.Levels futureLevel = levels.LastOrDefault(l => l.Level <= currentLevel.Level + 1);
 
         currentLevelText.text = currentLevel.Level.ToString(); 
         if(futureLevel!= null)
         {
             futureLevelText.text = futureLevel.Level.ToString();
             if (currentExp != 0)
-            expFillAmount.fillAmount = currentExp/futureLevel.startExp;
+            {
+                expFillAmount.fillAmount = (float)currentExp / (float)futureLevel.startExp;
+            }
          
         }
         else
         {
             futureLevelText.text = " ";
         }
-
+        if(expFillAmount.fillAmount == 1)
+        {
+            IEnumerator CorResetFillAmount()
+            {
+                yield return new WaitForSeconds(0.2f);
+                expFillAmount.fillAmount = 0;
+            }
+        }
         
+    }
+  
+    private void OnApplicationPause(bool pause)
+    {
+        if(pause == true)
+        StickmanUpgrader.SetExpStickman(currentExp);
+    }
+    private void OnApplicationQuit()
+    {
+        StickmanUpgrader.SetExpStickman(currentExp);
+    }
+    private void OnDestroy()
+    {
+        StickmanUpgrader.SetExpStickman(currentExp);
     }
 }
