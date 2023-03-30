@@ -1,0 +1,184 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UpgradeCharPopup : MonoBehaviour
+{
+    public enum TypeUpgrade { HP,Armor,Mana,Power}
+    [Serializable]
+    public class Parametrs
+    {
+        public TextMeshProUGUI hpText, armorText, manaText, powerText;
+        public Button minusHp, plusHp, minusArmor, plusArmor, minusMana, plusMana, minusPower, plusPower;
+        public int freeScore;
+    }
+
+    [SerializeField] private Parametrs parametrs;
+    [SerializeField] private Button closeButton, backgroundCloseButton;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private Button accept;
+
+    private Stickman stickman;
+    private int score,hp,armor,mana,power;
+    private bool isUpgrade;
+    public void Init()
+    {
+        stickman = UpgradeGameSystem.instance.stickman;
+        closeButton.onClick.AddListener(Close);
+        backgroundCloseButton.onClick.AddListener(Close);
+
+        parametrs.minusHp.onClick.AddListener(()=>OnClickMinus(TypeUpgrade.HP));
+        parametrs.plusHp.onClick.AddListener(() => OnClickPlus(TypeUpgrade.HP));
+
+        parametrs.minusArmor.onClick.AddListener(() => OnClickMinus(TypeUpgrade.Armor));
+        parametrs.plusArmor.onClick.AddListener(() => OnClickPlus(TypeUpgrade.Armor));
+
+
+        parametrs.minusMana.onClick.AddListener(() => OnClickMinus(TypeUpgrade.Mana));
+        parametrs.plusMana.onClick.AddListener(() => OnClickPlus(TypeUpgrade.Mana));
+
+
+        parametrs.minusPower.onClick.AddListener(() => OnClickMinus(TypeUpgrade.Power));
+        parametrs.plusPower.onClick.AddListener(() => OnClickPlus(TypeUpgrade.Power));
+        accept.onClick.AddListener(ConfirmUpgrade);
+        gameObject.SetActive(false);
+    }
+
+    private void ConfirmUpgrade()
+    {
+        if(isUpgrade)
+        {
+            StickmanSaveUpgrader.UpgradeStickmanParametrs
+                (StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Hitpoints) + hp
+                ,StickmanSaveUpgrader.SickmanParametr.Hitpoints);
+            StickmanSaveUpgrader.UpgradeStickmanParametrs
+             (StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Armor) + armor
+             , StickmanSaveUpgrader.SickmanParametr.Armor);
+
+            StickmanSaveUpgrader.UpgradeStickmanParametrs
+            (StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Mana) + mana
+            , StickmanSaveUpgrader.SickmanParametr.Mana);
+            StickmanSaveUpgrader.UpgradeStickmanParametrs
+          (StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Power) + power
+          , StickmanSaveUpgrader.SickmanParametr.Power);
+
+
+           stickman. CurrentHp += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Hitpoints);
+            stickman.Armor += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Armor);
+            stickman.Mana += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Mana);
+            stickman.Power += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Power);
+
+            Close();
+        }
+    }
+
+    private void OnClickPlus(TypeUpgrade type)
+    {
+       if(type == TypeUpgrade.HP)
+        {
+            if(score>0)
+            {
+                score -= 1;
+                hp += 1;
+                parametrs.hpText.text = "Çäîðîâüå: "+ (stickman.CurrentHp + hp);
+                isUpgrade = true;
+            }
+        }
+        if (type == TypeUpgrade.Armor)
+        {
+            if (score > 0)
+            {
+                score -= 1;
+                armor += 1;
+                parametrs.armorText.text = "Áðîíÿ: " + (stickman.Armor + armor);
+                isUpgrade = true;
+            }
+        }
+        if (type == TypeUpgrade.Mana)
+        {
+            if (score > 0)
+            {
+                score -= 1;
+                mana += 1;
+                parametrs.manaText.text = "ÌÀÍÀ: " + (stickman.Mana + mana);
+                isUpgrade = true;
+            }
+        }
+        if (type == TypeUpgrade.Power)
+        {
+            if (score > 0)
+            {
+                score -= 1;
+                power += 1;
+                parametrs.powerText.text = "ÑÈËÀ: "+ (stickman.Power + power);
+                isUpgrade = true;
+            }
+        }
+        if(score > 0)
+        {
+            isUpgrade = false;
+        }
+    }
+    private void OnClickMinus(TypeUpgrade type)
+    {
+        if (type == TypeUpgrade.HP)
+        {
+            if( hp > 0)
+            {
+                score += 1;
+                hp -= 1;
+                parametrs.hpText.text = "Çäîðîâüå: " + (stickman.CurrentHp -1);
+            }
+        }
+        if (type == TypeUpgrade.Armor)
+        {
+            if ( armor > 0)
+            {
+                score += 1;
+                armor -= 1;
+                parametrs.armorText.text = "Áðîíÿ: " + (stickman.Armor -1);
+            }
+        }
+        if (type == TypeUpgrade.Mana)
+        {
+            if ( mana > 0)
+            {
+                score += 1;
+                mana -= 1;
+                parametrs.manaText.text = "ÌÀÍÀ: " + (stickman.Mana -1);
+            }
+        }
+        if (type == TypeUpgrade.Power)
+        {
+            if ( power > 0)
+            {
+                score += 1;
+                power -= 1;
+                parametrs.powerText.text = "ÑÈËÀ: " + (stickman.Power -1);
+            }
+        }
+        if (score > 0)
+        {
+            isUpgrade = false;
+        }
+    }
+
+    private void Close()
+    {
+        if (isUpgrade)
+        {
+            Time.timeScale = 1F;
+            gameObject.SetActive(false);
+        }
+    }
+    public void Open()
+    {
+        Time.timeScale = 0.00001F;
+        gameObject.SetActive(true);
+        score = 1;
+    }
+}

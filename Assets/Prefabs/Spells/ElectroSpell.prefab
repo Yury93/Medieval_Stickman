@@ -72,9 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c0dc1391f47184ab611fcef81c01a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 6
-  speed: 8
-  power: 1
+  id: 0
 --- !u!1001 &7496433209274064309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,6 +139,22 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 306869031
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900002, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900002, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 306869031
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}

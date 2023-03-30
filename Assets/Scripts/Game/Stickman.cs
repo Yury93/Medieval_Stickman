@@ -32,6 +32,12 @@ public class Stickman : FighterEntity
         buttonWalkMagic.onClick.AddListener(OnMagicAttackIfPersonWalk);
         buttonJerk.onClick.AddListener(OnJerk);
         buttonHelp.onClick.AddListener(OnHelp);
+
+        CurrentHp += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Hitpoints);
+        Armor += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Armor);
+        Mana += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Mana);
+        Power += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Power);
+
         if (Application.isMobilePlatform)
         {
             Debug.Log("Игрок играет на мобильном устройстве");

@@ -15,63 +15,80 @@ public class ExpLevels : MonoBehaviour
         public int startExp;
     }
     public List<Levels> levels;
-    [SerializeField] private TextMeshProUGUI currentLevelText,futureLevelText; 
+    [SerializeField] private TextMeshProUGUI currentLevelText, futureLevelText, expText;
     [SerializeField] private Image expFillAmount;
-    public int currentExp;
+    public int CurrentExp { get; private set; }
+   public ExpLevels.Levels CurrentLevel { get; private set; }
+    public ExpLevels.Levels FutureLevel { get; private set; }
+    public Action<int> OnPlusExp;
 
-    private void Start()
+    public void Init()
     {
         EnemiesService.instance.SpawnSystem.AllEnemies.ForEach(e => e.OnEnemyDeath += RefreshInfoLevel);
-        currentExp = StickmanUpgrader.GetExpStickman();
+        CurrentExp = StickmanSaveUpgrader.GetExpStickman();
         RefreshInfoLevel(null);
 
         EnemiesService.instance.SpawnSystem.EnemySpawners.ForEach(s => s.OnEnemySpawn += RefreshInfoLevel);
+
+        CurrentExp = StickmanSaveUpgrader.GetExpStickman();
+
     }
 
     private void RefreshInfoLevel(Enemy enemy)
     {
         if (enemy)
-        currentExp += enemy.Exp;
+            CurrentExp += enemy.Exp;
 
-        ExpLevels.Levels currentLevel = levels.LastOrDefault(l => l.startExp <= currentExp);
-        ExpLevels.Levels futureLevel = levels.LastOrDefault(l => l.Level <= currentLevel.Level + 1);
+        CurrentLevel = levels.LastOrDefault(l => l.startExp <= CurrentExp);
+        FutureLevel = levels.LastOrDefault(l => l.Level <= CurrentLevel.Level + 1);
 
-        currentLevelText.text = currentLevel.Level.ToString(); 
-        if(futureLevel!= null)
+
+
+        currentLevelText.text = CurrentLevel.Level.ToString();
+        if (FutureLevel != null)
         {
-            futureLevelText.text = futureLevel.Level.ToString();
-            if (currentExp != 0)
+            expText.text = CurrentExp + "/" + FutureLevel.startExp;
+            futureLevelText.text = FutureLevel.Level.ToString();
+            if (CurrentExp != 0)
             {
-                expFillAmount.fillAmount = (float)currentExp / (float)futureLevel.startExp;
+                expFillAmount.fillAmount = (float)CurrentExp / (float)FutureLevel.startExp;
             }
-         
+
         }
         else
         {
             futureLevelText.text = " ";
+            expText.text = CurrentExp + "/" + CurrentExp;
         }
-        if(expFillAmount.fillAmount == 1)
+        if (expFillAmount.fillAmount == 1)
         {
+            StartCoroutine(CorResetFillAmount());
             IEnumerator CorResetFillAmount()
             {
                 yield return new WaitForSeconds(0.2f);
                 expFillAmount.fillAmount = 0;
             }
         }
-        
+        OnPlusExp?.Invoke(CurrentExp);
     }
-  
+
     private void OnApplicationPause(bool pause)
     {
-        if(pause == true)
-        StickmanUpgrader.SetExpStickman(currentExp);
+
+        if (pause == true)
+            StickmanSaveUpgrader.SetExpStickman(CurrentExp);
+
     }
     private void OnApplicationQuit()
     {
-        StickmanUpgrader.SetExpStickman(currentExp);
+
+        StickmanSaveUpgrader.SetExpStickman(CurrentExp);
+
     }
     private void OnDestroy()
     {
-        StickmanUpgrader.SetExpStickman(currentExp);
-    }
+
+        StickmanSaveUpgrader.SetExpStickman(CurrentExp);
+
+    } 
 }

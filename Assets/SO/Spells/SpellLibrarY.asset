@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpellLibrarY
   m_EditorClassIdentifier: 
   stickmanSpells:
-  - {fileID: 2196097713985608630, guid: 6b2586888f6467343ae2466b4c93dea9, type: 3}
   - {fileID: 5588573485677888210, guid: 568482a235eab274194dde7cb1ce33c8, type: 3}
   - {fileID: 7014340843396498900, guid: 98382822329d1f1498e5ee5a7a80f24b, type: 3}
   - {fileID: 6515734311891410805, guid: 4148b79713a62a647a21c8bbc375f876, type: 3}
+  - {fileID: 2196097713985608630, guid: 6b2586888f6467343ae2466b4c93dea9, type: 3}
