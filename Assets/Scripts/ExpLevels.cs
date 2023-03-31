@@ -13,6 +13,7 @@ public class ExpLevels : MonoBehaviour
     {
         public int Level;
         public int startExp;
+        public bool isButtonOpened;
     }
     public List<Levels> levels;
     [SerializeField] private TextMeshProUGUI currentLevelText, futureLevelText, expText;
@@ -28,10 +29,15 @@ public class ExpLevels : MonoBehaviour
         CurrentExp = StickmanSaveUpgrader.GetExpStickman();
         RefreshInfoLevel(null);
 
-        EnemiesService.instance.SpawnSystem.EnemySpawners.ForEach(s => s.OnEnemySpawn += RefreshInfoLevel);
+        EnemiesService.instance.SpawnSystem.EnemySpawners.ForEach(s => s.OnEnemySpawn += OnEnemySpawn);
 
         CurrentExp = StickmanSaveUpgrader.GetExpStickman();
 
+    }
+
+    private void OnEnemySpawn(Enemy enemy)
+    {
+        enemy.OnEnemyDeath += RefreshInfoLevel;
     }
 
     private void RefreshInfoLevel(Enemy enemy)

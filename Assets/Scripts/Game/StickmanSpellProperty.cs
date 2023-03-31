@@ -10,6 +10,8 @@ public class StickmanSpellProperty : ScriptableObject
     [SerializeField] public float Speed;
     [SerializeField] public int Power;
     [SerializeField] public int IsLearnIdSpell;
+
+  
     public void SetLearnId(int id)
     {
         IsLearnIdSpell = id;

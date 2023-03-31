@@ -18,4 +18,20 @@ public class MagicPanel : MonoBehaviour
         buttonSpell2.onClick.AddListener(() => stickman.SetCurrentSpell(stickmanSpells[2]));
         buttonSpell3.onClick.AddListener(() => stickman.SetCurrentSpell(stickmanSpells[3]));
     }
+    public void SetActiveMagic1(bool result)
+    {
+        buttonSpell0.gameObject.SetActive(result);
+    }
+    public void SetActiveMagic2(bool result)
+    {
+        buttonSpell1.gameObject.SetActive(result);
+    }
+    public void SetActiveMagic3(bool result)
+    {
+        buttonSpell2.gameObject.SetActive(result);
+    }
+    public void SetActiveMagic4(bool result)
+    {
+        buttonSpell3.gameObject.SetActive(result);
+    }
 }

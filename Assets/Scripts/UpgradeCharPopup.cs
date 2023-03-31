@@ -72,6 +72,8 @@ public class UpgradeCharPopup : MonoBehaviour
             stickman.Mana += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Mana);
             stickman.Power += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Power);
 
+
+          
             Close();
         }
     }
@@ -173,6 +175,9 @@ public class UpgradeCharPopup : MonoBehaviour
         {
             Time.timeScale = 1F;
             gameObject.SetActive(false);
+
+            GuiStickman.instance.Init(stickman.CurrentHp, stickman.Armor, stickman.Mana);
+            GuiStickman.instance.RefreshParametrs(stickman.CurrentHp, stickman.Armor, stickman.Mana);
         }
     }
     public void Open()
@@ -180,5 +185,8 @@ public class UpgradeCharPopup : MonoBehaviour
         Time.timeScale = 0.00001F;
         gameObject.SetActive(true);
         score = 1;
+        stickman.CurrentHp = stickman.MaxHP;
+        stickman.Mana = stickman.MaxMana;
+        stickman.Armor = stickman.MaxArmor;
     }
 }

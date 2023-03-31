@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Stickman : FighterEntity
 {
+  
     public enum PlatformType { PC,MOBILE }
     [SerializeField] private PlatformType platformType = PlatformType.PC;
     [SerializeField] public Joystick joystick;
@@ -20,7 +21,9 @@ public class Stickman : FighterEntity
     public AnimationController AnimatorController { get; private set; }
     public MoveController MoveController { get; private set; }
     private Coroutine corStateExit;
-
+    public int MaxMana { get; private set; }
+    public int MaxHP { get; private set; }
+    public int MaxArmor { get; private set; }
     private void Awake()
     {
         AnimatorController = new AnimationController(animator);
@@ -37,6 +40,9 @@ public class Stickman : FighterEntity
         Armor += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Armor);
         Mana += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Mana);
         Power += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Power);
+        SetMaxParameters(CurrentHp, Armor, Mana);
+
+        GuiStickman.instance.RefreshParametrs((float)CurrentHp, (float)Armor, (float)Mana);
 
         if (Application.isMobilePlatform)
         {
@@ -50,6 +56,12 @@ public class Stickman : FighterEntity
             joystick.gameObject.SetActive(false);
         }
         rigidbody.inertia = 1;
+    }
+    public void SetMaxParameters(int maxHp, int maxArmor, int maxMana)
+    {
+        MaxHP = maxHp;
+        MaxMana = maxMana;
+        MaxArmor = maxArmor;
     }
 
     private void Start()
@@ -226,7 +238,9 @@ public class Stickman : FighterEntity
             if (buttonIdleAttack.gameObject.activeSelf == false)
             {
                 buttonIdleAttack.gameObject.SetActive(true);
+                if(UpgradeGameSystem.instance.isMagicIdle)
                 buttonIdleMagic.gameObject.SetActive(true);
+
                 buttonWalkAttack.gameObject.SetActive(false);
                 buttonWalkMagic.gameObject.SetActive(false);
             }
@@ -238,15 +252,21 @@ public class Stickman : FighterEntity
             {
                 buttonIdleAttack.gameObject.SetActive(false);
                 buttonIdleMagic.gameObject.SetActive(false);
-                buttonWalkAttack.gameObject.SetActive(true);
-                buttonWalkMagic.gameObject.SetActive(true);
+                if (UpgradeGameSystem.instance.isKickWalk)
+                    buttonWalkAttack.gameObject.SetActive(true);
+                if (UpgradeGameSystem.instance.isMagicWalk)
+                    buttonWalkMagic.gameObject.SetActive(true);
             }
         }
-
+        if(UpgradeGameSystem.instance.isHelp)
+        {
+            buttonHelp.gameObject.SetActive(true);
+        }
 
         if (MoveController.IsGrounded)
         {
-            buttonJerk.gameObject.SetActive(true);
+            if (UpgradeGameSystem.instance.isJerk)
+                buttonJerk.gameObject.SetActive(true);
         }
         else if (!MoveController.IsGrounded)
         {
@@ -258,22 +278,22 @@ public class Stickman : FighterEntity
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            OnMagicAttackIfPersonWalk();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            OnKickIfPersonWalk();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            OnMagicAttackIfPersonIdle();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            OnKickIfPersonIdle();
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    OnMagicAttackIfPersonWalk();
+        //}
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    OnKickIfPersonWalk();
+        //}
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    OnMagicAttackIfPersonIdle();
+        //}
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    OnKickIfPersonIdle();
+        //}
         RefreshStateButtons();
     }
     private void FixedUpdate()

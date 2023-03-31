@@ -39,9 +39,9 @@ public class GuiStickman : MonoBehaviour
     }
     public void RefreshParametrs(float currentHp, float currentArmor, float currentMana)
     {
-        var hp = Mathf.Clamp(currentHp, 0, maxHp);
-        var armor = Mathf.Clamp(currentArmor, 0, maxArmor);
-        var mana = Mathf.Clamp(currentMana, 0, maxMana);
+        var hp = Mathf.Clamp(currentHp, 0, 999999999);
+        var armor = Mathf.Clamp(currentArmor, 0, 999999999);
+        var mana = Mathf.Clamp(currentMana, 0, 999999999);
         if (armor > 0)
         {
             armorImage.fillAmount = currentArmor / maxArmor;
