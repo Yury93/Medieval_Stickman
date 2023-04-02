@@ -57,7 +57,7 @@ public class ExpLevels : MonoBehaviour
             futureLevelText.text = FutureLevel.Level.ToString();
             if (CurrentExp != 0)
             {
-                expFillAmount.fillAmount = (float)CurrentExp / (float)FutureLevel.startExp;
+                expFillAmount.fillAmount = (CurrentExp - CurrentLevel.startExp) / (float)FutureLevel.startExp;
             }
 
         }

@@ -20,14 +20,14 @@ public class GuiStickman : MonoBehaviour
         maxArmor = armor;
         maxHp = hp;
         maxMana = mana;
-        armorText.text = $"{Convert.ToInt32(armor)}/{Convert.ToInt32(armor)}";
-        hpText.text = $"{Convert.ToInt32(hp)}/{Convert.ToInt32(hp)}";
-        manaText.text = $"{Convert.ToInt32(mana)}/{Convert.ToInt32(mana)}";
+        armorText.text = $"Броня: {Convert.ToInt32(armor)}/{Convert.ToInt32(armor)}";
+        hpText.text = $"Здоровье: {Convert.ToInt32(hp)}/{Convert.ToInt32(hp)}";
+        manaText.text = $"Мана: {Convert.ToInt32(mana)}/{Convert.ToInt32(mana)}";
 
         if (armor > 0)
         {
             armorImage.fillAmount = armor / maxArmor;
-            armorText.text = $"{Convert.ToInt32(armor)}/{Convert.ToInt32(maxArmor)}";
+            armorText.text = $"Броня: {Convert.ToInt32(armor)}/{Convert.ToInt32(maxArmor)}";
         }
         else
         {
@@ -45,7 +45,7 @@ public class GuiStickman : MonoBehaviour
         if (armor > 0)
         {
             armorImage.fillAmount = currentArmor / maxArmor;
-            armorText.text = $"{Convert.ToInt32(armor)}/{Convert.ToInt32(maxArmor)}";
+            armorText.text = $"Броня: {Convert.ToInt32(armor)}/{Convert.ToInt32(maxArmor)}";
         }
         else
         {
@@ -56,7 +56,12 @@ public class GuiStickman : MonoBehaviour
         hpImage.fillAmount = currentHp / maxHp;
         manaImage.fillAmount = currentMana / maxMana;
        
-        hpText.text = $"{Convert.ToInt32(hp)}/{Convert.ToInt32(maxHp)}";
-        manaText.text = $"{Convert.ToInt32(mana)}/{Convert.ToInt32(maxMana)}";
+        //if(currentArmor == 0)
+        //{
+        //    armorText.enabled = false;
+        //}
+        hpText.text = $"Здоровье: {Convert.ToInt32(hp)}/{Convert.ToInt32(maxHp)}";
+        manaText.text = $"Мана: {Convert.ToInt32(mana)}/{Convert.ToInt32(maxMana)}";
+       
     }
 }

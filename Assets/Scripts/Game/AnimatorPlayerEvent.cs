@@ -9,6 +9,9 @@ public class AnimatorPlayerEvent : MonoBehaviour
     [SerializeField] private Transform cratedMagic;
     [SerializeField] private List<StickmanSpell> spell;
     [SerializeField] private StickmanSpell currentSpell;
+    [SerializeField] private float delayPlusMana;
+    
+    Coroutine corRegenMana;
     public void ApplyDamageKickIdle()
     {
         stickman.ApplyDamage(stickman.Power);
@@ -30,5 +33,19 @@ public class AnimatorPlayerEvent : MonoBehaviour
                 spell.MoveSpell(-1);
         }
         GuiStickman.instance.RefreshParametrs(stickman .CurrentHp, stickman.Armor, stickman.Mana);
+
+        if (corRegenMana != null) StopCoroutine(corRegenMana);
+        corRegenMana = StartCoroutine(CorManaRegen());
+        IEnumerator CorManaRegen()
+        {
+            while(stickman.MaxMana > stickman.Mana)
+            {
+                yield return new WaitForSeconds(delayPlusMana);
+                stickman.Mana += 1;
+                GuiStickman.instance.RefreshParametrs(stickman.CurrentHp, stickman.Armor, stickman.Mana);
+            }
+        }
+        
     }
+   
 }

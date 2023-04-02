@@ -11,6 +11,7 @@ public class Tower : MonoBehaviour
     public TowerStickman towerStickMan;
     public Stickman stickman;
     public static Tower instance;
+    public GameObject smoke;
     private void Start()
     {
         instance = this;
@@ -38,6 +39,8 @@ public class Tower : MonoBehaviour
     private void OnDeath(Tower tower)
     {
         Debug.Log("башня разрушена");
-        Destroy(gameObject, 3);
+        Time.timeScale = 1;
+        Destroy(gameObject, 4);
+        smoke.gameObject.SetActive(true);
     }
 }

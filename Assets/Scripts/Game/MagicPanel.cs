@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class MagicPanel : MonoBehaviour
     [SerializeField] private Stickman stickman;
     [SerializeField] private List<StickmanSpellProperty> stickmanSpells;
     [SerializeField] private Button buttonSpell0, buttonSpell1, buttonSpell2, buttonSpell3;
+    [SerializeField] private TextMeshProUGUI description;
     public List<StickmanSpellProperty> SpellProperties => stickmanSpells;
 
     public void Awake()
@@ -25,6 +27,10 @@ public class MagicPanel : MonoBehaviour
     public void SetActiveMagic2(bool result)
     {
         buttonSpell1.gameObject.SetActive(result);
+        if(result == true)
+        {
+            description.enabled = true;
+        }
     }
     public void SetActiveMagic3(bool result)
     {

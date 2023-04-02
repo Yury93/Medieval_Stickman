@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,10 +13,11 @@ public class Stickman : FighterEntity
     [SerializeField] public Joystick joystick;
     [SerializeField] private Button buttonIdleAttack, buttonIdleMagic, buttonWalkAttack, buttonWalkMagic,buttonJerk,buttonHelp;
     [SerializeField] private Animator animator;
-    [SerializeField] public float speedWalk,speedWalkIsGround,speedWalkIsAir, jumpSpeed, timeJump;
+    [SerializeField] public float speedWalk,speedWalkIsGround,speedWalkIsAir, jumpSpeed, timeJump,helpDelay,jerkDelay;
     [SerializeField] private float radiusAttack, offsetRadiusAttackY, offsetRadiusAttackX;
     [SerializeField] private Rigidbody2D rigidbody;
-  
+    [SerializeField] private TextMeshProUGUI helpDelayTxt, jerkDelayText;
+    [SerializeField] private GameObject batsEffect;
     public StickmanSpellProperty CurrentSpell { get; private set; }
     public AttackController AttackController { get; private set; }
     public AnimationController AnimatorController { get; private set; }
@@ -24,6 +26,8 @@ public class Stickman : FighterEntity
     public int MaxMana { get; private set; }
     public int MaxHP { get; private set; }
     public int MaxArmor { get; private set; }
+    public event Action OnDeathStickman;
+
     private void Awake()
     {
         AnimatorController = new AnimationController(animator);
@@ -56,7 +60,52 @@ public class Stickman : FighterEntity
             joystick.gameObject.SetActive(false);
         }
         rigidbody.inertia = 1;
+
+        buttonHelp.onClick.AddListener(() => DelayButton(buttonHelp,helpDelay,helpDelayTxt));
+        helpDelayTxt.enabled = false;
+        buttonJerk.onClick.AddListener(() => DelayButton(buttonJerk, jerkDelay, jerkDelayText));
+        jerkDelayText.enabled = false;
     }
+
+
+    public void SetActiveBatsEffect()
+    {
+        batsEffect.SetActive(true);
+
+    }
+    public void DisactiveBatsEffect()
+    {
+        batsEffect.SetActive(false);
+    }
+
+    private void DelayButton(Button button, float delay,TextMeshProUGUI textDelay)
+    {
+
+        StartCoroutine(CorDelay());
+        StartCoroutine(ShowDelay());
+        
+        IEnumerator CorDelay()
+        {
+            button.interactable = false;
+            yield return new WaitForSeconds(delay);
+            button.interactable = true;
+        }
+        IEnumerator ShowDelay()
+        {
+            textDelay.enabled = true;
+         
+            var delayTime = delay;
+            textDelay.text = delayTime.ToString();
+            while (delayTime > 0)
+            {
+                yield return new WaitForSeconds(1);
+                delayTime -= 1;
+                textDelay.text = delayTime.ToString();
+            }
+            textDelay.enabled = false;
+        }
+    }
+
     public void SetMaxParameters(int maxHp, int maxArmor, int maxMana)
     {
         MaxHP = maxHp;
@@ -101,6 +150,7 @@ public class Stickman : FighterEntity
             StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
         }
     }
+
     public void OnKickIfPersonWalk()
     {
         if (State == PersonState.Walk && State != PersonState.Death)
@@ -208,6 +258,7 @@ public class Stickman : FighterEntity
     protected override void OnDeath(FighterEntity fighterEntity)
     {
         if (State == PersonState.Death) return;
+        OnDeathStickman?.Invoke();
         SetState(PersonState.Death);
         base.OnDeath(fighterEntity);
         AnimatorController.ChangeAnimationState(PersonState.Death);
@@ -219,15 +270,6 @@ public class Stickman : FighterEntity
         buttonHelp.gameObject.SetActive(false);
         buttonJerk.gameObject.SetActive(false);
         joystick.gameObject.SetActive(false);
-
-
-      //Destroy(  buttonIdleAttack.gameObject);
-      //  Destroy(buttonIdleMagic.gameObject);
-      //  Destroy(buttonWalkAttack.gameObject);
-      //  Destroy(buttonWalkMagic.gameObject);
-      //  Destroy(buttonHelp.gameObject);
-      //  Destroy(buttonJerk.gameObject);
-      //  Destroy(joystick.gameObject);
     }
 
     private void RefreshStateButtons()
@@ -243,6 +285,7 @@ public class Stickman : FighterEntity
 
                 buttonWalkAttack.gameObject.SetActive(false);
                 buttonWalkMagic.gameObject.SetActive(false);
+                buttonJerk.gameObject.SetActive(false);
             }
 
         }
@@ -256,6 +299,8 @@ public class Stickman : FighterEntity
                     buttonWalkAttack.gameObject.SetActive(true);
                 if (UpgradeGameSystem.instance.isMagicWalk)
                     buttonWalkMagic.gameObject.SetActive(true);
+                if (UpgradeGameSystem.instance.isJerk)
+                    buttonJerk.gameObject.SetActive(true);
             }
         }
         if(UpgradeGameSystem.instance.isHelp)
@@ -276,28 +321,10 @@ public class Stickman : FighterEntity
 
    
 
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    OnMagicAttackIfPersonWalk();
-        //}
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    OnKickIfPersonWalk();
-        //}
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    OnMagicAttackIfPersonIdle();
-        //}
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    OnKickIfPersonIdle();
-        //}
-        RefreshStateButtons();
-    }
+   
     private void FixedUpdate()
     {
+        RefreshStateButtons();
         if (State == PersonState.Death) return;
 
 
@@ -358,6 +385,7 @@ public class Stickman : FighterEntity
         var ground = collision.gameObject.GetComponent<Ground>();
        if(ground != null)
         {
+
             MoveController.SetGrounded(true);
         }
         else if(MoveController.IsGrounded == false)

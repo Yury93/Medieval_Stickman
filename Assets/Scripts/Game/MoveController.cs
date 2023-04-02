@@ -26,20 +26,30 @@ public class MoveController
 
     public IEnumerator CorJerk(float direction, float distance, float delay)
     {
+        var stickman = fighterEntity as Stickman;
+        if (stickman)
+        {
+            stickman.SetActiveBatsEffect();
+        }
+        yield return new WaitForFixedUpdate();
         IsEnemyColliderIgnore = true;
         float startSpeed = rigidbody.velocity.magnitude;
-     
-         rigidbody.AddForce(new Vector2(direction * distance * distance * distance, 0), ForceMode2D.Impulse );
 
-      
+        rigidbody.AddForce(new Vector2(direction * distance * distance * distance, 0), ForceMode2D.Impulse);
+
+
         while (rigidbody.velocity.magnitude > startSpeed)
         {
             yield return null;
         }
-
+        if (stickman)
+        {
+            stickman.DisactiveBatsEffect();
+        }
         IsEnemyColliderIgnore = false;
         yield return null;
-       
+
+    
     }
 
 

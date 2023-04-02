@@ -8,6 +8,7 @@ public class Saw : MonoBehaviour
     [SerializeField] private Rigidbody2D rigidbody;
     [SerializeField] private float timeLive;
     [SerializeField] private SpriteRenderer spriteSaw;
+    [SerializeField] private int power;
     private void Start()
     {
         StartCoroutine(CorMove());
@@ -36,7 +37,7 @@ public class Saw : MonoBehaviour
         }
         if (stickman)
         {
-            stickman.OnDamage(1);
+            stickman.OnDamage(power);
             Destroy(gameObject,3);
         }
     }

@@ -23,7 +23,7 @@ public class UpgradeCharPopup : MonoBehaviour
     [SerializeField] private Button accept;
 
     private Stickman stickman;
-    private int score,hp,armor,mana,power;
+  public int score,hp,armor,mana,power;
     private bool isUpgrade;
     public void Init()
     {
@@ -88,6 +88,7 @@ public class UpgradeCharPopup : MonoBehaviour
                 hp += 1;
                 parametrs.hpText.text = "Здоровье: "+ (stickman.CurrentHp + hp);
                 isUpgrade = true;
+                return;
             }
         }
         if (type == TypeUpgrade.Armor)
@@ -98,6 +99,7 @@ public class UpgradeCharPopup : MonoBehaviour
                 armor += 1;
                 parametrs.armorText.text = "Броня: " + (stickman.Armor + armor);
                 isUpgrade = true;
+                return;
             }
         }
         if (type == TypeUpgrade.Mana)
@@ -108,6 +110,7 @@ public class UpgradeCharPopup : MonoBehaviour
                 mana += 1;
                 parametrs.manaText.text = "МАНА: " + (stickman.Mana + mana);
                 isUpgrade = true;
+                return;
             }
         }
         if (type == TypeUpgrade.Power)
@@ -118,11 +121,13 @@ public class UpgradeCharPopup : MonoBehaviour
                 power += 1;
                 parametrs.powerText.text = "СИЛА: "+ (stickman.Power + power);
                 isUpgrade = true;
+                return;
             }
         }
         if(score > 0)
         {
             isUpgrade = false;
+            return;
         }
     }
     private void OnClickMinus(TypeUpgrade type)
@@ -132,8 +137,9 @@ public class UpgradeCharPopup : MonoBehaviour
             if( hp > 0)
             {
                 score += 1;
-                hp -= 1;
-                parametrs.hpText.text = "Здоровье: " + (stickman.CurrentHp -1);
+                hp = 0;
+                parametrs.hpText.text = "Здоровье: " + (stickman.CurrentHp);
+                return;
             }
         }
         if (type == TypeUpgrade.Armor)
@@ -141,8 +147,9 @@ public class UpgradeCharPopup : MonoBehaviour
             if ( armor > 0)
             {
                 score += 1;
-                armor -= 1;
-                parametrs.armorText.text = "Броня: " + (stickman.Armor -1);
+                armor = 0;
+                parametrs.armorText.text = "Броня: " + (stickman.Armor);
+                return;
             }
         }
         if (type == TypeUpgrade.Mana)
@@ -150,8 +157,9 @@ public class UpgradeCharPopup : MonoBehaviour
             if ( mana > 0)
             {
                 score += 1;
-                mana -= 1;
-                parametrs.manaText.text = "МАНА: " + (stickman.Mana -1);
+                mana = 0;
+                parametrs.manaText.text = "МАНА: " + (stickman.Mana);
+                return;
             }
         }
         if (type == TypeUpgrade.Power)
@@ -159,13 +167,15 @@ public class UpgradeCharPopup : MonoBehaviour
             if ( power > 0)
             {
                 score += 1;
-                power -= 1;
-                parametrs.powerText.text = "СИЛА: " + (stickman.Power -1);
+                power = 0;
+                parametrs.powerText.text = "СИЛА: " + (stickman.Power);
+                return;
             }
         }
         if (score > 0)
         {
             isUpgrade = false;
+            return;
         }
     }
 
@@ -184,9 +194,22 @@ public class UpgradeCharPopup : MonoBehaviour
     {
         Time.timeScale = 0.00001F;
         gameObject.SetActive(true);
+
         score = 1;
+        hp = 0;
+        armor = 0;
+        mana = 0;
+        power = 0;
+
+
         stickman.CurrentHp = stickman.MaxHP;
         stickman.Mana = stickman.MaxMana;
         stickman.Armor = stickman.MaxArmor;
+
+
+        parametrs.hpText.text = "Здоровье: " + (stickman.CurrentHp);
+        parametrs.armorText.text = "Броня: " + (stickman.Armor);
+        parametrs.manaText.text = "МАНА: " + (stickman.Mana);
+        parametrs.powerText.text = "СИЛА: " + (stickman.Power);
     }
 }
