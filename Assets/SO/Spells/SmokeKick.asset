@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SmokeKick
   m_EditorClassIdentifier: 
   name: SmockKick
-  ManaCost: 1
+  ManaCost: 4
   Speed: 3
-  Power: 1
+  Power: 11
   IsLearnIdSpell: 1

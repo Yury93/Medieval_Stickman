@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightTrap
   m_EditorClassIdentifier: 
   name: LightTrap
-  ManaCost: 2
+  ManaCost: 3
   Speed: 8
-  Power: 2
+  Power: 9
   IsLearnIdSpell: 2

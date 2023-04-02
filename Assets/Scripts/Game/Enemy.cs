@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Enemy : FighterEntity
@@ -12,6 +13,7 @@ public class Enemy : FighterEntity
     [SerializeField] private float radiusAttack, offsetRadiusAttackY;
     [SerializeField] private Collider2D collider2d;
     [SerializeField] private int exp;
+    [SerializeField] private TextMeshProUGUI levelEnemy;
     public int Exp => exp;
     public float clampDistanceToTarget, distanceStartPursuit;
     public Rigidbody2D Rigidbody => rigidbody;
@@ -33,6 +35,7 @@ public class Enemy : FighterEntity
         State = PersonState.Idle;
         Initialized = true;
         collider2d.enabled = true;
+        levelEnemy.text = "Уровень: " + exp;
     }
     public void SetTarget(Stickman stickman, Tower tower)
     {

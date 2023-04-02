@@ -836,6 +836,7 @@ MonoBehaviour:
   offsetRadiusAttackY: -1.44
   collider2d: {fileID: 5938384335573347147}
   exp: 2
+  levelEnemy: {fileID: 0}
   clampDistanceToTarget: 2.33
   distanceStartPursuit: 59.6
   stickman: {fileID: 0}

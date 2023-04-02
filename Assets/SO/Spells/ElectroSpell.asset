@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ElectroSpell
   m_EditorClassIdentifier: 
   name: Electro
-  ManaCost: 3
+  ManaCost: 4
   Speed: 5
-  Power: 1
+  Power: 7
   IsLearnIdSpell: 0

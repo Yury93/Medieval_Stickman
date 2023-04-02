@@ -15,5 +15,5 @@ MonoBehaviour:
   name: BloodyChaos
   ManaCost: 4
   Speed: 1
-  Power: 1
+  Power: 5
   IsLearnIdSpell: 3
