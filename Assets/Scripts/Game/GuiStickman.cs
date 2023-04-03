@@ -46,6 +46,9 @@ public class GuiStickman : MonoBehaviour
         {
             armorImage.fillAmount = currentArmor / maxArmor;
             armorText.text = $"Броня: {Convert.ToInt32(armor)}/{Convert.ToInt32(maxArmor)}";
+            armorImage.enabled = true;
+            armorText.enabled = true;
+            hpText.enabled = false;
         }
         else
         {

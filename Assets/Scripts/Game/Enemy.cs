@@ -14,6 +14,7 @@ public class Enemy : FighterEntity
     [SerializeField] private Collider2D collider2d;
     [SerializeField] private int exp;
     [SerializeField] private TextMeshProUGUI levelEnemy;
+    [SerializeField] private Vector3 offsetLevelText;
     public int Exp => exp;
     public float clampDistanceToTarget, distanceStartPursuit;
     public Rigidbody2D Rigidbody => rigidbody;
@@ -36,13 +37,19 @@ public class Enemy : FighterEntity
         Initialized = true;
         collider2d.enabled = true;
         levelEnemy.text = "Уровень: " + exp;
+        levelEnemy.enabled = true;
     }
     public void SetTarget(Stickman stickman, Tower tower)
     {
         this.stickman = stickman;
         this.tower = tower;
     }
-   
+
+    private void Update()
+    {
+        levelEnemy.transform.position = Camera.main.WorldToScreenPoint(this.transform.position + offsetLevelText);
+    }
+
     public void FixedUpdate()
     {
         if (State == PersonState.Death) return;
@@ -144,6 +151,7 @@ public class Enemy : FighterEntity
     {
         if (State == PersonState.Death) return;
         base.OnDeath(fighterEntity);
+        levelEnemy.enabled = false;
         AnimatorController.ChangeAnimationState(PersonState.Death);
         rigidbody.GetComponent<BoxCollider2D>().enabled = false;
         rigidbody.isKinematic = true;
@@ -152,7 +160,8 @@ public class Enemy : FighterEntity
         rigidbody.drag = 20;
         rigidbody.mass = 1000;
         rigidbody.velocity = new Vector2(0, 0);
-       
+  
+
     }
 
 

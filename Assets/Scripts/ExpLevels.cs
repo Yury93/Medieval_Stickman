@@ -16,8 +16,9 @@ public class ExpLevels : MonoBehaviour
         public bool isButtonOpened;
     }
     public List<Levels> levels;
-    [SerializeField] private TextMeshProUGUI currentLevelText, futureLevelText, expText;
+    [SerializeField] private TextMeshProUGUI currentLevelText,persPanelLevelText, futureLevelText, expText;
     [SerializeField] private Image expFillAmount;
+
     public int CurrentExp { get; private set; }
    public ExpLevels.Levels CurrentLevel { get; private set; }
     public ExpLevels.Levels FutureLevel { get; private set; }
@@ -49,7 +50,7 @@ public class ExpLevels : MonoBehaviour
         FutureLevel = levels.LastOrDefault(l => l.Level <= CurrentLevel.Level + 1);
 
 
-
+        persPanelLevelText.text = "Уровень: "+ CurrentLevel.Level.ToString();
         currentLevelText.text = CurrentLevel.Level.ToString();
         if (FutureLevel != null)
         {
@@ -57,7 +58,8 @@ public class ExpLevels : MonoBehaviour
             futureLevelText.text = FutureLevel.Level.ToString();
             if (CurrentExp != 0)
             {
-                expFillAmount.fillAmount = (CurrentExp - CurrentLevel.startExp) / (float)FutureLevel.startExp;
+                expFillAmount.fillAmount = ((float)CurrentExp  - (float)CurrentLevel.startExp) /
+                    ((float)FutureLevel.startExp - (float)CurrentLevel.startExp);
             }
 
         }
