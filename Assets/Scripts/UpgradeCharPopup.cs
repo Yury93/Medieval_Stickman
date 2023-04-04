@@ -52,12 +52,14 @@ public class UpgradeCharPopup : MonoBehaviour
     {
         if(isUpgrade)
         {
+            Debug.Log(StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Armor));
             StickmanSaveUpgrader.UpgradeStickmanParametrs
                 (StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Hitpoints) + hp
                 ,StickmanSaveUpgrader.SickmanParametr.Hitpoints);
             StickmanSaveUpgrader.UpgradeStickmanParametrs
              (StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Armor) + armor
              , StickmanSaveUpgrader.SickmanParametr.Armor);
+            Debug.Log(StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Armor));
 
             StickmanSaveUpgrader.UpgradeStickmanParametrs
             (StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Mana) + mana
@@ -65,22 +67,25 @@ public class UpgradeCharPopup : MonoBehaviour
             StickmanSaveUpgrader.UpgradeStickmanParametrs
           (StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Power) + power
           , StickmanSaveUpgrader.SickmanParametr.Power);
+            Debug.Log(stickman.Armor + "/" + stickman.MaxArmor);
 
 
-           stickman. CurrentHp += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Hitpoints);
-            stickman.Armor += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Armor);
-            stickman.Mana += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Mana);
-            stickman.Power += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Power);
+            stickman.CurrentHp += hp;
+            stickman.Armor += armor;
+            stickman.Mana += mana;
+            stickman.Power += power;
+            Debug.Log(stickman.Armor + "/" + stickman.MaxArmor);
 
 
-          
+
             Close();
         }
     }
 
     private void OnClickPlus(TypeUpgrade type)
     {
-       if(type == TypeUpgrade.HP)
+        Debug.Log(stickman.Armor + "/" + stickman.MaxArmor);
+        if (type == TypeUpgrade.HP)
         {
             if(score>0)
             {
@@ -97,6 +102,7 @@ public class UpgradeCharPopup : MonoBehaviour
             {
                 score -= 1;
                 armor += 1;
+                Debug.Log(stickman.Armor+ " + " + armor + " /" + stickman.MaxArmor);
                 parametrs.armorText.text = "Броня: " + (stickman.Armor + armor);
                 isUpgrade = true;
                 return;
@@ -129,6 +135,7 @@ public class UpgradeCharPopup : MonoBehaviour
             isUpgrade = false;
             return;
         }
+
     }
     private void OnClickMinus(TypeUpgrade type)
     {
@@ -186,6 +193,8 @@ public class UpgradeCharPopup : MonoBehaviour
             Time.timeScale = 1F;
             gameObject.SetActive(false);
 
+            stickman.SetMaxParameters(stickman.CurrentHp, stickman.Armor, stickman.Mana);
+            Debug.Log(stickman.Armor + "/" +stickman.MaxArmor);
             GuiStickman.instance.Init(stickman.CurrentHp, stickman.Armor, stickman.Mana);
             GuiStickman.instance.RefreshParametrs(stickman.CurrentHp, stickman.Armor, stickman.Mana);
         }

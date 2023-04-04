@@ -1703,6 +1703,7 @@ GameObject:
   - component: {fileID: 3443838826249293635}
   - component: {fileID: 3443838826249293634}
   - component: {fileID: 3443838826249293633}
+  - component: {fileID: 423742771}
   m_Layer: 5
   m_Name: MagicWalkButton (1)
   m_TagString: Untagged
@@ -1813,6 +1814,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &423742771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443838826249293639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d032ef7076719c147a6ee0d091517a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 1.1149
 --- !u!1 &3443838826254952940
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,6 +2205,7 @@ GameObject:
   - component: {fileID: 3443838827267289068}
   - component: {fileID: 3443838827267289059}
   - component: {fileID: 3443838827267289058}
+  - component: {fileID: 1949269539}
   m_Layer: 5
   m_Name: MagicIdleButton (1)
   m_TagString: Untagged
@@ -2301,6 +2316,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1949269539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443838827267289056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d032ef7076719c147a6ee0d091517a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 1.1149
 --- !u!1 &3443838827279497021
 GameObject:
   m_ObjectHideFlags: 0
@@ -2583,6 +2611,7 @@ GameObject:
   - component: {fileID: 3443838827469236645}
   - component: {fileID: 3443838827469236644}
   - component: {fileID: 3443838827469236635}
+  - component: {fileID: 1551538401}
   m_Layer: 5
   m_Name: AttackWalkButton
   m_TagString: Untagged
@@ -2693,6 +2722,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1551538401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443838827469236633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d032ef7076719c147a6ee0d091517a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 1.1149
 --- !u!1 &3443838827892945735
 GameObject:
   m_ObjectHideFlags: 0
@@ -2840,6 +2882,7 @@ GameObject:
   - component: {fileID: 3443838828091405322}
   - component: {fileID: 3443838828091405321}
   - component: {fileID: 3443838828091405320}
+  - component: {fileID: 2003764558}
   m_Layer: 5
   m_Name: AttackIdleButton
   m_TagString: Untagged
@@ -2950,6 +2993,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2003764558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443838828091405326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d032ef7076719c147a6ee0d091517a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 1.1149
 --- !u!1 &5243633461369832304
 GameObject:
   m_ObjectHideFlags: 0
@@ -3191,7 +3247,7 @@ MonoBehaviour:
   buttonSpell1: {fileID: 1262900702}
   buttonSpell2: {fileID: 1910402977}
   buttonSpell3: {fileID: 640616011}
-  description: {fileID: 0}
+  description: {fileID: 7218230859254195990}
 --- !u!114 &2101084644
 MonoBehaviour:
   m_ObjectHideFlags: 0
