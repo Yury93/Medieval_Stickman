@@ -9,6 +9,7 @@ public class Stickman : FighterEntity
 {
   
     public enum PlatformType { PC,MOBILE }
+    [SerializeField] public int id;
     [SerializeField] private PlatformType platformType = PlatformType.PC;
     [SerializeField] public Joystick joystick;
     [SerializeField] private Button buttonIdleAttack, buttonIdleMagic, buttonWalkAttack, buttonWalkMagic,buttonJerk,buttonHelp;
@@ -28,7 +29,7 @@ public class Stickman : FighterEntity
     public int MaxArmor { get; private set; }
     public event Action OnDeathStickman;
 
-    private void Awake()
+    private void Start()
     {
         AnimatorController = new AnimationController(animator);
         MoveController = new MoveController(animator,this, rigidbody);
@@ -46,7 +47,13 @@ public class Stickman : FighterEntity
         Power += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Power);
         SetMaxParameters(CurrentHp, Armor, Mana);
 
+        GuiStickman.instance.Init(CurrentHp, Armor, Mana);
+        if (GuiStickman.instance != null)
         GuiStickman.instance.RefreshParametrs((float)CurrentHp, (float)Armor, (float)Mana);
+        else
+        {
+            Debug.LogError("instance == null");
+        }
 
         if (Application.isMobilePlatform)
         {
@@ -113,10 +120,7 @@ public class Stickman : FighterEntity
         MaxArmor = maxArmor;
     }
 
-    private void Start()
-    {
-        GuiStickman.instance.Init(CurrentHp, Armor, Mana);
-    }
+  
     public void SetCurrentSpell(StickmanSpellProperty currentSpell)
     {
         CurrentSpell = currentSpell;

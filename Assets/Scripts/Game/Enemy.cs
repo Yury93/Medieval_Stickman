@@ -25,8 +25,25 @@ public class Enemy : FighterEntity
     public  Tower tower;
     public bool Initialized { get; private set; }
     public Action<Enemy> OnEnemyDeath;
-
-   public void Init()
+    [Header("не забыть выключить галочку")]
+    public bool ISDEBUG;
+    private void Start()
+    {
+        if(ISDEBUG)
+        {
+            stickman = FindAnyObjectByType<Stickman>();
+            tower = FindAnyObjectByType<Tower>();
+            MoveController = new MoveController(animator, this, rigidbody);
+            AnimatorController = new AnimationController(animator);
+            AttackController = new AttackController(this.gameObject, offsetRadiusAttackY, radiusAttack);
+            State = PersonState.Idle;
+            Initialized = true;
+            collider2d.enabled = true;
+            levelEnemy.text = "Уровень: " + exp;
+            levelEnemy.enabled = true;
+        }
+    }
+    public void Init()
     {
         stickman = FindAnyObjectByType<Stickman>();
         tower = FindAnyObjectByType<Tower>();
