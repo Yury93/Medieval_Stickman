@@ -874,6 +874,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 7562881204576840471}
+  currentSpell: {fileID: 2197451302205250957, guid: 9e44ae58a0af26040a03978641018681, type: 3}
+  cratedMagic: {fileID: 7562881203858736268}
+  stickman: {fileID: 0}
 --- !u!1 &5345782155212777541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +1020,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 8
   m_Sprite: {fileID: -1661646295771805428, guid: e5f587a18a367e649910d35201aa3684, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1414,7 +1417,7 @@ MonoBehaviour:
   exp: 2
   levelEnemy: {fileID: 7562881205571318102}
   offsetLevelText: {x: 0, y: 4.7, z: 0}
-  clampDistanceToTarget: 3.5
+  clampDistanceToTarget: 6.56
   distanceStartPursuit: 128.6
   stickman: {fileID: 0}
   tower: {fileID: 0}

@@ -202,6 +202,7 @@
     <Compile Include="Assets\Scripts\Game\LasersTower.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\HeroEditor\Common\SimpleColorPicker\Scripts\PaletteGradient.cs" />
+    <Compile Include="Assets\Scripts\Game\EnemySpell.cs" />
     <Compile Include="Assets\HeroEditor\Common\ExampleScripts\PlayingAnimations.cs" />
     <Compile Include="Assets\HeroEditor\FantasyHeroes\TestRoom\Scripts\Scarecrow.cs" />
     <Compile Include="Assets\HeroEditor\Common\CharacterScripts\Firearms\FirearmFire.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Assets\HeroEditor\Common\CommonScripts\Springs\ScaleSpring.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\HeroEditor\Common\ExampleScripts\MeleeWeapon.cs" />
+    <Compile Include="Assets\Scripts\Game\CoreEnivroment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

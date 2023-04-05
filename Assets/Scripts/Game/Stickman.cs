@@ -29,7 +29,7 @@ public class Stickman : FighterEntity
     public int MaxArmor { get; private set; }
     public event Action OnDeathStickman;
 
-    private void Start()
+    public void Init()
     {
         AnimatorController = new AnimationController(animator);
         MoveController = new MoveController(animator,this, rigidbody);

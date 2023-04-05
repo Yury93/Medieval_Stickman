@@ -31,8 +31,8 @@ public class Enemy : FighterEntity
     {
         if(ISDEBUG)
         {
-            stickman = FindAnyObjectByType<Stickman>();
-            tower = FindAnyObjectByType<Tower>();
+            stickman = CoreEnivroment.Instance.activeStickman;
+            tower = CoreEnivroment.Instance.tower;
             MoveController = new MoveController(animator, this, rigidbody);
             AnimatorController = new AnimationController(animator);
             AttackController = new AttackController(this.gameObject, offsetRadiusAttackY, radiusAttack);
@@ -45,8 +45,8 @@ public class Enemy : FighterEntity
     }
     public void Init()
     {
-        stickman = FindAnyObjectByType<Stickman>();
-        tower = FindAnyObjectByType<Tower>();
+        stickman = CoreEnivroment.Instance.activeStickman; ;
+        tower = CoreEnivroment.Instance.tower;
         MoveController = new MoveController(animator,this, rigidbody);
         AnimatorController = new AnimationController(animator);
         AttackController = new AttackController(this.gameObject, offsetRadiusAttackY, radiusAttack);
@@ -157,6 +157,7 @@ public class Enemy : FighterEntity
     }
     public override void OnDamage(int damage)
     {
+        if (Initialized == false) return;
         if (State == PersonState.Death) return;
         base.OnDamage(damage);
         if (CurrentHp > 0)
