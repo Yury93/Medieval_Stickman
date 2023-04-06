@@ -7,15 +7,15 @@ using UnityEngine.UI;
 
 public class GuiStickman : MonoBehaviour
 {
-    [SerializeField] private Image armorImage, hpImage, manaImage;
+    [SerializeField] private Image portretStickman, armorImage, hpImage, manaImage;
     [SerializeField] private TextMeshProUGUI armorText, hpText, manaText;
     private float maxHp, maxArmor, maxMana;
-    public static GuiStickman instance;
-    private void Awake()
+  
+    public void Init()
     {
-        instance = this;
+        portretStickman.sprite = CoreEnivroment.Instance.activeStickman.Portret;
     }
-    public void Init(float hp, float armor,float mana)
+    public void RefreshStartParametrs(float hp, float armor,float mana)
     {
         maxArmor = armor;
         maxHp = hp;

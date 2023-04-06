@@ -19,6 +19,8 @@ public class Stickman : FighterEntity
     [SerializeField] private Rigidbody2D rigidbody;
     [SerializeField] private TextMeshProUGUI helpDelayTxt, jerkDelayText;
     [SerializeField] private GameObject batsEffect;
+    [SerializeField] private Sprite portret;
+    public Sprite Portret => portret;
     public StickmanSpellProperty CurrentSpell { get; private set; }
     public AttackController AttackController { get; private set; }
     public AnimationController AnimatorController { get; private set; }
@@ -29,8 +31,10 @@ public class Stickman : FighterEntity
     public int MaxArmor { get; private set; }
     public event Action OnDeathStickman;
 
+    public UpgradeGameSystem UpgradeGameSystem { get; private set; }
     public void Init()
     {
+        UpgradeGameSystem = CoreEnivroment.Instance.upgradeGameSystem;
         AnimatorController = new AnimationController(animator);
         MoveController = new MoveController(animator,this, rigidbody);
         AttackController = new AttackController(gameObject,offsetRadiusAttackY,radiusAttack);
@@ -47,9 +51,9 @@ public class Stickman : FighterEntity
         Power += StickmanSaveUpgrader.GetStickmanParametrs(StickmanSaveUpgrader.SickmanParametr.Power);
         SetMaxParameters(CurrentHp, Armor, Mana);
 
-        GuiStickman.instance.Init(CurrentHp, Armor, Mana);
-        if (GuiStickman.instance != null)
-        GuiStickman.instance.RefreshParametrs((float)CurrentHp, (float)Armor, (float)Mana);
+        CoreEnivroment.Instance.guiStickman.RefreshStartParametrs(CurrentHp, Armor, Mana);
+        if (CoreEnivroment.Instance.guiStickman != null)
+            CoreEnivroment.Instance.guiStickman.RefreshParametrs((float)CurrentHp, (float)Armor, (float)Mana);
         else
         {
             Debug.LogError("instance == null");
@@ -128,8 +132,8 @@ public class Stickman : FighterEntity
 
     private void OnHelp()
     {
-        if(Tower.instance.towerStickMan.IsEndHelp == true)
-        Tower.instance.towerStickMan.Attack();
+        if(CoreEnivroment.Instance.tower.towerStickMan.IsEndHelp == true)
+            CoreEnivroment.Instance.tower.towerStickMan.Attack();
     }
 
    
@@ -257,7 +261,7 @@ public class Stickman : FighterEntity
         if (State == PersonState.Death) return;
         base.OnDamage(damage);
         ReceiveDamage();
-        GuiStickman.instance.RefreshParametrs(CurrentHp, Armor, Mana);
+        CoreEnivroment.Instance.guiStickman.RefreshParametrs(CurrentHp, Armor, Mana);
     }
     protected override void OnDeath(FighterEntity fighterEntity)
     {
@@ -266,7 +270,7 @@ public class Stickman : FighterEntity
         SetState(PersonState.Death);
         base.OnDeath(fighterEntity);
         AnimatorController.ChangeAnimationState(PersonState.Death);
-        GuiStickman.instance.RefreshParametrs(CurrentHp, Armor, Mana);
+        CoreEnivroment.Instance.guiStickman.RefreshParametrs(CurrentHp, Armor, Mana);
         buttonIdleAttack.gameObject.SetActive(false);
         buttonIdleMagic.gameObject.SetActive(false);
         buttonWalkAttack.gameObject.SetActive(false);
@@ -284,7 +288,7 @@ public class Stickman : FighterEntity
             if (buttonIdleAttack.gameObject.activeSelf == false)
             {
                 buttonIdleAttack.gameObject.SetActive(true);
-                if(UpgradeGameSystem.instance.isMagicIdle)
+                if(UpgradeGameSystem.isMagicIdle)
                 buttonIdleMagic.gameObject.SetActive(true);
 
                 buttonWalkAttack.gameObject.SetActive(false);
@@ -299,22 +303,22 @@ public class Stickman : FighterEntity
             {
                 buttonIdleAttack.gameObject.SetActive(false);
                 buttonIdleMagic.gameObject.SetActive(false);
-                if (UpgradeGameSystem.instance.isKickWalk)
+                if (UpgradeGameSystem.isKickWalk)
                     buttonWalkAttack.gameObject.SetActive(true);
-                if (UpgradeGameSystem.instance.isMagicWalk)
+                if (UpgradeGameSystem.isMagicWalk)
                     buttonWalkMagic.gameObject.SetActive(true);
-                if (UpgradeGameSystem.instance.isJerk)
+                if (UpgradeGameSystem.isJerk)
                     buttonJerk.gameObject.SetActive(true);
             }
         }
-        if(UpgradeGameSystem.instance.isHelp)
+        if(UpgradeGameSystem.isHelp)
         {
             buttonHelp.gameObject.SetActive(true);
         }
 
         if (MoveController.IsGrounded)
         {
-            if (UpgradeGameSystem.instance.isJerk)
+            if (UpgradeGameSystem.isJerk)
                 buttonJerk.gameObject.SetActive(true);
         }
         else if (!MoveController.IsGrounded)

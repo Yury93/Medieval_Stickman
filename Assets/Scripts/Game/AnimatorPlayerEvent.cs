@@ -32,7 +32,7 @@ public class AnimatorPlayerEvent : MonoBehaviour
             else
                 spell.MoveSpell(-1);
         }
-        GuiStickman.instance.RefreshParametrs(stickman .CurrentHp, stickman.Armor, stickman.Mana);
+        CoreEnivroment.Instance.guiStickman.RefreshParametrs(stickman .CurrentHp, stickman.Armor, stickman.Mana);
 
         if (corRegenMana != null) StopCoroutine(corRegenMana);
         corRegenMana = StartCoroutine(CorManaRegen());
@@ -42,10 +42,11 @@ public class AnimatorPlayerEvent : MonoBehaviour
             {
                 yield return new WaitForSeconds(delayPlusMana);
                 stickman.Mana += 1;
-                GuiStickman.instance.RefreshParametrs(stickman.CurrentHp, stickman.Armor, stickman.Mana);
+                CoreEnivroment.Instance.guiStickman.RefreshParametrs(stickman.CurrentHp, stickman.Armor, stickman.Mana);
             }
         }
         
     }
+ 
    
 }

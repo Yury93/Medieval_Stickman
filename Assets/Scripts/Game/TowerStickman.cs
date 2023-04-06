@@ -23,9 +23,9 @@ public class TowerStickman : MonoBehaviour
 
   private  IEnumerator CorAttack()
     {
-        CameraMachine.instance.ShowTower();
+        CoreEnivroment.Instance.cameraMachine.ShowTower();
 
-        foreach (var item in EnemiesService.instance.SpawnSystem.AllEnemies)
+        foreach (var item in CoreEnivroment.Instance.enemiesService.SpawnSystem.AllEnemies)
         {
             if(item != null)
             {
@@ -57,14 +57,14 @@ public class TowerStickman : MonoBehaviour
         IsEndHelp = true;
         stickman.Increadible = false;
 
-        foreach (var item in EnemiesService.instance.SpawnSystem.AllEnemies)
+        foreach (var item in CoreEnivroment.Instance.enemiesService.SpawnSystem.AllEnemies)
         {
             if (item != null)
             {
-                item.SetTarget(stickman, Tower.instance);
+                item.SetTarget(stickman, CoreEnivroment.Instance.tower);
             }
         }
-        CameraMachine.instance.ShowStickman();
+        CoreEnivroment.Instance.cameraMachine.ShowStickman();
     }
   
 }

@@ -27,7 +27,7 @@ public class UpgradeCharPopup : MonoBehaviour
     private bool isUpgrade;
     public void Init()
     {
-        stickman = UpgradeGameSystem.instance.stickman;
+        stickman = CoreEnivroment.Instance.activeStickman;
         closeButton.onClick.AddListener(Close);
         backgroundCloseButton.onClick.AddListener(Close);
 
@@ -195,8 +195,8 @@ public class UpgradeCharPopup : MonoBehaviour
 
             stickman.SetMaxParameters(stickman.CurrentHp, stickman.Armor, stickman.Mana);
             Debug.Log(stickman.Armor + "/" +stickman.MaxArmor);
-            GuiStickman.instance.Init(stickman.CurrentHp, stickman.Armor, stickman.Mana);
-            GuiStickman.instance.RefreshParametrs(stickman.CurrentHp, stickman.Armor, stickman.Mana);
+            CoreEnivroment.Instance.guiStickman.RefreshStartParametrs(stickman.CurrentHp, stickman.Armor, stickman.Mana);
+            CoreEnivroment.Instance.guiStickman.RefreshParametrs(stickman.CurrentHp, stickman.Armor, stickman.Mana);
         }
     }
     public void Open()

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : FighterEntity
 {
@@ -14,7 +15,9 @@ public class Enemy : FighterEntity
     [SerializeField] private Collider2D collider2d;
     [SerializeField] private int exp;
     [SerializeField] private TextMeshProUGUI levelEnemy;
-    [SerializeField] private Vector3 offsetLevelText;
+    [SerializeField] private Image armorImage, hpImage;
+    [SerializeField] private Vector3 offsetLevelText,offsetHpText;
+    private float maxHP, maxArmor;
     public int Exp => exp;
     public float clampDistanceToTarget, distanceStartPursuit;
     public Rigidbody2D Rigidbody => rigidbody;
@@ -54,7 +57,15 @@ public class Enemy : FighterEntity
         Initialized = true;
         collider2d.enabled = true;
         levelEnemy.text = "Уровень: " + exp;
+        armorImage.fillAmount = 1;
+        hpImage.fillAmount = 1;
         levelEnemy.enabled = true;
+        maxArmor = Armor;
+        maxHP = CurrentHp;
+
+
+        armorImage.enabled = false;
+        hpImage.enabled = false;
     }
     public void SetTarget(Stickman stickman, Tower tower)
     {
@@ -65,6 +76,7 @@ public class Enemy : FighterEntity
     private void Update()
     {
         levelEnemy.transform.position = Camera.main.WorldToScreenPoint(this.transform.position + offsetLevelText);
+        hpImage.transform.position = Camera.main.WorldToScreenPoint(this.transform.position + offsetHpText);
     }
 
     public void FixedUpdate()
@@ -164,11 +176,19 @@ public class Enemy : FighterEntity
         {
             if (MoveController.IsGrounded == false) return;
         }
+        if (armorImage.enabled == false)
+        {
+            armorImage.enabled = true;
+            hpImage.enabled = true;
+        }
+        armorImage.fillAmount = (float)Armor/maxArmor;
+        hpImage.fillAmount = (float)CurrentHp / maxHP;
     }
     protected override void OnDeath(FighterEntity fighterEntity)
     {
         if (State == PersonState.Death) return;
         base.OnDeath(fighterEntity);
+    
         levelEnemy.enabled = false;
         AnimatorController.ChangeAnimationState(PersonState.Death);
         rigidbody.GetComponent<BoxCollider2D>().enabled = false;
@@ -178,8 +198,6 @@ public class Enemy : FighterEntity
         rigidbody.drag = 20;
         rigidbody.mass = 1000;
         rigidbody.velocity = new Vector2(0, 0);
-  
-
     }
 
 

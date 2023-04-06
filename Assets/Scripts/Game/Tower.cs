@@ -10,11 +10,10 @@ public class Tower : MonoBehaviour
     public bool Increadible;/*{ get; private set; }*/
     public TowerStickman towerStickMan;
     public Stickman stickman;
-    public static Tower instance;
     public GameObject smoke;
-    private void Start()
+    public void Init()
     {
-        instance = this;
+        stickman = CoreEnivroment.Instance.activeStickman;
         towerStickMan.Init(stickman);
     }
 

@@ -17,7 +17,7 @@ public class StickmanSpell : MonoBehaviour
         this.stickman = stickman;
         this.stickman.Mana -= SpellProperty.ManaCost;
     }
- 
+
 
     public void MoveSpell(float direction)
     {

@@ -15,17 +15,22 @@ public class SpawnSystem : MonoBehaviour
     public List<EnemySpawner> EnemySpawners => enemySpawners;
     public List<Enemy> AllEnemies => enemies;
     public List<EnemyWave> enemyWaves;
-    
+    public List<Coroutine> coroutines;
     public void Init()
     {
+        coroutines = new List<Coroutine>();
         enemies = new List<Enemy>();
         numberWaveText.enabled = false;
         enemySpawners.ForEach(s => s.OnEnemySpawn += AddListAllEnemies);
         enemySpawners.ForEach(s => s.StartCoroutine(s.CorSpawn(enemyWaves[currentWave].EnemyCount,enemyWaves[currentWave].EnemyPrefabs)));
         StartCoroutine(CorShowNumberWave(enemyWaves[currentWave].NumberWave));
-
+        CoreEnivroment.Instance.activeStickman.OnDeathStickman += OnDeathStickman;
     }
-  
+
+    private void OnDeathStickman()
+    {
+        enemySpawners.ForEach(s => s.gameObject.SetActive(false));
+    }
 
     private void AddListAllEnemies(Enemy enemy)
     {

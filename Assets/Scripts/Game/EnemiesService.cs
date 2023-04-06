@@ -7,10 +7,8 @@ public class EnemiesService : MonoBehaviour
 {
     [SerializeField] private SpawnSystem spawnSystem;
     public SpawnSystem SpawnSystem => spawnSystem;
-    public static EnemiesService instance;
-    private void Awake()
+    public void Init()
     {
-        instance = this;
         spawnSystem.Init();
     }
 

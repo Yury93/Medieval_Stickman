@@ -26,11 +26,11 @@ public class ExpLevels : MonoBehaviour
 
     public void Init()
     {
-        EnemiesService.instance.SpawnSystem.AllEnemies.ForEach(e => e.OnEnemyDeath += RefreshInfoLevel);
+        CoreEnivroment.Instance.enemiesService.SpawnSystem.AllEnemies.ForEach(e => e.OnEnemyDeath += RefreshInfoLevel);
         CurrentExp = StickmanSaveUpgrader.GetExpStickman();
         RefreshInfoLevel(null);
 
-        EnemiesService.instance.SpawnSystem.EnemySpawners.ForEach(s => s.OnEnemySpawn += OnEnemySpawn);
+        CoreEnivroment.Instance.enemiesService.SpawnSystem.EnemySpawners.ForEach(s => s.OnEnemySpawn += OnEnemySpawn);
 
         CurrentExp = StickmanSaveUpgrader.GetExpStickman();
 
@@ -61,22 +61,25 @@ public class ExpLevels : MonoBehaviour
                 expFillAmount.fillAmount = ((float)CurrentExp  - (float)CurrentLevel.startExp) /
                     ((float)FutureLevel.startExp - (float)CurrentLevel.startExp);
             }
-
+            if (expFillAmount.fillAmount == 1)
+            {
+                StartCoroutine(CorResetFillAmount());
+                IEnumerator CorResetFillAmount()
+                {
+                    yield return new WaitForSeconds(0.2f);
+                    expFillAmount.fillAmount = 0;
+                }
+            }
         }
         else
         {
             futureLevelText.text = " ";
             expText.text = CurrentExp + "/" + CurrentExp;
+           
+            expFillAmount.fillAmount = 1;
         }
-        if (expFillAmount.fillAmount == 1)
-        {
-            StartCoroutine(CorResetFillAmount());
-            IEnumerator CorResetFillAmount()
-            {
-                yield return new WaitForSeconds(0.2f);
-                expFillAmount.fillAmount = 0;
-            }
-        }
+      
+      
         OnPlusExp?.Invoke(CurrentExp);
     }
 

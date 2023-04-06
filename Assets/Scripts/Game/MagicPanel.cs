@@ -6,14 +6,15 @@ using UnityEngine.UI;
 
 public class MagicPanel : MonoBehaviour
 {
-    [SerializeField] private Stickman stickman;
+    private Stickman stickman;
     [SerializeField] private List<StickmanSpellProperty> stickmanSpells;
     [SerializeField] private Button buttonSpell0, buttonSpell1, buttonSpell2, buttonSpell3;
     [SerializeField] private TextMeshProUGUI description;
     public List<StickmanSpellProperty> SpellProperties => stickmanSpells;
 
-    public void Awake()
+    public void Init()
     {
+        stickman = CoreEnivroment.Instance.activeStickman;
         stickman.SetCurrentSpell(stickmanSpells[0]);
         buttonSpell0.onClick.AddListener(() => stickman.SetCurrentSpell(stickmanSpells[0]));
         buttonSpell1.onClick.AddListener(() => stickman.SetCurrentSpell(stickmanSpells[1]));

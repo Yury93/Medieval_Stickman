@@ -6,14 +6,15 @@ using UnityEngine;
 
 public class CameraMachine : MonoBehaviour
 {
-    [SerializeField] private Tower towen;
+   private Tower towen;
     private Stickman stickman;
     public  CinemachineVirtualCamera virtualCamera;
-    public static CameraMachine instance;
-    private void Start()
+ 
+    public void Init()
     {
-        instance = this;
         stickman = CoreEnivroment.Instance.activeStickman;
+        towen = CoreEnivroment.Instance.tower;
+        ShowStickman();
         stickman.OnDeathStickman += StickmanDeath;
     }
 

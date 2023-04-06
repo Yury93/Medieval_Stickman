@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public IEnumerator CorSpawn(int enemyCount,List<Enemy> prefabsEnemy)
     {
+        if (CoreEnivroment.Instance.activeStickman == null) yield break;
         while (enemyCount > 0)
         {
             cashDelay = delay;

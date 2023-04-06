@@ -6,22 +6,17 @@ using UnityEngine.UI;
 
 public class UpgradeGameSystem : MonoBehaviour
 {
-    public Stickman stickman;
-
     public ExpLevels ExpLevels;
     public UpgradeCharPopup UpgradeCharPopup;
     public MagicPanel magicPanel;
 
     public bool isJerk, isMagicWalk, isKickWalk, isHelp,isMagicIdle, isMagic2,isMagic3,isMagic4;
-
+    public enum TypeButtonUpgrade { jerk,magicWalk,kickWalk,help,magicIdle,magic2,magic3,magic4 }
     private int lastLevel;
 
-    public static UpgradeGameSystem instance;
-    void Awake()
-    {
-        instance = this;
-    }
-    private void Start()
+    public event Action<TypeButtonUpgrade> OnUpgradeButton;
+  
+    public void Init()
     {
         ExpLevels.Init();
         ExpLevels.OnPlusExp += UpgradeCharPopupOpen;
@@ -86,6 +81,7 @@ public class UpgradeGameSystem : MonoBehaviour
             if(isMagicIdle == false)
             {
                 isMagicIdle = true;
+                OnUpgradeButton?.Invoke(TypeButtonUpgrade.magicIdle);
                 //magicPanel.SetActiveMagic1(true);
                 StickmanSaveUpgrader.UpgradeMagicButton();
                 return;
@@ -93,24 +89,28 @@ public class UpgradeGameSystem : MonoBehaviour
             if(isKickWalk == false)
             {
                 isKickWalk = true;
+                OnUpgradeButton?.Invoke(TypeButtonUpgrade.kickWalk);
                 StickmanSaveUpgrader.UpgradeRollingButton();
                 return;
             }
             if (isMagicWalk == false)
             {
                 isMagicWalk = true;
+                OnUpgradeButton?.Invoke(TypeButtonUpgrade.magicWalk);
                 StickmanSaveUpgrader.UpgradeMagicRollingButton();
                 return;
             }
             if(isJerk == false)
             {
                 isJerk = true;
+                OnUpgradeButton?.Invoke(TypeButtonUpgrade.jerk);
                 StickmanSaveUpgrader.UpgradeJerkButton();
                 return;
             }
             if (isHelp == false)
             {
                 isHelp = true;
+                OnUpgradeButton?.Invoke(TypeButtonUpgrade.help);
                 StickmanSaveUpgrader.UpgradeHelpButton();
                 return;
             }
@@ -121,6 +121,7 @@ public class UpgradeGameSystem : MonoBehaviour
                 isMagic2 = true;
                 magicPanel.SetActiveMagic1(true);
                 magicPanel.SetActiveMagic2(true);
+                OnUpgradeButton?.Invoke(TypeButtonUpgrade.magic2);
                 StickmanSaveUpgrader.UpgradeMagic2Button();
                 return;
             }
@@ -128,6 +129,7 @@ public class UpgradeGameSystem : MonoBehaviour
             {
                 isMagic3 = true;
                 magicPanel.SetActiveMagic3(true);
+                OnUpgradeButton?.Invoke(TypeButtonUpgrade.magic3);
                 StickmanSaveUpgrader.UpgradeMagic3Button();
                 return;
             }
@@ -135,6 +137,7 @@ public class UpgradeGameSystem : MonoBehaviour
             {
                 isMagic4 = true;
                 magicPanel.SetActiveMagic4(true);
+                OnUpgradeButton?.Invoke(TypeButtonUpgrade.magic4);
                 StickmanSaveUpgrader.UpgradeMagic4Button();
                 return;
             }
