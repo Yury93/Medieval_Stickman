@@ -19,7 +19,7 @@ public class AnimatorEnemyEvent : MonoBehaviour
         if (stickman == null) return;
 
         var spell = Instantiate(currentSpell, cratedMagic.position, Quaternion.identity);
-        spell.Init(stickman);
+
         if (transform.rotation.y > 0)
             spell.MoveSpell(1);
         else

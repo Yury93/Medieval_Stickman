@@ -7,15 +7,11 @@ public class EnemySpell : MonoBehaviour
     [SerializeField] private int id;
     [SerializeField] private int speed;
     [SerializeField] private int magicPower;
-    public int Id => id;
-    private Stickman stickman;
+    
     private Coroutine corMove;
 
 
-    public void Init(Stickman stickman)
-    {
-        this.stickman = stickman;
-    }
+   
 
 
     public void MoveSpell(float direction)
