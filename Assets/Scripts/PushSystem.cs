@@ -29,40 +29,42 @@ public class PushSystem : MonoBehaviour
 
     }
 
+  
+
     private void OnUpgradeButton(UpgradeGameSystem.TypeButtonUpgrade typeUpgraded)
     {
         OpenPopupInfo();
         if(typeUpgraded == UpgradeGameSystem.TypeButtonUpgrade.jerk)
         {
-            pushText.text = "Вам доступен рывок";
+            pushText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Вам доступен рывок");
         }
         if (typeUpgraded == UpgradeGameSystem.TypeButtonUpgrade.magicIdle)
         {
-            pushText.text = "Теперь вы можете использовать магию";
+            pushText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Теперь вы можете использовать магию");
         }
         if (typeUpgraded == UpgradeGameSystem.TypeButtonUpgrade.magicWalk)
         {
-            pushText.text = "Теперь вы можете использовать магию в движении";
+            pushText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Теперь вы можете использовать магию в движении");
         }
         if (typeUpgraded == UpgradeGameSystem.TypeButtonUpgrade.kickWalk)
         {
-            pushText.text = "Теперь вы можете использовать подкат";
+            pushText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Теперь вы можете использовать подкат");
         }
         if (typeUpgraded == UpgradeGameSystem.TypeButtonUpgrade.magic2)
         {
-            pushText.text = "В нижней части экрана доступен выбор магии";
+            pushText.text = LanguageSystem.instance.Translater.GetValueOrDefault("В нижней части экрана доступен выбор магии");
         }
         if (typeUpgraded == UpgradeGameSystem.TypeButtonUpgrade.magic3)
         {
-            pushText.text = "Окрыта новая магия";
+            pushText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Окрыта новая магия");
         }
         if (typeUpgraded == UpgradeGameSystem.TypeButtonUpgrade.magic4)
         {
-            pushText.text = "Окрыта новая магия";
+            pushText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Окрыта новая магия");
         }
         if (typeUpgraded == UpgradeGameSystem.TypeButtonUpgrade.help)
         {
-            pushText.text = "Окрыта новая магия";
+            pushText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Окрыта новая магия");
         }
     }
 

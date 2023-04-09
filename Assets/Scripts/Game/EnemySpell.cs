@@ -40,10 +40,19 @@ public class EnemySpell : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var enemy = collision.GetComponent<Stickman>();
-        if (enemy)
+        var stickman = collision.GetComponent<Stickman>();
+        var tower = collision.GetComponent<Tower>();
+        if (stickman)
         {
-            enemy.OnDamage(magicPower);
+            stickman.OnDamage(magicPower);
+
+            if (corMove != null) StopCoroutine(corMove);
+
+            Destroy(gameObject);
+        }
+        else if(CoreEnivroment.Instance.activeStickman == null && tower)
+        {
+            tower.OnDamage(magicPower);
 
             if (corMove != null) StopCoroutine(corMove);
 

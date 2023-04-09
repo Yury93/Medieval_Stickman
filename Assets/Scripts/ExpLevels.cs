@@ -50,7 +50,7 @@ public class ExpLevels : MonoBehaviour
         FutureLevel = levels.LastOrDefault(l => l.Level <= CurrentLevel.Level + 1);
 
 
-        persPanelLevelText.text = "Уровень: "+ CurrentLevel.Level.ToString();
+        persPanelLevelText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Уровень") + ": " + CurrentLevel.Level.ToString();
         currentLevelText.text = CurrentLevel.Level.ToString();
         if (FutureLevel != null)
         {

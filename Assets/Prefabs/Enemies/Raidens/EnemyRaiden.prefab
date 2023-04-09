@@ -1574,7 +1574,7 @@ MonoBehaviour:
   hpImage: {fileID: 1454189079149955106}
   offsetLevelText: {x: 0, y: 5.5, z: 0}
   offsetHpText: {x: 0, y: 6.5, z: 0}
-  clampDistanceToTarget: 3
+  clampDistanceToTarget: 3.34
   distanceStartPursuit: 128.6
   stickman: {fileID: 0}
   tower: {fileID: 0}

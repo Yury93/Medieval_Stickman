@@ -91,7 +91,7 @@ public class UpgradeCharPopup : MonoBehaviour
             {
                 score -= 1;
                 hp += 1;
-                parametrs.hpText.text = "Здоровье: "+ (stickman.CurrentHp + hp);
+                parametrs.hpText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Здоровье") + ": " + (stickman.CurrentHp + hp);
                 isUpgrade = true;
                 return;
             }
@@ -103,7 +103,7 @@ public class UpgradeCharPopup : MonoBehaviour
                 score -= 1;
                 armor += 1;
                 Debug.Log(stickman.Armor+ " + " + armor + " /" + stickman.MaxArmor);
-                parametrs.armorText.text = "Броня: " + (stickman.Armor + armor);
+                parametrs.armorText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Броня") + ": "+ (stickman.Armor + armor);
                 isUpgrade = true;
                 return;
             }
@@ -114,7 +114,7 @@ public class UpgradeCharPopup : MonoBehaviour
             {
                 score -= 1;
                 mana += 1;
-                parametrs.manaText.text = "МАНА: " + (stickman.Mana + mana);
+                parametrs.manaText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Мана") + ": "+ (stickman.Mana + mana);
                 isUpgrade = true;
                 return;
             }
@@ -125,7 +125,7 @@ public class UpgradeCharPopup : MonoBehaviour
             {
                 score -= 1;
                 power += 1;
-                parametrs.powerText.text = "СИЛА: "+ (stickman.Power + power);
+                parametrs.powerText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Сила") + ": " + (stickman.Power + power);
                 isUpgrade = true;
                 return;
             }
@@ -145,7 +145,7 @@ public class UpgradeCharPopup : MonoBehaviour
             {
                 score += 1;
                 hp = 0;
-                parametrs.hpText.text = "Здоровье: " + (stickman.CurrentHp);
+                parametrs.hpText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Здоровье") + ": "  + (stickman.CurrentHp);
                 return;
             }
         }
@@ -155,7 +155,7 @@ public class UpgradeCharPopup : MonoBehaviour
             {
                 score += 1;
                 armor = 0;
-                parametrs.armorText.text = "Броня: " + (stickman.Armor);
+                parametrs.armorText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Броня") + ": " + (stickman.Armor);
                 return;
             }
         }
@@ -165,7 +165,7 @@ public class UpgradeCharPopup : MonoBehaviour
             {
                 score += 1;
                 mana = 0;
-                parametrs.manaText.text = "МАНА: " + (stickman.Mana);
+                parametrs.manaText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Мана") + ": " + (stickman.Mana);
                 return;
             }
         }
@@ -175,7 +175,7 @@ public class UpgradeCharPopup : MonoBehaviour
             {
                 score += 1;
                 power = 0;
-                parametrs.powerText.text = "СИЛА: " + (stickman.Power);
+                parametrs.powerText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Сила") + ": " + (stickman.Power);
                 return;
             }
         }
@@ -216,9 +216,9 @@ public class UpgradeCharPopup : MonoBehaviour
         stickman.Armor = stickman.MaxArmor;
 
 
-        parametrs.hpText.text = "Здоровье: " + (stickman.CurrentHp);
-        parametrs.armorText.text = "Броня: " + (stickman.Armor);
-        parametrs.manaText.text = "МАНА: " + (stickman.Mana);
-        parametrs.powerText.text = "СИЛА: " + (stickman.Power);
+        parametrs.hpText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Здоровье") + ": " + (stickman.CurrentHp);
+        parametrs.armorText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Броня") + ": " + (stickman.Armor);
+        parametrs.manaText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Мана") + ": " + (stickman.Mana);
+        parametrs.powerText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Сила") + ": " + (stickman.Power);
     }
 }

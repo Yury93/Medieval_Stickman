@@ -61,7 +61,8 @@ public class SpawnSystem : MonoBehaviour
     IEnumerator CorShowNumberWave(int number)
     {
         numberWaveText.enabled = true;
-        numberWaveText.text = "Волна " + number;
+        string s = LanguageSystem.instance.Translater.GetValueOrDefault("Волна");
+        numberWaveText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Волна") +" " + number;
         yield return new WaitForSeconds(2f);
         numberWaveText.enabled = false;
     }

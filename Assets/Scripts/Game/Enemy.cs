@@ -56,7 +56,7 @@ public class Enemy : FighterEntity
         State = PersonState.Idle;
         Initialized = true;
         collider2d.enabled = true;
-        levelEnemy.text = "Уровень: " + exp;
+        levelEnemy.text = LanguageSystem.instance.Translater.GetValueOrDefault("Уровень") + ": " + exp;
         armorImage.fillAmount = 1;
         hpImage.fillAmount = 1;
         levelEnemy.enabled = true;

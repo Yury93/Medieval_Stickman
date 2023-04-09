@@ -20,14 +20,15 @@ public class GuiStickman : MonoBehaviour
         maxArmor = armor;
         maxHp = hp;
         maxMana = mana;
-        armorText.text = $"Броня: {Convert.ToInt32(armor)}/{Convert.ToInt32(armor)}";
-        hpText.text = $"Здоровье: {Convert.ToInt32(hp)}/{Convert.ToInt32(hp)}";
-        manaText.text = $"Мана: {Convert.ToInt32(mana)}/{Convert.ToInt32(mana)}";
+        
+        armorText.text =  LanguageSystem.instance.Translater.GetValueOrDefault("Броня") + $": {Convert.ToInt32(armor)}/{Convert.ToInt32(armor)}";
+        hpText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Здоровье")+ $": {Convert.ToInt32(hp)}/{Convert.ToInt32(hp)}";
+        manaText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Мана")+ $": { Convert.ToInt32(mana)}/{Convert.ToInt32(mana)}";
 
         if (armor > 0)
         {
             armorImage.fillAmount = armor / maxArmor;
-            armorText.text = $"Броня: {Convert.ToInt32(armor)}/{Convert.ToInt32(maxArmor)}";
+            armorText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Броня") + $": {Convert.ToInt32(armor)}/{Convert.ToInt32(maxArmor)}";
         }
         else
         {
@@ -45,7 +46,7 @@ public class GuiStickman : MonoBehaviour
         if (armor > 0)
         {
             armorImage.fillAmount = currentArmor / maxArmor;
-            armorText.text = $"Броня: {Convert.ToInt32(armor)}/{Convert.ToInt32(maxArmor)}";
+            armorText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Броня") + $": {Convert.ToInt32(armor)}/{Convert.ToInt32(maxArmor)}";
             armorImage.enabled = true;
             armorText.enabled = true;
             hpText.enabled = false;
@@ -63,8 +64,8 @@ public class GuiStickman : MonoBehaviour
         //{
         //    armorText.enabled = false;
         //}
-        hpText.text = $"Здоровье: {Convert.ToInt32(hp)}/{Convert.ToInt32(maxHp)}";
-        manaText.text = $"Мана: {Convert.ToInt32(mana)}/{Convert.ToInt32(maxMana)}";
+        hpText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Здоровье") + $": {Convert.ToInt32(hp)}/{Convert.ToInt32(maxHp)}";
+        manaText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Мана") + $": {Convert.ToInt32(mana)}/{Convert.ToInt32(maxMana)}";
        
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Obsolete ("СДЕЛАТЬ АКТИВНЫМ И Инциализировать либо одного стикмана, либо другого")]
+
 public class CoreEnivroment : MonoBehaviour
 {
     public Stickman stickman;
@@ -22,12 +22,26 @@ public class CoreEnivroment : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        if (InterstateObject.instance.GetStickmanId() == 0)
+        {
+            activeStickman = stickman;
+
+            stickManGirl.gameObject.SetActive(false);
+            stickman.gameObject.SetActive(true);
+            stickman.Init();
+        }
+        else
+        {
+            activeStickman = stickManGirl;
+            stickManGirl.gameObject.SetActive(true);
+            stickman.gameObject.SetActive(false);
+
+            stickManGirl.Init();
+        }
     }
     private void Start()
     {
-        //stickman.Init();
-
-        stickManGirl.Init();
+       
         guiStickman.Init();
         enemiesService.Init();
         upgradeGameSystem.Init();
