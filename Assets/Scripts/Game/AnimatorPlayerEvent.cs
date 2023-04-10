@@ -14,11 +14,11 @@ public class AnimatorPlayerEvent : MonoBehaviour
     Coroutine corRegenMana;
     public void ApplyDamageKickIdle()
     {
-        stickman.ApplyDamage(stickman.Power);
+        stickman.ApplyDamage(stickman.Power/3);
     }
     public void ApplyDamageKickWalk()
     {
-        stickman.ApplyDamage(stickman.Power/3);
+        stickman.ApplyDamage(stickman.Power/5);
     }
     public void CreateMagic()
     {

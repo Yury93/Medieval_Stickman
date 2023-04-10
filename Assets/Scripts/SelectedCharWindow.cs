@@ -14,6 +14,8 @@ public class SelectedCharWindow : Window
     [SerializeField] private GameObject stickman, stickGirl;
     [SerializeField] private TextMeshProUGUI selectedCharText;
     [SerializeField] private Characters character = Characters.stickman;
+    [SerializeField] private TextMeshProUGUI expText, conditionOpenGirlText;
+    [SerializeField] private int costExpForBuyCharGirl;
     public const string ID_CHARACTERS = "ID_CHAR";
 
     void Start()
@@ -42,6 +44,10 @@ public class SelectedCharWindow : Window
         gameObject.SetActive(true);
         stickman.gameObject.SetActive(true);
         stickGirl.gameObject.SetActive(true);
+
+        expText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Текущий опыт") + ": " + StickmanSaveUpgrader.GetExpStickman().ToString();
+        conditionOpenGirlText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Для этого персонажа необходимо набрать") + " " + costExpForBuyCharGirl + " " +
+            LanguageSystem.instance.Translater.GetValueOrDefault("опыта");
         if (InterstateObject.instance.GetStickmanId() == 0)
         {
             OnClickLeftButton();
@@ -64,6 +70,8 @@ public class SelectedCharWindow : Window
 
     private void OnClickLeftButton()
     {
+        conditionOpenGirlText.enabled = false;
+        select.interactable = true;
         left.interactable = false;
         right.interactable = true;
         cinemachine.LookAt = stickman.transform;
@@ -73,7 +81,18 @@ public class SelectedCharWindow : Window
 
     private void OnClickRightButton()
     {
-        right.interactable = false;
+        if (costExpForBuyCharGirl > StickmanSaveUpgrader.GetExpStickman())
+        {
+            conditionOpenGirlText.enabled = true;
+            select.interactable = false;
+        }
+        else
+        {
+            conditionOpenGirlText.enabled = false;
+            select.interactable = true;
+        }
+
+            right.interactable = false;
         left.interactable = true;
         cinemachine.LookAt = stickGirl.transform;
         cinemachine.m_Follow = stickGirl.transform;
