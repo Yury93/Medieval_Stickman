@@ -8,6 +8,7 @@ public class AnimatorEnemyEvent : MonoBehaviour
     [SerializeField] private EnemySpell currentSpell;
     [SerializeField] private Transform cratedMagic;
     [SerializeField] private Stickman stickman;
+    public bool isMagicEnemy;
     public void OnAttack()
     {
         enemy.ApplyAttack();
@@ -15,11 +16,13 @@ public class AnimatorEnemyEvent : MonoBehaviour
 
     public void CreateMagic()
     {
+        if (currentSpell == null) return;
        stickman =  enemy.stickman;
         if (stickman == null) return;
 
+        Debug.Log(cratedMagic + " / " + currentSpell);
         var spell = Instantiate(currentSpell, cratedMagic.position, Quaternion.identity);
-
+        spell.SetMagicPower(enemy.Power);
         if (transform.rotation.y > 0)
             spell.MoveSpell(1);
         else

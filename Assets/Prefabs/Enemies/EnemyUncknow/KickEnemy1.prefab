@@ -1000,7 +1000,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 6
   m_Sprite: {fileID: -5768297470349529519, guid: 37642e3e8739e1d4497a96f59b7cdbe8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1606,7 +1606,7 @@ GameObject:
   - component: {fileID: 6558969425093300866}
   - component: {fileID: 6558969425093300877}
   m_Layer: 0
-  m_Name: EnemyUnknow
+  m_Name: KickEnemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1643,7 +1643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 0
   CurrentHp: 3
-  Armor: 3
+  Armor: 2
   Increadible: 0
   Power: 1
   Mana: 0
@@ -1655,6 +1655,7 @@ MonoBehaviour:
   - {fileID: 5347285534428351957}
   - {fileID: 3356125287576452385}
   - {fileID: 4629779599129764118}
+  exp: 2
   speed: 0.12
   groundMask:
     serializedVersion: 2
@@ -1664,7 +1665,6 @@ MonoBehaviour:
   radiusAttack: 2.23
   offsetRadiusAttackY: 3.48
   collider2d: {fileID: 6558969425093300877}
-  exp: 2
   levelEnemy: {fileID: 6558969424074508482}
   armorImage: {fileID: 5876240613089834616}
   hpImage: {fileID: 2872367273156161974}
@@ -2090,9 +2090,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 6558969425093300867}
-  currentSpell: {fileID: 0}
-  cratedMagic: {fileID: 0}
+  currentSpell: {fileID: 2197451302205250957, guid: 9e44ae58a0af26040a03978641018681, type: 3}
+  cratedMagic: {fileID: 4631816734213453952}
   stickman: {fileID: 0}
+  isMagicEnemy: 0
 --- !u!1 &7570392739864109388
 GameObject:
   m_ObjectHideFlags: 0

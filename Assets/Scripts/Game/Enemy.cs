@@ -7,13 +7,14 @@ using UnityEngine.UI;
 
 public class Enemy : FighterEntity
 {
+    [SerializeField] private int exp;
     [SerializeField] protected float speed;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rigidbody;
     [SerializeField] private float radiusAttack, offsetRadiusAttackY;
     [SerializeField] private Collider2D collider2d;
-    [SerializeField] private int exp;
+   
     [SerializeField] private TextMeshProUGUI levelEnemy;
     [SerializeField] private Image armorImage, hpImage;
     [SerializeField] private Vector3 offsetLevelText,offsetHpText;

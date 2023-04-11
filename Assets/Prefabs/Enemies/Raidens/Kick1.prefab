@@ -1030,6 +1030,7 @@ MonoBehaviour:
   currentSpell: {fileID: 2197451302205250957, guid: 9e44ae58a0af26040a03978641018681, type: 3}
   cratedMagic: {fileID: 7562881203858736268}
   stickman: {fileID: 0}
+  isMagicEnemy: 0
 --- !u!1 &5345782155212777541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,7 +1510,7 @@ GameObject:
   - component: {fileID: 7562881204576840470}
   - component: {fileID: 7562881204576840473}
   m_Layer: 0
-  m_Name: EnemyRaiden
+  m_Name: Kick1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1546,7 +1547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 0
   CurrentHp: 3
-  Armor: 3
+  Armor: 2
   Increadible: 0
   Power: 1
   Mana: 0
@@ -1559,6 +1560,7 @@ MonoBehaviour:
   - {fileID: 4771554373987920884}
   - {fileID: 2779269188498103040}
   - {fileID: 5206971186689853239}
+  exp: 2
   speed: 0.07
   groundMask:
     serializedVersion: 2
@@ -1568,7 +1570,6 @@ MonoBehaviour:
   radiusAttack: 2.23
   offsetRadiusAttackY: 3.48
   collider2d: {fileID: 7562881204576840473}
-  exp: 2
   levelEnemy: {fileID: 7562881205571318102}
   armorImage: {fileID: 7097244368488304620}
   hpImage: {fileID: 1454189079149955106}

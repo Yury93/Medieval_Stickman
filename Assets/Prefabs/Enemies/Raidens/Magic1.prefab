@@ -213,11 +213,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7562881204576840471, guid: 29f8d05c10c3eff41825237ff5747713, type: 3}
       propertyPath: exp
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7562881204576840471, guid: 29f8d05c10c3eff41825237ff5747713, type: 3}
       propertyPath: CurrentHp
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7562881204576840471, guid: 29f8d05c10c3eff41825237ff5747713, type: 3}
       propertyPath: clampDistanceToTarget
@@ -269,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7562881204576840475, guid: 29f8d05c10c3eff41825237ff5747713, type: 3}
       propertyPath: m_Name
-      value: EnemyRaiden Variant
+      value: Magic1
       objectReference: {fileID: 0}
     - target: {fileID: 7562881204972376839, guid: 29f8d05c10c3eff41825237ff5747713, type: 3}
       propertyPath: m_LocalRotation.w

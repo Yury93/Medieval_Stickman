@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 998849183848580161}
   - component: {fileID: 998849183848580174}
   m_Layer: 0
-  m_Name: EnemySubZero
+  m_Name: Kick1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -593,8 +593,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  CurrentHp: 5
-  Armor: 3
+  CurrentHp: 6
+  Armor: 2
   Increadible: 0
   Power: 1
   Mana: 0
@@ -615,7 +615,7 @@ MonoBehaviour:
   radiusAttack: 3.01
   offsetRadiusAttackY: 3.48
   collider2d: {fileID: 998849183848580174}
-  exp: 4
+  exp: 1
   levelEnemy: {fileID: 998849182828748289}
   armorImage: {fileID: 528638931355246779}
   hpImage: {fileID: 8144251039395112821}

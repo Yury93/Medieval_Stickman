@@ -673,7 +673,7 @@ GameObject:
   - component: {fileID: 3444102194635714561}
   - component: {fileID: 3444102194635714574}
   m_Layer: 0
-  m_Name: Noob
+  m_Name: Noob1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -709,8 +709,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  CurrentHp: 5
-  Armor: 3
+  CurrentHp: 3
+  Armor: 2
   Increadible: 0
   Power: 1
   Mana: 0
@@ -722,6 +722,7 @@ MonoBehaviour:
   - {fileID: 5048609746854103092}
   - {fileID: 7861297115187053381}
   - {fileID: 302820364890738548}
+  exp: 2
   speed: 0.07
   groundMask:
     serializedVersion: 2
@@ -731,7 +732,6 @@ MonoBehaviour:
   radiusAttack: 2.58
   offsetRadiusAttackY: 3.48
   collider2d: {fileID: 3444102194635714574}
-  exp: 4
   levelEnemy: {fileID: 3444102193616923201}
   armorImage: {fileID: 2684518069669418235}
   hpImage: {fileID: 5985699053073863477}
@@ -2016,6 +2016,7 @@ MonoBehaviour:
   currentSpell: {fileID: 0}
   cratedMagic: {fileID: 0}
   stickman: {fileID: 0}
+  isMagicEnemy: 0
 --- !u!95 &1237720005523749810
 Animator:
   serializedVersion: 5

@@ -11,7 +11,10 @@ public class EnemySpell : MonoBehaviour
     private Coroutine corMove;
 
 
-   
+   public void SetMagicPower(int power)
+    {
+        magicPower = power;
+    }
 
 
     public void MoveSpell(float direction)
