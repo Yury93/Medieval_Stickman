@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6487475266565882577, guid: 977b2d21bddf2d24fa52d3167d516463, type: 3}
       propertyPath: Power
-      value: 13
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6487475266565882577, guid: 977b2d21bddf2d24fa52d3167d516463, type: 3}
       propertyPath: CurrentHp
@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6487475266565882589, guid: 977b2d21bddf2d24fa52d3167d516463, type: 3}
       propertyPath: m_Name
-      value: Kick8 Variant Variant Variant
+      value: Kick8 Variant Variant Variant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6487475266565882590, guid: 977b2d21bddf2d24fa52d3167d516463, type: 3}
       propertyPath: m_RootOrder

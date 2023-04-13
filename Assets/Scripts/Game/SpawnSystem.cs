@@ -63,7 +63,7 @@ public class SpawnSystem : MonoBehaviour
         numberWaveText.enabled = true;
         string s = LanguageSystem.instance.Translater.GetValueOrDefault("Волна");
         numberWaveText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Волна") +" " + number;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         numberWaveText.enabled = false;
     }
 

@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7417877688320194981, guid: 976abe2f116589248b96408ca5538018, type: 3}
       propertyPath: Power
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7417877688320194985, guid: 976abe2f116589248b96408ca5538018, type: 3}
       propertyPath: m_Name
-      value: Noob4Variant
+      value: Noob4Variant Variant 1
       objectReference: {fileID: 0}
     - target: {fileID: 7417877688320194986, guid: 976abe2f116589248b96408ca5538018, type: 3}
       propertyPath: m_RootOrder

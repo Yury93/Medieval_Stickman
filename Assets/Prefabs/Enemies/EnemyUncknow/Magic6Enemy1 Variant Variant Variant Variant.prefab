@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2645012867184291174, guid: f9db19109222c8c4081b0a5a8d1d54ca, type: 3}
       propertyPath: m_Name
-      value: Magic6Enemy1 Variant Variant Variant
+      value: Magic6Enemy1 Variant Variant Variant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2645012867184291178, guid: f9db19109222c8c4081b0a5a8d1d54ca, type: 3}
       propertyPath: exp
@@ -62,6 +62,10 @@ PrefabInstance:
     - target: {fileID: 2645012867184291178, guid: f9db19109222c8c4081b0a5a8d1d54ca, type: 3}
       propertyPath: Armor
       value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 2645012867184291178, guid: f9db19109222c8c4081b0a5a8d1d54ca, type: 3}
+      propertyPath: Power
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2645012867184291178, guid: f9db19109222c8c4081b0a5a8d1d54ca, type: 3}
       propertyPath: CurrentHp

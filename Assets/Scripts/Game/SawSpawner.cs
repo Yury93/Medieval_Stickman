@@ -14,7 +14,7 @@ public class SawSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(3, 15));
+            yield return new WaitForSeconds(Random.Range(3, 20));
             Instantiate(sawPrefab, transform.position, Quaternion.identity);
         }
     }

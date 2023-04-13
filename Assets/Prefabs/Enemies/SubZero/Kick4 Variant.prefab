@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 230838539689321351, guid: a0f202ba38fb84649b3d4b135b7c818b, type: 3}
       propertyPath: Armor
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 230838539689321351, guid: a0f202ba38fb84649b3d4b135b7c818b, type: 3}
       propertyPath: Power
@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 230838539689321355, guid: a0f202ba38fb84649b3d4b135b7c818b, type: 3}
       propertyPath: m_Name
-      value: Kick4
+      value: Kick4 Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0f202ba38fb84649b3d4b135b7c818b, type: 3}

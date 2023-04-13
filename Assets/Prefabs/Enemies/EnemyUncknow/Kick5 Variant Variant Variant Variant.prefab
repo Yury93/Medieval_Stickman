@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688314600672993331, guid: f566e38bcb3b6e94794b6e3da165730e, type: 3}
       propertyPath: m_Name
-      value: Kick5 Variant Variant Variant
+      value: Kick5 Variant Variant Variant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1688314600672993343, guid: f566e38bcb3b6e94794b6e3da165730e, type: 3}
       propertyPath: exp
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688314600672993343, guid: f566e38bcb3b6e94794b6e3da165730e, type: 3}
       propertyPath: Power
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1688314600672993343, guid: f566e38bcb3b6e94794b6e3da165730e, type: 3}
       propertyPath: CurrentHp

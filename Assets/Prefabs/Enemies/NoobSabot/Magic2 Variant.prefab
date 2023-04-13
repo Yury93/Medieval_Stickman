@@ -157,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4704128681143847200, guid: af5476069dea6444f9d8c66ef7543494, type: 3}
       propertyPath: Power
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4704128681143847200, guid: af5476069dea6444f9d8c66ef7543494, type: 3}
       propertyPath: CurrentHp
@@ -165,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4704128681143847212, guid: af5476069dea6444f9d8c66ef7543494, type: 3}
       propertyPath: m_Name
-      value: Magic2
+      value: Magic2 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4704128681143847215, guid: af5476069dea6444f9d8c66ef7543494, type: 3}
       propertyPath: m_RootOrder

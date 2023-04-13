@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2818740415163244967, guid: f988d43bda53db240bed61091176d0c0, type: 3}
       propertyPath: Power
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2818740415163244967, guid: f988d43bda53db240bed61091176d0c0, type: 3}
       propertyPath: CurrentHp
@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2818740415163244971, guid: f988d43bda53db240bed61091176d0c0, type: 3}
       propertyPath: m_Name
-      value: Magic7
+      value: Magic7 Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f988d43bda53db240bed61091176d0c0, type: 3}

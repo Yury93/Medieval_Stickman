@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6619963303320002128, guid: 62bff4210141bef4cad2029ebb9a7a55, type: 3}
       propertyPath: Armor
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6619963303320002128, guid: 62bff4210141bef4cad2029ebb9a7a55, type: 3}
       propertyPath: Power
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6619963303320002128, guid: 62bff4210141bef4cad2029ebb9a7a55, type: 3}
       propertyPath: CurrentHp
@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6619963303320002140, guid: 62bff4210141bef4cad2029ebb9a7a55, type: 3}
       propertyPath: m_Name
-      value: Kick3
+      value: Kick3 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6619963303320002143, guid: 62bff4210141bef4cad2029ebb9a7a55, type: 3}
       propertyPath: m_RootOrder

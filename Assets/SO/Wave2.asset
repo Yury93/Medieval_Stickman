@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Wave2
   m_EditorClassIdentifier: 
   numberWave: 3
-  enemyCount: 2
+  enemyCount: 5
   enemyPrefabs:
-  - {fileID: 5648019484071650170, guid: 55b3ba2a2c9b14040b9bc623bc1c7f25, type: 3}
-  - {fileID: 6037757421107044058, guid: 9d18ac2bc025b4a48a163271e8c67b25, type: 3}
-  - {fileID: 2361581291554076583, guid: 3abacc6350393574f9fbf54cd30ac64b, type: 3}
-  - {fileID: 8064263033888998506, guid: 6bee49a24fb082242a84d9ecf7eeb548, type: 3}
-  - {fileID: 6071241956817483265, guid: 847b3d9b52fb31a43adc38684b9a6671, type: 3}
+  - {fileID: 309997746263815481, guid: 9664e83f671c5b4408d0a6afad0609da, type: 3}
+  - {fileID: 3444102194635714560, guid: ba6be1e0a79415141b71ef5a153b5292, type: 3}
+  - {fileID: 7562881204576840471, guid: 29f8d05c10c3eff41825237ff5747713, type: 3}
+  - {fileID: 658848102821444153, guid: 0c1046da8bcee544aa3f15d4bb744111, type: 3}
+  - {fileID: 998849183848580160, guid: e06020a4efc78e44db3d1afca9357098, type: 3}
+  - {fileID: 4704128681143847200, guid: af5476069dea6444f9d8c66ef7543494, type: 3}
+  - {fileID: 952771866791754112, guid: ac81406a6c1af0549b055cc15daa5185, type: 3}

@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6584441552877974469, guid: 341c2202c242bd640a285fe867ef566e, type: 3}
       propertyPath: m_Name
-      value: Magic3
+      value: Magic3 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6584441552877974470, guid: 341c2202c242bd640a285fe867ef566e, type: 3}
       propertyPath: m_RootOrder
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584441552877974473, guid: 341c2202c242bd640a285fe867ef566e, type: 3}
       propertyPath: Power
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6584441552877974473, guid: 341c2202c242bd640a285fe867ef566e, type: 3}
       propertyPath: CurrentHp

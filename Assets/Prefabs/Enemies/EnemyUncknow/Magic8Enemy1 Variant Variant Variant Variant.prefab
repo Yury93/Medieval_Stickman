@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8078968203373631189, guid: 6da1318901b2a3542ba89c97d5678cae, type: 3}
       propertyPath: Power
-      value: 14
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8078968203373631189, guid: 6da1318901b2a3542ba89c97d5678cae, type: 3}
       propertyPath: CurrentHp
@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8078968203373631193, guid: 6da1318901b2a3542ba89c97d5678cae, type: 3}
       propertyPath: m_Name
-      value: Magic8Enemy1 Variant Variant Variant
+      value: Magic8Enemy1 Variant Variant Variant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8078968203373631194, guid: 6da1318901b2a3542ba89c97d5678cae, type: 3}
       propertyPath: m_RootOrder

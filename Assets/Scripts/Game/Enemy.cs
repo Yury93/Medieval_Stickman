@@ -31,6 +31,10 @@ public class Enemy : FighterEntity
     public Action<Enemy> OnEnemyDeath;
     [Header("не забыть выключить галочку")]
     public bool ISDEBUG;
+    private void Awake()
+    {
+        levelEnemy.enabled = false;
+    }
     private void Start()
     {
         if(ISDEBUG)

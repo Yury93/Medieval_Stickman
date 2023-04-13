@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6151003721005808884, guid: 7ec9f72204451384194e56c8488e5c4c, type: 3}
       propertyPath: Power
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6151003721005808884, guid: 7ec9f72204451384194e56c8488e5c4c, type: 3}
       propertyPath: CurrentHp
@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6151003721005808888, guid: 7ec9f72204451384194e56c8488e5c4c, type: 3}
       propertyPath: m_Name
-      value: Noob7Variant
+      value: Noob7Variant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6151003721005808891, guid: 7ec9f72204451384194e56c8488e5c4c, type: 3}
       propertyPath: m_RootOrder

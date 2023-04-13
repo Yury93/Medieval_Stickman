@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2484104450238159556, guid: 7ddbca716779fa940960d65231a4383b, type: 3}
       propertyPath: m_Name
-      value: Kick6
+      value: Kick6 Variant 1
       objectReference: {fileID: 0}
     - target: {fileID: 2484104450238159559, guid: 7ddbca716779fa940960d65231a4383b, type: 3}
       propertyPath: m_RootOrder
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2484104450238159560, guid: 7ddbca716779fa940960d65231a4383b, type: 3}
       propertyPath: Power
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2484104450238159560, guid: 7ddbca716779fa940960d65231a4383b, type: 3}
       propertyPath: CurrentHp

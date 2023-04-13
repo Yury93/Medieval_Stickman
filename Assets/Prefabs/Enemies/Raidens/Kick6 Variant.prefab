@@ -7,6 +7,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7098801496314322401, guid: ed08351b5f1bf444ea77aa34b7238ee3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 122.0324
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098801496314322401, guid: ed08351b5f1bf444ea77aa34b7238ee3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 44.5018
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098801496314322401, guid: ed08351b5f1bf444ea77aa34b7238ee3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1123.4753
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098801496314322401, guid: ed08351b5f1bf444ea77aa34b7238ee3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.7491
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098801496314322403, guid: ed08351b5f1bf444ea77aa34b7238ee3, type: 3}
+      propertyPath: m_fontSize
+      value: 25.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7098801497325569954, guid: ed08351b5f1bf444ea77aa34b7238ee3, type: 3}
       propertyPath: exp
       value: 20
@@ -65,7 +85,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098801497325569966, guid: ed08351b5f1bf444ea77aa34b7238ee3, type: 3}
       propertyPath: m_Name
-      value: Kick6
+      value: Kick6 Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed08351b5f1bf444ea77aa34b7238ee3, type: 3}

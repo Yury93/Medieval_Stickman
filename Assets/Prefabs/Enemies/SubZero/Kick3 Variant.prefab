@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6071241956817483265, guid: 847b3d9b52fb31a43adc38684b9a6671, type: 3}
       propertyPath: exp
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6071241956817483265, guid: 847b3d9b52fb31a43adc38684b9a6671, type: 3}
       propertyPath: Armor
@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6071241956817483277, guid: 847b3d9b52fb31a43adc38684b9a6671, type: 3}
       propertyPath: m_Name
-      value: Kick3
+      value: Kick3 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6071241956817483278, guid: 847b3d9b52fb31a43adc38684b9a6671, type: 3}
       propertyPath: m_RootOrder

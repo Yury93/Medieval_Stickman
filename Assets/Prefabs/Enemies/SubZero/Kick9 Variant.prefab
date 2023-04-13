@@ -16,12 +16,16 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6010493008502058193, guid: 84d053ddfdff6f74a95a54bdbf1c1f65, type: 3}
+      propertyPath: Power
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6010493008502058193, guid: 84d053ddfdff6f74a95a54bdbf1c1f65, type: 3}
       propertyPath: CurrentHp
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6010493008502058205, guid: 84d053ddfdff6f74a95a54bdbf1c1f65, type: 3}
       propertyPath: m_Name
-      value: Kick9
+      value: Kick9 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6010493008502058206, guid: 84d053ddfdff6f74a95a54bdbf1c1f65, type: 3}
       propertyPath: m_RootOrder

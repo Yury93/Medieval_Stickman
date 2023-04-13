@@ -38,7 +38,7 @@ public class Saw : MonoBehaviour
         if (stickman)
         {
             stickman.OnDamage(power);
-            Destroy(gameObject,3);
+            Destroy(gameObject,10);
         }
     }
 }

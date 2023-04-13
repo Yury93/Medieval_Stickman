@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3261471888497808967, guid: 86df04767cf3394439da813073666442, type: 3}
       propertyPath: exp
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3261471888497808967, guid: 86df04767cf3394439da813073666442, type: 3}
       propertyPath: Armor
@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3261471888497808967, guid: 86df04767cf3394439da813073666442, type: 3}
       propertyPath: Power
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3261471888497808967, guid: 86df04767cf3394439da813073666442, type: 3}
       propertyPath: CurrentHp
@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3261471888497808971, guid: 86df04767cf3394439da813073666442, type: 3}
       propertyPath: m_Name
-      value: Magic4Variant
+      value: Magic4Variant Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86df04767cf3394439da813073666442, type: 3}

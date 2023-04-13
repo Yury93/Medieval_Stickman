@@ -316,10 +316,12 @@ public class Stickman : FighterEntity
             buttonHelp.gameObject.SetActive(true);
         }
 
-        if (MoveController.IsGrounded)
+        if (MoveController.IsGrounded )
         {
-            if (UpgradeGameSystem.isJerk)
+            if (UpgradeGameSystem.isJerk && State == PersonState.Walk)
                 buttonJerk.gameObject.SetActive(true);
+            else
+                buttonJerk.gameObject.SetActive(false);
         }
         else if (!MoveController.IsGrounded)
         {

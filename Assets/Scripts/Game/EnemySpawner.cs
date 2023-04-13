@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float delay;
     [SerializeField] private Transform parentSpawnEnemy;
-
+    [SerializeField] private float secondToNextWave;
     private float cashDelay;
 
     public Action<Enemy> OnEnemySpawn;
@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
     public IEnumerator CorSpawn(int enemyCount,List<Enemy> prefabsEnemy)
     {
         if (CoreEnivroment.Instance.activeStickman == null) yield break;
+        yield return new WaitForSeconds(secondToNextWave);
         while (enemyCount > 0)
         {
             cashDelay = delay;

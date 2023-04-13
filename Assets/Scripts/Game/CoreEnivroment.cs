@@ -9,6 +9,7 @@ public class CoreEnivroment : MonoBehaviour
     public Stickman stickman;
     public Stickman stickManGirl;
 
+    public HeartBonusCreator heartBonusCreator;
     public Stickman activeStickman;
     public Tower tower;
     public CameraMachine cameraMachine;
@@ -41,7 +42,7 @@ public class CoreEnivroment : MonoBehaviour
     }
     private void Start()
     {
-       
+        heartBonusCreator.Init();
         guiStickman.Init();
         enemiesService.Init();
         upgradeGameSystem.Init();

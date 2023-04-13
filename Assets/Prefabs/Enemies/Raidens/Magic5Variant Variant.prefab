@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848238306321441175, guid: 651381ed016b29c429786c6c3a0a9351, type: 3}
       propertyPath: m_Name
-      value: Magic5Variant
+      value: Magic5Variant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6848238306321441179, guid: 651381ed016b29c429786c6c3a0a9351, type: 3}
       propertyPath: exp
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848238306321441179, guid: 651381ed016b29c429786c6c3a0a9351, type: 3}
       propertyPath: Power
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6848238306321441179, guid: 651381ed016b29c429786c6c3a0a9351, type: 3}
       propertyPath: CurrentHp

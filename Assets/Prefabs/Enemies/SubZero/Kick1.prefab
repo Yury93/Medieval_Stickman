@@ -342,8 +342,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1897.06, y: 9.505096}
-  m_SizeDelta: {x: 80.5312, y: 30.9898}
+  m_AnchoredPosition: {x: -1123.4753, y: 2.7491}
+  m_SizeDelta: {x: 122.0324, y: 44.5018}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &998849182828748288
 CanvasRenderer:
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17
+  m_fontSize: 25.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -606,6 +606,7 @@ MonoBehaviour:
   - {fileID: 925820852175907888}
   - {fileID: 2869249171004548929}
   - {fileID: 5691067222422285168}
+  exp: 1
   speed: 0.07
   groundMask:
     serializedVersion: 2
@@ -615,7 +616,6 @@ MonoBehaviour:
   radiusAttack: 3.01
   offsetRadiusAttackY: 3.48
   collider2d: {fileID: 998849183848580174}
-  exp: 1
   levelEnemy: {fileID: 998849182828748289}
   armorImage: {fileID: 528638931355246779}
   hpImage: {fileID: 8144251039395112821}
@@ -1995,6 +1995,7 @@ MonoBehaviour:
   currentSpell: {fileID: 0}
   cratedMagic: {fileID: 0}
   stickman: {fileID: 0}
+  isMagicEnemy: 0
 --- !u!1 &8787992677646253387
 GameObject:
   m_ObjectHideFlags: 0
