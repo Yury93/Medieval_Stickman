@@ -135,10 +135,12 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\Scripts\Game\EnemySpell.cs" />
     <Compile Include="Assets\Scripts\Game\Tower.cs" />
+    <Compile Include="Assets\Audio\Sound.cs" />
     <Compile Include="Assets\Scripts\Game\SpawnSystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Scripts\Window.cs" />
+    <Compile Include="Assets\Audio\SoundSystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\Scripts\Game\AnimatorEnemyEvent.cs" />
@@ -146,8 +148,6 @@
     <Compile Include="Assets\Scripts\Game\AnimatorPlayerEvent.cs" />
     <Compile Include="Assets\Scripts\StartWindow.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Audio\Sound.cs" />
-    <Compile Include="Assets\Audio\SoundSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

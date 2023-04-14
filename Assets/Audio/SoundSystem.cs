@@ -8,7 +8,8 @@ public class SoundSystem : MonoBehaviour
     [System.Serializable]
     public class SoundLibrary
     {
-        public AudioClip clickButton, deadPlayer, upgradePlayer, startKickPlayer, kickPlayer, rolling, levelUp, fire, burp, fart, kickTotarget;
+        public AudioClip clickButton, deadPlayer, upgradePlayer, startKickPlayer, kickPlayer, rolling, levelUp, fire, burp, fart, kickTotarget,
+            electro, batman,isGround,startJump,swordKick,hpUp,saw,deadEnemy1,deadEnemy2,deadEnemy3,deadEnemy4;
     }
     public static SoundSystem instance;
     
@@ -55,13 +56,58 @@ public class SoundSystem : MonoBehaviour
         }
 
     }
+    public void CreateSound(AudioClip audioClip, float startTime,float volume)
+    {
+        if (isAudioPlay)
+        {
+            var sound = Instantiate(soundPrefab, transform);
+
+            sound.AudioSource.clip = audioClip;
+            sound.AudioSource.volume = volume;
+            int startSample = (int)(startTime * audioClip.frequency);
+            sound.AudioSource.timeSamples = startSample;
+            //audioSource.Play();
+
+            sound.PlaySound(sound.AudioSource.clip);
+        }
+
+    }
+    public void CreateSound(AudioClip audioClip, float startTime)
+    {
+        if (isAudioPlay)
+        {
+            var sound = Instantiate(soundPrefab, transform);
+
+            sound.AudioSource.clip = audioClip;
+            int startSample = (int)(startTime * audioClip.frequency);
+            sound.AudioSource.timeSamples = startSample;
+            //audioSource.Play();
+
+            sound.PlaySound(sound.AudioSource.clip);
+        }
+
+    }
     public void OnApplicationPause(bool pause)
     {
-        Debug.Log(pause + " paused");
+        if(pause)
+        {
+            SetActiveSound(false);
+        }
+        else
+        {
+            SetActiveSound(true);
+        }
     }
     public void OnApplicationFocus(bool focus)
     {
-        Debug.Log(focus + " focus");
+        if (focus == false)
+        {
+            SetActiveSound(false);
+        }
+        else
+        {
+            SetActiveSound(true);
+        } 
     }
    
 }

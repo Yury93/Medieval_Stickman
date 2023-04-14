@@ -5,6 +5,7 @@ using UnityEngine;
 public class StickmanSpell : MonoBehaviour
 {
     [SerializeField] private int id;
+    [SerializeField] private AudioClip audioClip;
     public int Id => id;
     public StickmanSpellProperty SpellProperty { get; private set; }
     private Stickman stickman;
@@ -16,6 +17,7 @@ public class StickmanSpell : MonoBehaviour
         SpellProperty = stickmanSpellProperty;
         this.stickman = stickman;
         this.stickman.Mana -= SpellProperty.ManaCost;
+        SoundSystem.instance.CreateSound(audioClip,0.3f);
     }
 
 

@@ -24,7 +24,7 @@ public class EnemySpell : MonoBehaviour
     }
     IEnumerator CorMove(float direction)
     {
-
+        
         while (true)
         {
             if (transform.localScale.x < 2)
@@ -43,11 +43,15 @@ public class EnemySpell : MonoBehaviour
         var tower = collision.GetComponent<Tower>();
         if (stickman)
         {
-            stickman.OnDamage(magicPower);
+            if (stickman.MoveController.IsEnemyColliderIgnore == false)
+            {
+                SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.electro, 0.3f);
+                stickman.OnDamage(magicPower);
 
-            if (corMove != null) StopCoroutine(corMove);
+                if (corMove != null) StopCoroutine(corMove);
 
-            Destroy(gameObject);
+                Destroy(gameObject);
+            }
         }
         else if(CoreEnivroment.Instance.activeStickman == null && tower)
         {

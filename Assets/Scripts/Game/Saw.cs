@@ -38,6 +38,7 @@ public class Saw : MonoBehaviour
         if (stickman)
         {
             stickman.OnDamage(power);
+            SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.saw);
             Destroy(gameObject,10);
         }
     }

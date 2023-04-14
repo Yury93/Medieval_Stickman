@@ -15,15 +15,16 @@ public class MagicPanel : MonoBehaviour
     public void Init()
     {
         stickman = CoreEnivroment.Instance.activeStickman;
-        stickman.SetCurrentSpell(stickmanSpells[0]);
-        buttonSpell0.onClick.AddListener(() => stickman.SetCurrentSpell(stickmanSpells[0]));
-        buttonSpell1.onClick.AddListener(() => stickman.SetCurrentSpell(stickmanSpells[1]));
-        buttonSpell2.onClick.AddListener(() => stickman.SetCurrentSpell(stickmanSpells[2]));
-        buttonSpell3.onClick.AddListener(() => stickman.SetCurrentSpell(stickmanSpells[3]));
+        stickman.SetCurrentSpell(stickmanSpells[0],false);
+        buttonSpell0.onClick.AddListener(() => stickman.SetCurrentSpell(stickmanSpells[0],true));
+        buttonSpell1.onClick.AddListener(() => stickman.SetCurrentSpell(stickmanSpells[1], true));
+        buttonSpell2.onClick.AddListener(() => stickman.SetCurrentSpell(stickmanSpells[2], true));
+        buttonSpell3.onClick.AddListener(() => stickman.SetCurrentSpell(stickmanSpells[3], true));
     }
     public void SetActiveMagic1(bool result)
     {
         buttonSpell0.gameObject.SetActive(result);
+
     }
     public void SetActiveMagic2(bool result)
     {

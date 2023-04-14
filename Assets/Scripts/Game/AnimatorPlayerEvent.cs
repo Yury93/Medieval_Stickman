@@ -27,6 +27,7 @@ public class AnimatorPlayerEvent : MonoBehaviour
         {
             var spell = Instantiate(currentSpell, cratedMagic.position, Quaternion.identity);
             spell.Init(stickman, stickman.CurrentSpell);
+        
             if (transform.rotation.y > 0)
                 spell.MoveSpell(1);
             else

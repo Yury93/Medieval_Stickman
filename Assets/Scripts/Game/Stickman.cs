@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class Stickman : FighterEntity
 {
-  
     public enum PlatformType { PC,MOBILE }
     [SerializeField] public int id;
     [SerializeField] private PlatformType platformType = PlatformType.PC;
@@ -128,9 +127,11 @@ public class Stickman : FighterEntity
     }
 
   
-    public void SetCurrentSpell(StickmanSpellProperty currentSpell)
+    public void SetCurrentSpell(StickmanSpellProperty currentSpell,bool isAudio)
     {
         CurrentSpell = currentSpell;
+        if (isAudio)
+        SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.clickButton);
     }
 
     private void OnHelp()
@@ -146,7 +147,8 @@ public class Stickman : FighterEntity
         if (State == PersonState.Idle && State != PersonState.Death )
         {
             State = PersonState.Kick_Idle;
-          AnimatorController.ChangeAnimationState(PersonState.Kick_Idle);
+            SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.startKickPlayer,0.3f);
+            AnimatorController.ChangeAnimationState(PersonState.Kick_Idle);
             if (corStateExit != null) { StopCoroutine(corStateExit); corStateExit = null;  }
             corStateExit = StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Idle));
 
@@ -167,6 +169,7 @@ public class Stickman : FighterEntity
         if (State == PersonState.Walk && State != PersonState.Death)
         {
             State = PersonState.Kick_Walk;
+            SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.rolling, 0.3f);
             AnimatorController.ChangeAnimationState(PersonState.Kick_Walk);
             var length = AnimatorController.GetCurrentAnimatorStateLength();
             StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Walk));
@@ -179,6 +182,7 @@ public class Stickman : FighterEntity
         if (State == PersonState.Walk && State != PersonState.Death)
         {
             State = PersonState.Magic_Walk;
+            SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.rolling, 0.3f);
             AnimatorController.ChangeAnimationState(PersonState.Magic_Walk);
             var length = AnimatorController.GetCurrentAnimatorStateLength();
             StartCoroutine(AnimatorController.CorExitToState(this, PersonState.Walk));
@@ -192,6 +196,7 @@ public class Stickman : FighterEntity
         {
             var state = State;
             State = PersonState.Jerk;
+            SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.batman,0.3f);
             bool isRight = animator.transform.rotation.y > 0 ? true : false;
             if (platformType == PlatformType.MOBILE)
             {
@@ -246,6 +251,7 @@ public class Stickman : FighterEntity
             if(enemy != null)
             {
                 enemy.OnDamage(power);
+                SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.kickTotarget);
             }
         }
 
@@ -281,6 +287,8 @@ public class Stickman : FighterEntity
         buttonHelp.gameObject.SetActive(false);
         buttonJerk.gameObject.SetActive(false);
         joystick.gameObject.SetActive(false);
+
+        SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.deadPlayer);
     }
 
     private void RefreshStateButtons()

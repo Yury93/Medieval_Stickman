@@ -159,6 +159,7 @@ public class Enemy : FighterEntity
                 if (stickman.MoveController.IsEnemyColliderIgnore == false)
                 {
                     stickman.OnDamage(Power);
+                    SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.swordKick, 0.3f,0.3f);
                 }
             }
             if(tower!= null)
@@ -193,7 +194,28 @@ public class Enemy : FighterEntity
     {
         if (State == PersonState.Death) return;
         base.OnDeath(fighterEntity);
-    
+
+        var rndSound = UnityEngine.Random.Range(0, 5);
+        if(rndSound == 1 )
+        {
+            SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.deadEnemy1, 0.3f,0.3f);
+        }
+        else if (rndSound == 2)
+        {
+            SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.deadEnemy2, 0.3f, 0.3f);
+        }
+        else if (rndSound == 3)
+        {
+            SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.deadEnemy3, 0.3f, 0.3f);
+        }
+        else if (rndSound == 4)
+        {
+            SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.deadEnemy4, 0.3f, 0.3f);
+        }
+        else
+        {
+            SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.deadEnemy4, 0.3f, 0.3f);
+        }
         levelEnemy.enabled = false;
         AnimatorController.ChangeAnimationState(PersonState.Death);
         rigidbody.GetComponent<BoxCollider2D>().enabled = false;

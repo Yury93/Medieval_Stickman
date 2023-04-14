@@ -66,6 +66,7 @@ public class PushSystem : MonoBehaviour
         {
             pushText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Окрыта новая магия");
         }
+        SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.levelUp, 0.3f);
     }
 
     private void OpenPopupInfo()

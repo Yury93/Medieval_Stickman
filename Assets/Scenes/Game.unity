@@ -14372,8 +14372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb21d3751c37ff40909e9a83423ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ru: "\u041F\u0443\u0441\u0442\u0438\u0442\u044C \u043A\u0440\u043E\u0432\u044C"
-  eng: Bleed
+  ru: "\u0428\u0451\u043F\u043E\u0442 \u0432\u0435\u0442\u0440\u0430"
+  eng: Whisper Wind
   text: {fileID: 0}
 --- !u!1 &1394732208
 GameObject:
@@ -20060,6 +20060,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2544779201411437685, guid: 1ec8fd315b5ce57479b4a7fff1fb7a7a, type: 3}
+      propertyPath: spell.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2544779201411437685, guid: 1ec8fd315b5ce57479b4a7fff1fb7a7a, type: 3}
+      propertyPath: spell.Array.data[0]
+      value: 
+      objectReference: {fileID: 7014340843396498900, guid: 98382822329d1f1498e5ee5a7a80f24b, type: 3}
+    - target: {fileID: 2544779201411437685, guid: 1ec8fd315b5ce57479b4a7fff1fb7a7a, type: 3}
+      propertyPath: spell.Array.data[1]
+      value: 
+      objectReference: {fileID: 2196097713985608630, guid: 6b2586888f6467343ae2466b4c93dea9, type: 3}
+    - target: {fileID: 2544779201411437685, guid: 1ec8fd315b5ce57479b4a7fff1fb7a7a, type: 3}
+      propertyPath: spell.Array.data[2]
+      value: 
+      objectReference: {fileID: 6515734311891410805, guid: 4148b79713a62a647a21c8bbc375f876, type: 3}
+    - target: {fileID: 2544779201411437685, guid: 1ec8fd315b5ce57479b4a7fff1fb7a7a, type: 3}
+      propertyPath: spell.Array.data[3]
+      value: 
+      objectReference: {fileID: 5588573485677888210, guid: 568482a235eab274194dde7cb1ce33c8, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ec8fd315b5ce57479b4a7fff1fb7a7a, type: 3}
 --- !u!114 &2747568540097666179
@@ -20452,6 +20472,26 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.23663245
       objectReference: {fileID: 0}
+    - target: {fileID: 5949798102279348397, guid: 27d6835095452dd488759385a7c341ef, type: 3}
+      propertyPath: spell.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5949798102279348397, guid: 27d6835095452dd488759385a7c341ef, type: 3}
+      propertyPath: spell.Array.data[0]
+      value: 
+      objectReference: {fileID: 7014340843396498900, guid: 98382822329d1f1498e5ee5a7a80f24b, type: 3}
+    - target: {fileID: 5949798102279348397, guid: 27d6835095452dd488759385a7c341ef, type: 3}
+      propertyPath: spell.Array.data[1]
+      value: 
+      objectReference: {fileID: 2196097713985608630, guid: 6b2586888f6467343ae2466b4c93dea9, type: 3}
+    - target: {fileID: 5949798102279348397, guid: 27d6835095452dd488759385a7c341ef, type: 3}
+      propertyPath: spell.Array.data[2]
+      value: 
+      objectReference: {fileID: 6515734311891410805, guid: 4148b79713a62a647a21c8bbc375f876, type: 3}
+    - target: {fileID: 5949798102279348397, guid: 27d6835095452dd488759385a7c341ef, type: 3}
+      propertyPath: spell.Array.data[3]
+      value: 
+      objectReference: {fileID: 5588573485677888210, guid: 568482a235eab274194dde7cb1ce33c8, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27d6835095452dd488759385a7c341ef, type: 3}
 --- !u!1001 &3443838826202198340
@@ -20524,6 +20564,10 @@ PrefabInstance:
     - target: {fileID: 1076355907, guid: 43affd761000ff841b6bf291d2244173, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -68.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116196380, guid: 43affd761000ff841b6bf291d2244173, type: 3}
+      propertyPath: m_text
+      value: "\u0428\u0451\u043F\u043E\u0442 \u0432\u0435\u0442\u0440\u0430"
       objectReference: {fileID: 0}
     - target: {fileID: 1189928124, guid: 43affd761000ff841b6bf291d2244173, type: 3}
       propertyPath: m_IsActive

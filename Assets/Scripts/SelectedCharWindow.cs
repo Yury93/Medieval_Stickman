@@ -37,6 +37,7 @@ public class SelectedCharWindow : Window
             PlayerPrefs.SetInt(ID_CHARACTERS, 0);
         }
         selectedCharText.enabled = true;
+        SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.fire);
     }
 
     public override void Open()
@@ -71,6 +72,7 @@ public class SelectedCharWindow : Window
 
     private void OnClickLeftButton()
     {
+        selectedCharText.enabled = false;
         conditionOpenGirlText.enabled = false;
         select.interactable = true;
         left.interactable = false;
@@ -83,6 +85,7 @@ public class SelectedCharWindow : Window
 
     private void OnClickRightButton()
     {
+        selectedCharText.enabled = false;
         if (costExpForBuyCharGirl > StickmanSaveUpgrader.GetExpStickman())
         {
             conditionOpenGirlText.enabled = true;

@@ -93,6 +93,7 @@ public class MoveController
         {
             yield break;
         }
+        SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.startJump,0.1f);
         fighterEntity.SetState(PersonState.Jump);
         IsGrounded = false;
 
@@ -113,6 +114,7 @@ public class MoveController
         {
             fighterEntity.SetState(PersonState.Idle);
             rigidbody.drag = 7;
+            SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.isGround, 0.1f);
         }
 
     }

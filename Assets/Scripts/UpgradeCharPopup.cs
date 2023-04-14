@@ -220,5 +220,7 @@ public class UpgradeCharPopup : MonoBehaviour
         parametrs.armorText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Броня") + ": " + (stickman.Armor);
         parametrs.manaText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Мана") + ": " + (stickman.Mana);
         parametrs.powerText.text = LanguageSystem.instance.Translater.GetValueOrDefault("Сила") + ": " + (stickman.Power);
+
+        SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.upgradePlayer, 0.3f);
     }
 }

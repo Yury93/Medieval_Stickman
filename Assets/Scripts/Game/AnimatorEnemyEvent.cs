@@ -20,7 +20,7 @@ public class AnimatorEnemyEvent : MonoBehaviour
        stickman =  enemy.stickman;
         if (stickman == null) return;
 
-        Debug.Log(cratedMagic + " / " + currentSpell);
+     
         var spell = Instantiate(currentSpell, cratedMagic.position, Quaternion.identity);
         spell.SetMagicPower(enemy.Power);
         if (transform.rotation.y > 0)
