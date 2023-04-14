@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8743814949823527746, guid: 31c039ddaf99fb04097aa8539adc292a, type: 3}
       propertyPath: Power
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8743814949823527746, guid: 31c039ddaf99fb04097aa8539adc292a, type: 3}
       propertyPath: CurrentHp
@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8743814949823527758, guid: 31c039ddaf99fb04097aa8539adc292a, type: 3}
       propertyPath: m_Name
-      value: Noob4Variant
+      value: Noob4Variant Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31c039ddaf99fb04097aa8539adc292a, type: 3}

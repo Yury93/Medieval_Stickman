@@ -21,7 +21,7 @@ public class HeartBonusCreator : MonoBehaviour
     private void OnEnemyDeath(Enemy enemy)
     {
        var random = GenerateRandomNumber();
-         if (random < 10)
+         if (random < 40)
         {
             Instantiate(heartBonusPrefab, new Vector3(enemy.transform.position.x, transform.position.y, transform.position.z), Quaternion.identity, this.transform);
         }

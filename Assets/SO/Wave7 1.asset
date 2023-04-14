@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d4e8843222c5240a15cdc67f12caf7, type: 3}
+  m_Name: Wave7 1
+  m_EditorClassIdentifier: 
+  numberWave: 26
+  enemyCount: 5
+  enemyPrefabs:
+  - {fileID: 6155668860281222475, guid: 10a7d003eb5788a4b9a09b51bc3862aa, type: 3}
+  - {fileID: 4323517838330714483, guid: c9a6f41eb16308a4e97fe43ead1a05bf, type: 3}
+  - {fileID: 1426983126861280917, guid: 6ca91499a29febb4d803508420a6320c, type: 3}
+  - {fileID: 6151003721005808884, guid: 7ec9f72204451384194e56c8488e5c4c, type: 3}
+  - {fileID: 7395005670951604368, guid: 49e53608238633444baca92f910a57af, type: 3}
+  - {fileID: 4587309131304363156, guid: 64b3c48906f31ee49b43d03e1e3736a2, type: 3}
+  - {fileID: 2246068173692734995, guid: 3d2fb848be04a4e47950a00b4098b2de, type: 3}
+  - {fileID: 2818740415163244967, guid: f988d43bda53db240bed61091176d0c0, type: 3}
+  - {fileID: 3538042835403444265, guid: 505c8c609f6dd804bb9b5e6850c8f3be, type: 3}

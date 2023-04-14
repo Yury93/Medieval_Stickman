@@ -19,10 +19,13 @@ public class StartWindow : Window
     {
         ServiceMenu.Instance.CharWindow.Open();
         gameObject.SetActive(false);
+        SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.clickButton);
     }
 
     private void LoadGame()
     {
+        SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.clickButton);
         SceneLoader.LoadGame();
+     
     }
 }

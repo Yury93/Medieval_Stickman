@@ -88,6 +88,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\Game\MagicPanel.cs" />
+    <Compile Include="Assets\Scripts\HeartBonus.cs" />
     <Compile Include="Assets\Scripts\LanguageSystem.cs" />
     <Compile Include="Assets\Scripts\Game\StartGame.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\Scripts\Game\AnimationController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Assets\Scripts\HeartBonusCreator.cs" />
     <Compile Include="Assets\Scripts\Game\GameLibrary.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\DynamicJoystick.cs" />
@@ -144,8 +146,8 @@
     <Compile Include="Assets\Scripts\Game\AnimatorPlayerEvent.cs" />
     <Compile Include="Assets\Scripts\StartWindow.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\HeartBonus.cs" />
-    <Compile Include="Assets\Scripts\HeartBonusCreator.cs" />
+    <Compile Include="Assets\Audio\Sound.cs" />
+    <Compile Include="Assets\Audio\SoundSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

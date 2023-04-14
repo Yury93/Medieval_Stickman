@@ -64,6 +64,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5913776892678549496, guid: 4246a6f24f6684d4391fdd44a03e15ea, type: 3}
+      propertyPath: Power
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913776892678549496, guid: 4246a6f24f6684d4391fdd44a03e15ea, type: 3}
       propertyPath: CurrentHp
       value: 18
       objectReference: {fileID: 0}

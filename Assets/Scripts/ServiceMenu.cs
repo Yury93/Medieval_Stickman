@@ -7,6 +7,7 @@ public class ServiceMenu : MonoBehaviour
 {
     [SerializeField] private SelectedCharWindow charWindow;
     [SerializeField] private StartWindow startWindow;
+    [SerializeField] private SoundSystem soundSystem;
     public SelectedCharWindow CharWindow => charWindow;
     public StartWindow StartWindow => startWindow;
 
@@ -15,12 +16,13 @@ public class ServiceMenu : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-      
+        soundSystem.Init();
     }
     private void Start()
     {
         charWindow.OnClose += OnCloseCharWindow;
         charWindow.OnOpen += OnOpenCharWindow;
+    
     }
 
     private void OnOpenCharWindow(Window w)

@@ -65,6 +65,7 @@ public class SelectedCharWindow : Window
         stickman.gameObject.SetActive(false);
         stickGirl.gameObject.SetActive(false);
         base.Close();
+        SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.clickButton);
     }
     
 
@@ -77,6 +78,7 @@ public class SelectedCharWindow : Window
         cinemachine.LookAt = stickman.transform;
         cinemachine.m_Follow = stickman.transform;
         character = Characters.stickman;
+        SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.clickButton);
     }
 
     private void OnClickRightButton()
@@ -97,6 +99,7 @@ public class SelectedCharWindow : Window
         cinemachine.LookAt = stickGirl.transform;
         cinemachine.m_Follow = stickGirl.transform;
         character = Characters.stickGirl;
+        SoundSystem.instance.CreateSound(SoundSystem.instance.soundLibrary.clickButton);
     }
 
 }

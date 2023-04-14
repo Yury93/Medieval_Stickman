@@ -20,6 +20,7 @@ public class Stickman : FighterEntity
     [SerializeField] private TextMeshProUGUI helpDelayTxt, jerkDelayText;
     [SerializeField] private GameObject batsEffect;
     [SerializeField] private Sprite portret;
+    [SerializeField] private Image WASDimage;
     public Sprite Portret => portret;
     public StickmanSpellProperty CurrentSpell { get; private set; }
     public AttackController AttackController { get; private set; }
@@ -63,12 +64,14 @@ public class Stickman : FighterEntity
         {
             Debug.Log("Игрок играет на мобильном устройстве");
             platformType = PlatformType.MOBILE;
+            WASDimage.gameObject.SetActive(false);
         }
         else
         {
             Debug.Log("Игрок играет на ПК");
             platformType = PlatformType.PC;
             joystick.gameObject.SetActive(false);
+            WASDimage.gameObject.SetActive(true);
         }
         rigidbody.inertia = 1;
 

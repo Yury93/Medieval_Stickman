@@ -16,12 +16,16 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1426983126861280917, guid: 6ca91499a29febb4d803508420a6320c, type: 3}
+      propertyPath: Power
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1426983126861280917, guid: 6ca91499a29febb4d803508420a6320c, type: 3}
       propertyPath: CurrentHp
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1426983126861280921, guid: 6ca91499a29febb4d803508420a6320c, type: 3}
       propertyPath: m_Name
-      value: Magic7Variant Variant Variant
+      value: Magic7Variant Variant Variant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1426983126861280922, guid: 6ca91499a29febb4d803508420a6320c, type: 3}
       propertyPath: m_RootOrder

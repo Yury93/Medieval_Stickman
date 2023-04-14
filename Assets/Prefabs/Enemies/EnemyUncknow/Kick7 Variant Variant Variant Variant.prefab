@@ -16,6 +16,10 @@ PrefabInstance:
       value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 7493383616037535830, guid: 6a4cd2c9c3288664cbe428bde46f831d, type: 3}
+      propertyPath: Power
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493383616037535830, guid: 6a4cd2c9c3288664cbe428bde46f831d, type: 3}
       propertyPath: CurrentHp
       value: 29
       objectReference: {fileID: 0}
@@ -65,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7493383616037535834, guid: 6a4cd2c9c3288664cbe428bde46f831d, type: 3}
       propertyPath: m_Name
-      value: Kick7 Variant Variant Variant
+      value: Kick7 Variant Variant Variant Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a4cd2c9c3288664cbe428bde46f831d, type: 3}

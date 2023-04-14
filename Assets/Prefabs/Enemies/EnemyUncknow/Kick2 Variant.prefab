@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6558969425093300867, guid: d47d3b55951b50c46841099258c78808, type: 3}
       propertyPath: Power
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6558969425093300867, guid: d47d3b55951b50c46841099258c78808, type: 3}
       propertyPath: CurrentHp
