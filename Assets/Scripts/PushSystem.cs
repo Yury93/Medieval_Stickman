@@ -26,10 +26,14 @@ public class PushSystem : MonoBehaviour
     private void OnDeathStickman()
     {
         gameOverPopup.gameObject.SetActive(true);
+        Yandex.instance.ShowAdvBetweenScenes();
 
     }
+    public void CloseAdvBetweenScenes()
+    {
+        Debug.Log("adv closed");
+    }
 
-  
 
     private void OnUpgradeButton(UpgradeGameSystem.TypeButtonUpgrade typeUpgraded)
     {

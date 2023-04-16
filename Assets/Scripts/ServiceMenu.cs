@@ -8,6 +8,7 @@ public class ServiceMenu : MonoBehaviour
     [SerializeField] private SelectedCharWindow charWindow;
     [SerializeField] private StartWindow startWindow;
     [SerializeField] private SoundSystem soundSystem;
+    [SerializeField] private Yandex yandex;
     public SelectedCharWindow CharWindow => charWindow;
     public StartWindow StartWindow => startWindow;
 
@@ -17,6 +18,7 @@ public class ServiceMenu : MonoBehaviour
     {
         Instance = this;
         soundSystem.Init();
+        yandex.Init();
     }
     private void Start()
     {

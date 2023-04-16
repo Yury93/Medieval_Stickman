@@ -19,6 +19,7 @@ public class StartWindow : Window
        russian.onClick.AddListener(SetRussian);
         sound.onClick.AddListener(SetActiveSound);
         LanguageSystem.instance.OnChangeLanguage += OnChangeLanguage;
+        OnChangeLanguage();
     }
 
     private void OnChangeLanguage()

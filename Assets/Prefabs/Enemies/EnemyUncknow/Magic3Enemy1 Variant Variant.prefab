@@ -53,11 +53,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5648019484071650166, guid: 55b3ba2a2c9b14040b9bc623bc1c7f25, type: 3}
       propertyPath: m_Name
-      value: Magic3Enemy1 Variant
+      value: Magic3Enemy1 Variant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5648019484071650170, guid: 55b3ba2a2c9b14040b9bc623bc1c7f25, type: 3}
       propertyPath: exp
-      value: 5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5648019484071650170, guid: 55b3ba2a2c9b14040b9bc623bc1c7f25, type: 3}
       propertyPath: Armor

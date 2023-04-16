@@ -70,7 +70,7 @@ public class FighterEntity : MonoBehaviour
     protected virtual void OnDeath(FighterEntity fighterEntity)
     {
         State = PersonState.Death;
-        Debug.Log("Смерть " + gameObject.name);
+       
         Destroy(gameObject, 5f);
     }
 

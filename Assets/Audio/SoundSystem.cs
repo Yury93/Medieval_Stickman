@@ -9,7 +9,7 @@ public class SoundSystem : MonoBehaviour
     public class SoundLibrary
     {
         public AudioClip clickButton, deadPlayer, upgradePlayer, startKickPlayer, kickPlayer, rolling, levelUp, fire, burp, fart, kickTotarget,
-            electro, batman,isGround,startJump,swordKick,hpUp,saw,deadEnemy1,deadEnemy2,deadEnemy3,deadEnemy4;
+            electro, batman,isGround,startJump,swordKick,hpUp,saw,deadEnemy1,deadEnemy2,deadEnemy3,deadEnemy4, lasers;
     }
     public static SoundSystem instance;
     

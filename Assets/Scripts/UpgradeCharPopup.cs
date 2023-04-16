@@ -84,7 +84,7 @@ public class UpgradeCharPopup : MonoBehaviour
 
     private void OnClickPlus(TypeUpgrade type)
     {
-        Debug.Log(stickman.Armor + "/" + stickman.MaxArmor);
+      
         if (type == TypeUpgrade.HP)
         {
             if(score>0)

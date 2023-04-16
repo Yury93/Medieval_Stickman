@@ -25,7 +25,7 @@ public class HeartBonusCreator : MonoBehaviour
         {
             Instantiate(heartBonusPrefab, new Vector3(enemy.transform.position.x, transform.position.y, transform.position.z), Quaternion.identity, this.transform);
         }
-        Debug.Log(random);
+       
     }
   
 

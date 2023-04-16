@@ -61,13 +61,13 @@ public class Stickman : FighterEntity
 
         if (Application.isMobilePlatform)
         {
-            Debug.Log("Игрок играет на мобильном устройстве");
+            
             platformType = PlatformType.MOBILE;
             WASDimage.gameObject.SetActive(false);
         }
         else
         {
-            Debug.Log("Игрок играет на ПК");
+         
             platformType = PlatformType.PC;
             joystick.gameObject.SetActive(false);
             WASDimage.gameObject.SetActive(true);

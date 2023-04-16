@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+      var e =  collision.gameObject.GetComponent<Enemy>();
+        if (e!=null)
+        {
+            e.Rigidbody.gravityScale = 1;
+            e.ISGround = true;
+        }
     }
 }

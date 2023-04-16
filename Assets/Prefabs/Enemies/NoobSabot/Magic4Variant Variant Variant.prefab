@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400546896613271529, guid: 9da17d6804dbc4049ba6a3f788091b5e, type: 3}
       propertyPath: exp
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 400546896613271529, guid: 9da17d6804dbc4049ba6a3f788091b5e, type: 3}
       propertyPath: Armor

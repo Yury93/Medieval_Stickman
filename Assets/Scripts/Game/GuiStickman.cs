@@ -59,7 +59,7 @@ public class GuiStickman : MonoBehaviour
         }
         hpImage.fillAmount = currentHp / maxHp;
         manaImage.fillAmount = currentMana / maxMana;
-       
+        mana = Mathf.Clamp(mana, 0, maxMana);
         //if(currentArmor == 0)
         //{
         //    armorText.enabled = false;

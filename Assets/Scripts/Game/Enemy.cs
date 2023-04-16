@@ -30,7 +30,8 @@ public class Enemy : FighterEntity
     public bool Initialized { get; private set; }
     public Action<Enemy> OnEnemyDeath;
     [Header("не забыть выключить галочку")]
-    public bool ISDEBUG;
+    public bool ISDEBUG, ISGround;
+
     private void Awake()
     {
         levelEnemy.enabled = false;
@@ -126,11 +127,24 @@ public class Enemy : FighterEntity
             {
                 if (clampDistanceToTarget <= distanceToTarget)
                 {
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 2f);
+
+                    if (hit.collider != null)
+                    {
+                        var otherEnemy = hit.collider.GetComponent<Enemy>();
+
+                        if (otherEnemy != null)
+                        {
+                            Debug.Log(otherEnemy.gameObject.name + " RAYCAST");
+                            //State = PersonState.Idle;
+                        }
+                    }
                     MoveController.Move(direction.normalized.x, speed);
                     State = PersonState.Walk;
                 }
                 else
                 {
+
                     MoveController.RotateToDirectionPerson(direction.normalized.x);
                     State = PersonState.Kick_Idle;
                 }
@@ -170,7 +184,7 @@ public class Enemy : FighterEntity
         else if(State != PersonState.Idle)
         {
             AnimatorController.CorExitToState(this, PersonState.Idle);
-            Debug.Log("Выход из анимации");
+           
         }
     }
     public override void OnDamage(int damage)
@@ -227,7 +241,14 @@ public class Enemy : FighterEntity
         rigidbody.velocity = new Vector2(0, 0);
     }
 
-
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+        //var ground = collision.gameObject.GetComponent<Ground>();
+        //if (ground != null)
+        //{
+        //    rigidbody.gravityScale = 1;
+        //}
+    //}
 
 
 

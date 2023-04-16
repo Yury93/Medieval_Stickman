@@ -1655,7 +1655,7 @@ MonoBehaviour:
   - {fileID: 5347285534428351957}
   - {fileID: 3356125287576452385}
   - {fileID: 4629779599129764118}
-  exp: 2
+  exp: 5
   speed: 0.12
   groundMask:
     serializedVersion: 2
@@ -1675,6 +1675,7 @@ MonoBehaviour:
   stickman: {fileID: 0}
   tower: {fileID: 0}
   ISDEBUG: 0
+  ISGround: 0
 --- !u!50 &6558969425093300866
 Rigidbody2D:
   serializedVersion: 4

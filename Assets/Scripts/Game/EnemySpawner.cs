@@ -11,13 +11,26 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float delay;
     [SerializeField] private Transform parentSpawnEnemy;
     [SerializeField] private float secondToNextWave;
+    [SerializeField] private float xMax, xMin;
     private float cashDelay;
-
     public Action<Enemy> OnEnemySpawn;
+    public int newPosX;
 
     private int GetRandomNumberInRange(int minValue, int maxValue)
     {
         return  UnityEngine.Random.Range(minValue, maxValue);
+    }
+    public int GenerateRandomNumber(int min, int max, int previousNumber = -1)
+    {
+        int nextNumber = previousNumber;
+        Func<int> randomGenerator = () => new System.Random().Next(min, max + 1);
+
+        while (nextNumber == previousNumber)
+        {
+            nextNumber = randomGenerator();
+        }
+
+        return nextNumber;
     }
     public IEnumerator CorSpawn(int enemyCount,List<Enemy> prefabsEnemy)
     {
@@ -27,6 +40,16 @@ public class EnemySpawner : MonoBehaviour
         {
             cashDelay = delay;
             var enemy = SpawnEnemy(prefabsEnemy[GetRandomNumberInRange(0,prefabsEnemy.Count)]);
+
+            
+            var newX = GenerateRandomNumber((int)xMin, (int)xMax,-1);
+            while(newPosX == newX)
+            {
+                 newX = GenerateRandomNumber((int)xMin, (int)xMax, -1);
+            }
+            newPosX = newX;
+            transform.localPosition = new Vector3(newX, transform.localPosition.y, transform.localPosition.z);
+
             OnEnemySpawn?.Invoke(enemy);
             while (delay >= 0)
             {
@@ -35,11 +58,12 @@ public class EnemySpawner : MonoBehaviour
                 yield return null;
                 delay -= Time.deltaTime;
             }
-            Debug.Log("время подошло отпускать монстрика");
+           
 
             enemy.transform.SetParent(parentSpawnEnemy);
             enemy.Init();
-            enemy.Rigidbody.gravityScale = 1;
+            enemy.Rigidbody.gravityScale = 8;
+
             while (delay < cashDelay)
             {
 

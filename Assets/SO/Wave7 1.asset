@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave7 1
   m_EditorClassIdentifier: 
   numberWave: 26
-  enemyCount: 5
+  enemyCount: 4
   enemyPrefabs:
   - {fileID: 6155668860281222475, guid: 10a7d003eb5788a4b9a09b51bc3862aa, type: 3}
   - {fileID: 4323517838330714483, guid: c9a6f41eb16308a4e97fe43ead1a05bf, type: 3}
