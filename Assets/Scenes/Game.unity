@@ -20302,15 +20302,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 338416959122729168, guid: 1ec8fd315b5ce57479b4a7fff1fb7a7a, type: 3}
       propertyPath: Mana
-      value: 8
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 338416959122729168, guid: 1ec8fd315b5ce57479b4a7fff1fb7a7a, type: 3}
       propertyPath: Armor
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 338416959122729168, guid: 1ec8fd315b5ce57479b4a7fff1fb7a7a, type: 3}
       propertyPath: Power
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 338416959122729168, guid: 1ec8fd315b5ce57479b4a7fff1fb7a7a, type: 3}
       propertyPath: joystick
@@ -20318,7 +20318,7 @@ PrefabInstance:
       objectReference: {fileID: 2121662474}
     - target: {fileID: 338416959122729168, guid: 1ec8fd315b5ce57479b4a7fff1fb7a7a, type: 3}
       propertyPath: CurrentHp
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 338416959122729168, guid: 1ec8fd315b5ce57479b4a7fff1fb7a7a, type: 3}
       propertyPath: WASDimage
@@ -20654,15 +20654,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3402729014844950196, guid: 27d6835095452dd488759385a7c341ef, type: 3}
       propertyPath: Mana
-      value: 25
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3402729014844950196, guid: 27d6835095452dd488759385a7c341ef, type: 3}
       propertyPath: Armor
-      value: 25
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3402729014844950196, guid: 27d6835095452dd488759385a7c341ef, type: 3}
       propertyPath: Power
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3402729014844950196, guid: 27d6835095452dd488759385a7c341ef, type: 3}
       propertyPath: portret
@@ -20674,7 +20674,7 @@ PrefabInstance:
       objectReference: {fileID: 2121662474}
     - target: {fileID: 3402729014844950196, guid: 27d6835095452dd488759385a7c341ef, type: 3}
       propertyPath: CurrentHp
-      value: 53
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3402729014844950196, guid: 27d6835095452dd488759385a7c341ef, type: 3}
       propertyPath: WASDimage

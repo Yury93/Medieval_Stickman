@@ -9,29 +9,37 @@ public class PushSystem : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI pushText;
     [SerializeField] private GameObject popupInfo,gameOverPopup;
-    [SerializeField] private Button closeButton1, closeButton2, restartButton, menuButton; 
-    
+    [SerializeField] private Button closeButton1, closeButton2, restartButton, menuButton;
+    bool isAudioPlay;
     public void Init()
     {
         closeButton1.onClick.AddListener(ClosePopupInfo);
         closeButton2.onClick.AddListener(ClosePopupInfo);
 
-        restartButton.onClick.AddListener(SceneLoader.LoadGame);
+        restartButton.onClick.AddListener(LoadNewGame);
         menuButton.onClick.AddListener(SceneLoader.LoadMenu);
 
         CoreEnivroment.Instance.upgradeGameSystem.OnUpgradeButton += OnUpgradeButton;
         CoreEnivroment.Instance.activeStickman.OnDeathStickman += OnDeathStickman;
     }
-
+    private void LoadNewGame()
+    {
+        Yandex.instance.ShowAdvBetweenScenes();
+        isAudioPlay = SoundSystem.instance.isAudioPlay;
+        SoundSystem.instance.SetActiveSound(false);
+        SceneLoader.LoadGame();
+    }
     private void OnDeathStickman()
     {
         gameOverPopup.gameObject.SetActive(true);
-        Yandex.instance.ShowAdvBetweenScenes();
+        //Yandex.instance.ShowAdvBetweenScenes();// будет при загрузке сцены
 
     }
     public void CloseAdvBetweenScenes()
     {
         Debug.Log("adv closed");
+       if( isAudioPlay)
+        SoundSystem.instance.SetActiveSound(true);
     }
 
 

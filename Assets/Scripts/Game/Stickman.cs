@@ -69,9 +69,14 @@ public class Stickman : FighterEntity
         {
          
             platformType = PlatformType.PC;
+            //////////
+            /// раскоментить 
             joystick.gameObject.SetActive(false);
             WASDimage.gameObject.SetActive(true);
         }
+        //WASDimage.gameObject.SetActive(false);///удалитьь
+        //////
+        ///
         rigidbody.inertia = 1;
 
         buttonHelp.onClick.AddListener(() => DelayButton(buttonHelp,helpDelay,helpDelayTxt));

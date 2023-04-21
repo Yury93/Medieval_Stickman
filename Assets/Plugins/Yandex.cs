@@ -29,6 +29,7 @@ public class Yandex : MonoBehaviour
     //[DllImport("__Internal")]
     //private static extern void RateGame();
     public static Yandex instance;
+    public Action<bool> OnShowAdvReward;
     public void Init()
     {
         if (instance == null)
@@ -47,14 +48,25 @@ public class Yandex : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         HelloButton();
     }
+
+    //нажимаю на кнопку
     public void ShowAdvButton()
     {
         AdvByRewards();
+        OnShowAdvReward?.Invoke(true);
+        
     }
+    //добавил награду
     public void AddReward()
     {
         helpButton.gameObject.SetActive(true);
         AdvButton.gameObject.SetActive(false);
+
+    }
+    //видео с рекламой закрывается
+    public void CloseAdvReward()
+    {
+        OnShowAdvReward?.Invoke(false);
     }
     //public void SetName(string name)
     //{
